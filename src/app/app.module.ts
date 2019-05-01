@@ -1,3 +1,5 @@
+import { RoutesIndexComponent } from './modules/home/routes/routes-index/routes-index.component';
+import { PlacesComponent } from './modules/home/places/places.component';
 import { SignUpComponent } from './modules/auth/sign-up/sign-up.component';
 import { LoginComponent } from './modules/auth/login/login.component';
 import { AuthComponent } from './modules/auth/auth.component';
@@ -18,6 +20,8 @@ import { CreateRoutePlacesComponent } from './modules/home/create-route/create-r
 import { CreateRouteOrderComponent } from './modules/home/create-route/create-route-order/create-route-order.component';
 import { CreateRouteGeneralComponent } from './modules/home/create-route/create-route-general/create-route-general.component';
 import { CreateRouteSummaryComponent } from './modules/home/create-route/create-route-summary/create-route-summary.component';
+import { PlacesIndexComponent } from './modules/home/places/places-index/places-index.component';
+import { RoutesComponent } from './modules/home/routes/routes.component';
 
 
 @NgModule({
@@ -36,7 +40,11 @@ import { CreateRouteSummaryComponent } from './modules/home/create-route/create-
     CreateRoutePlacesComponent,
     CreateRouteOrderComponent,
     CreateRouteGeneralComponent,
-    CreateRouteSummaryComponent
+    CreateRouteSummaryComponent,
+    PlacesComponent,
+    PlacesIndexComponent,
+    RoutesComponent,
+    RoutesIndexComponent
   ],
   imports: [
     BrowserModule,

@@ -31,13 +31,13 @@
       </a>
     </li>
     <li (click)="Selected = 'Places'" class="item" [ngClass]="{'selected': Selected == 'Places'}">
-      <a [routerLink]="['/home','create-route']">
+      <a [routerLink]="['/home','places']">
       <img [src]="Selected == 'Places'?'../../../../../assets/images/my-places_selected.svg':'../../../../../assets/images/my-places.svg'" alt="">
       <p [ngClass]="{'selected': Selected == 'Places'}">My places</p>
       </a>
     </li>
     <li (click)="Selected = 'Routes'" class="item" [ngClass]="{'selected': Selected == 'Routes'}">
-      <a [routerLink]="['/home','create-route']">
+      <a [routerLink]="['/home','routes']">
       <img [src]="Selected == 'Routes'?'../../../../../assets/images/routes_selected.svg':'../../../../../assets/images/routes.svg'" alt="">
       <p [ngClass]="{'selected': Selected == 'Routes'}">Routes</p>
       </a>

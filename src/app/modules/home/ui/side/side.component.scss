@@ -13,7 +13,9 @@
 .side.hided{
    margin-left: -264px;
 }
-
+.side.hided:hover {
+  margin-left: -214px;
+}
 .center {
   margin: 0 auto;
   width: 213px;
@@ -86,7 +88,8 @@ padding: 0 10px;
 }
 .list .item a {
   display: flex;
-  padding: 12px 0;
+  padding: 4px 0;
+  margin: 8px 0;
   cursor: pointer;
 }
 
@@ -106,7 +109,7 @@ color: #200F32;
 background: rgba(0, 0, 0, 0.05);
 // opacity: 0.1;
 border-radius: 10px;
-padding: 10px;
+padding: 4px 10px;
 }
 .list .item.selected p {
   font-weight: bold;
