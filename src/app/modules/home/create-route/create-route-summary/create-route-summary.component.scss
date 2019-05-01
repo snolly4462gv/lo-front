@@ -1,0 +1,192 @@
+.summary{
+  display: flex;
+  // height: calc(100vh - 300px);
+  margin: 16px 0;
+  border: 1px solid #E8E2ED;
+  box-sizing: border-box;
+  box-shadow: 0px 2px 5px rgba(29, 1, 81, 0.07);
+  border-radius: 20px;
+  background: #FFFFFF;
+  .map {
+    background-color: gray;
+    // width: 778px;
+    width: 50%;
+    height: 614px;
+    margin: 16px 20px;
+    border-radius: 20px;
+    border-color: #FFFFFF;
+
+  }
+  .block {
+
+    width: 50%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: #FFFFFF;
+    border-radius: 20px;
+
+  }
+
+  .line {
+    height: 1px;
+    width: 100%;
+    background-color: #EBEBEB;
+    margin-top: 14px;
+  }
+
+  .detail {
+    padding: 16px 30px;
+
+    .logo {
+      background: #FFFFFF;
+      border-radius: 20px;
+      // width: 527px;
+      width: 100%;
+    }
+
+    .header {
+      padding: 12px 6px;
+      display: flex;
+      justify-content: space-between;
+      font-family: 'Open Sans', sans-serif;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 18px;
+      line-height: 25px;
+
+      color: #000000;
+    }
+
+    .text {
+        font-family: 'Open Sans', sans-serif;
+        font-style: normal;
+        font-weight: normal;
+        font-size: 16px;
+        line-height: 25px;
+
+        color: #000000;
+    }
+
+  }
+
+        .tags{
+                        display: flex;
+                        text-decoration: none;
+                        list-style: none;
+                        margin: 0;
+                        padding: 0;
+                        padding-top: 8px;
+                        li{
+                            border: 1px solid #FDC635;;
+                            border-radius: 50px;
+                            color:#FDC635;
+                            font-size: 12px;
+                            line-height: 18px;
+                            text-align: center;
+                            text-transform: uppercase;
+                            padding: 4px 10px;
+                            margin-right: 10px;
+                        }
+                    }
+
+}
+
+
+.places {
+  padding: 30px 0;
+  .placeses-title {
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 27px;/* identical to box height */
+    text-transform: uppercase;
+
+    color: #200F32;
+
+    opacity: 0.5;
+  }
+  .list {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 30px;
+    .item {
+      width: 315px;
+      margin-right: 27px;
+      margin-bottom: 25px;
+        border: 1px solid #E8E2ED;
+      box-sizing: border-box;
+      box-shadow: 0px 2px 5px rgba(29, 1, 81, 0.07);
+      border-radius: 20px;
+      img {
+        background: #C4C4C4;
+        border-radius: 20px 20px 0px 0px;
+      }
+      .title-edit {
+        padding: 8px 16px;
+      }
+      .text {
+        padding: 8px 20px;
+        padding-bottom: 22px;
+      }
+    }
+  }
+
+}
+
+
+        .title-edit {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        .title {
+          display: flex;
+          align-items: center;
+          .number {
+
+            background: linear-gradient(261.83deg, #FDC635 5.98%, #FFA901 94.59%);
+            box-shadow: 0px 2px 10px rgba(217, 143, 0, 0.43);
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            text-align: center;
+            font-family: 'Lato', sans-serif;
+            font-style: normal;
+            font-weight: bold;
+            font-size: 15px;
+            // line-height: 17px;
+            text-align: center;
+
+            color: #FFFFFF;
+          }
+
+          p {
+        font-family: 'Lato', sans-serif;
+          font-style: normal;
+          font-weight: bold;
+          font-size: 20px;
+          line-height: 24px;
+          padding-left: 8px;
+          color: #200F32;
+          }
+        }
+        .edit {
+          padding-left: 120px;
+          display: flex;
+          cursor: pointer;
+          .edit-text {
+            padding-left: 6px;
+            font-family: 'Open Sans', sans-serif;
+            font-style: normal;
+            font-weight: 600;
+            font-size: 14px;
+            line-height: 19px;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            text-transform: uppercase;
+
+            color: #FFA901;
+          }
+        }
+        }

@@ -1,1 +1,10 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
+@import url('https://fonts.googleapis.com/css?family=Lato');
+body {
+  background: #F2F2F2;
+}
+.mw1440 {
+  max-width: 1440px;
+  margin: 0 auto;
+}
