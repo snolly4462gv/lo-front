@@ -9,6 +9,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AgmCoreModule } from '@agm/core';
+import { CommonModule } from '@angular/common';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -24,6 +26,7 @@ import { CreateRouteSummaryComponent } from './modules/home/create-route/create-
 import { PlacesIndexComponent } from './modules/home/places/places-index/places-index.component';
 import { RoutesComponent } from './modules/home/routes/routes.component';
 import { PlacesCreateComponent } from './modules/home/places/places-create/places-create.component';
+import { MapComponent } from './modules/home/ui/map/map.component';
 
 
 @NgModule({
@@ -47,13 +50,22 @@ import { PlacesCreateComponent } from './modules/home/places/places-create/place
     PlacesIndexComponent,
     RoutesComponent,
     RoutesIndexComponent,
-    PlacesCreateComponent
+    PlacesCreateComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    CommonModule,
+    AgmCoreModule.forRoot({
+      // apiKey: 'AIzaSyDY0-Eh_aXzIaR7q-wYWOLaSZcr6VRUMkM'
+      apiKey: 'AIzaSyDNxl1cQw-cqFs5sv0vGJYmW_Ew5qWKNCc'
+
+            // apiKey: 'AIzaSyBaq3qTokKJ_b2VP0h5h_eeYliQ80ME74M',
+      // libraries: ["places"]
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]

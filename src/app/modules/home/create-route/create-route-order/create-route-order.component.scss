@@ -12,7 +12,7 @@
     background-color: gray;
     // width: 778px;
     width: 50%;
-
+    position: relative;
     .start-over {
       width: 117px;
       height: 38px;
@@ -22,6 +22,8 @@
       border-top-right-radius: 0;
       border-bottom-right-radius: 20px;
       border-bottom-left-radius: 0;
+      position: absolute;
+      z-index: 2;
       .content {
          display: flex;
          height: 100%;

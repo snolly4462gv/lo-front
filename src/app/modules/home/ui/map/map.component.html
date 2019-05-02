@@ -1,0 +1,15 @@
+<agm-map [latitude]="lat" [longitude]="lng">
+  <agm-marker [markerDraggable]="true" (dragEnd)="onDragMarker($event)" [latitude]="Point1.lat" [longitude]="Point1.lng">
+    <agm-info-window>Börk</agm-info-window>
+  </agm-marker>
+  <agm-marker [latitude]="Point2.lat" [longitude]="Point2.lng">
+    <agm-info-window>Börk</agm-info-window>
+  </agm-marker>
+    <agm-polyline *ngFor="let line of Polylines; let i = index"
+    [strokeColor]="'#3A1B5A'">
+          <agm-polyline-point [latitude]="line.start.x" [longitude]="line.start.y">
+          </agm-polyline-point>
+          <agm-polyline-point [latitude]="line.end.x" [longitude]="line.end.y">
+          </agm-polyline-point>
+    </agm-polyline>
+</agm-map>
