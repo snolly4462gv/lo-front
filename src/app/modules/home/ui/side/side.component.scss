@@ -8,17 +8,22 @@
   box-shadow: 0px 2px 5px rgba(29, 1, 81, 0.07);
   border-radius: 20px;
   padding-left: 13px;
+  transition: 0.25s ease-in-out;
 }
 
 .side.hided{
    margin-left: -264px;
 }
 .side.hided:hover {
-  margin-left: -214px;
+  margin-left: -254px;
+}
+.side.hided .center {
+  display: none;
 }
 .center {
   margin: 0 auto;
   width: 213px;
+  display: block;
 }
 .menu {
   padding-left: calc( 100% - 50px );
@@ -76,7 +81,7 @@ padding-top: 4px;
   list-style: none;
    margin-top: 0;
    padding: 0;
-   padding-left: 20px;
+  //  padding-left: 20px;
 }
 
 .list .item {

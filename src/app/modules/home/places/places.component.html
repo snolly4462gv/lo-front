@@ -1,1 +1,53 @@
-<p>Dashboard</p>
+<div class="block">
+  <!-- <div class="create-route">
+    <div class="left">
+      <div class="header">
+        <a [routerLink]="['/home','create-route','index']"><img class="array-back" src="../../../../../assets/images/array-back.svg" alt=""></a>
+        <p class="title">Create route</p>
+        <div class="total total-time">
+          <img src="../../../../../assets/images/clock.svg" alt="">
+          <p class="text">Total route time: ~ 4 h</p>
+        </div>
+        <div class="total total-distance">
+          <img src="../../../../../assets/images/distance.svg" alt="">
+          <p class="text">Total distance: ~ 8 km</p>
+        </div>
+      </div>
+
+      <ul class="menu">
+        <li routerLinkActive="active" class="item"><a [routerLink]="['/home','create-route','places']">PLACES</a></li>
+        <li routerLinkActive="active" class="item"><a [routerLink]="['/home','create-route','order']">ORDER</a></li>
+        <li routerLinkActive="active" class="item"><a [routerLink]="['/home','create-route','general']">GENERAL</a></li>
+        <li routerLinkActive="active" class="item"><a [routerLink]="['/home','create-route','summary']">SUMMARY</a></li>
+      </ul>
+    </div>
+    <div class="right">
+      <div class="save-button"><p class="text">SAVE AS drafts</p></div>
+      <div class="remove">
+        <img src="../../../../../assets/images/bin.svg" alt="">
+        <p class="text"> Remove roude</p>
+        </div>
+    </div>
+  </div> -->
+  <router-outlet></router-outlet>
+</div>
+
+<!-- <div *ngIf="CurrentPage != Pages['Index'] && CurrentPage != Pages['Summary']" class="footer fixed">
+  <div *ngIf=" CurrentPage != Pages['Summary']" class="right">
+    <div class="content">
+      <p class="text">If here everything ok. Let’s proceed</p>
+      <img src="../../../../assets/images/array-footer.svg" alt="">
+      <div class="button"><p class="text">Next step</p></div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="CurrentPage == Pages['Summary']" class="footer">
+  <div class="center">
+    <div class="content">
+      <img src="../../../../assets/images/array-footer.svg" alt="">
+      <div class="button"><p class="text">Publish route</p></div>
+      <img src="../../../../assets/images/array-footer-reverse.svg" alt="">
+    </div>
+  </div>
+</div> -->

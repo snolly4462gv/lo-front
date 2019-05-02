@@ -1,0 +1,61 @@
+.login-form{
+  padding: 5px;
+  .input {
+      width: 100%;
+      padding: 14px 30px;
+      margin: 25px 0 0;
+      background: #FFFFFF;
+      border: 1px solid rgba(29, 1, 81, 0.1);
+      box-sizing: border-box;
+      box-shadow: 0px 4px 10px rgba(29, 1, 81, 0.09);
+      border-radius: 31px;
+      font-family: 'Open Sans', sans-serif;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 28px;
+
+      color: #000000;
+
+  }
+
+  .button {
+    background: linear-gradient(246.53deg, #FDC635 5.98%, #FFA901 94.59%);
+    box-shadow: 0px 4px 15px rgba(255, 169, 1, 0.44);
+    border-radius: 37px;
+    width: 136px;
+    margin: 30px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    .text {
+      padding: 12px 20px;
+        font-family: 'Open Sans', sans-serif;
+        font-style: normal;
+        font-weight: 600;
+        font-size: 20px;
+        line-height: 23px;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        text-transform: uppercase;
+
+        color: #FFFFFF;
+
+    }
+  }
+
+  .socials-text {
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 21px;
+    text-align: center;
+
+    color: #000000;
+  }
+
+
+}

@@ -18,28 +18,28 @@
   <img src="../../../../../assets/images/line.svg" alt="" class="line">
 
   <ul class="list">
-    <li (click)="Selected = 'Dashboard'" class="item" [ngClass]="{'selected': Selected == 'Dashboard'}">
+    <li (click)="Selected = Pages.Dashboard" class="item" [ngClass]="{'selected': Selected == Pages.Dashboard}">
       <a [routerLink]="['/home','dashboard']">
-      <img [src]="Selected == 'Dashboard'?'../../../../../assets/images/dashboard_selected.svg':'../../../../../assets/images/dashboard.svg'" alt="">
-      <p [ngClass]="{'selected': Selected == 'Dashboard'}">Dashboard</p>
+      <img [src]="Selected == Pages.Dashboard?'../../../../../assets/images/dashboard_selected.svg':'../../../../../assets/images/dashboard.svg'" alt="">
+      <p [ngClass]="{'selected': Selected == Pages.Dashboard}">Dashboard</p>
       </a>
     </li>
-    <li (click)="Selected = 'Create'" class="item" [ngClass]="{'selected': Selected == 'Create'}">
+    <li (click)="Selected = Pages.CreateRoute" class="item" [ngClass]="{'selected': Selected == Pages.CreateRoute}">
       <a [routerLink]="['/home','create-route']">
-      <img [src]="Selected == 'Create'?'../../../../../assets/images/create-route_selected.svg':'../../../../../assets/images/create-route.svg'" alt="">
-      <p [ngClass]="{'selected': Selected == 'Create'}">Create route</p>
+      <img [src]="Selected == Pages.CreateRoute?'../../../../../assets/images/create-route_selected.svg':'../../../../../assets/images/create-route.svg'" alt="">
+      <p [ngClass]="{'selected': Selected == Pages.CreateRoute}">Create route</p>
       </a>
     </li>
-    <li (click)="Selected = 'Places'" class="item" [ngClass]="{'selected': Selected == 'Places'}">
+    <li (click)="Selected = Pages.Places" class="item" [ngClass]="{'selected': Selected == Pages.Places}">
       <a [routerLink]="['/home','places']">
-      <img [src]="Selected == 'Places'?'../../../../../assets/images/my-places_selected.svg':'../../../../../assets/images/my-places.svg'" alt="">
-      <p [ngClass]="{'selected': Selected == 'Places'}">My places</p>
+      <img [src]="Selected == Pages.Places?'../../../../../assets/images/my-places_selected.svg':'../../../../../assets/images/my-places.svg'" alt="">
+      <p [ngClass]="{'selected': Selected == Pages.Places}">My places</p>
       </a>
     </li>
-    <li (click)="Selected = 'Routes'" class="item" [ngClass]="{'selected': Selected == 'Routes'}">
+    <li (click)="Selected = Pages.Routes" class="item" [ngClass]="{'selected': Selected == Pages.Routes}">
       <a [routerLink]="['/home','routes']">
-      <img [src]="Selected == 'Routes'?'../../../../../assets/images/routes_selected.svg':'../../../../../assets/images/routes.svg'" alt="">
-      <p [ngClass]="{'selected': Selected == 'Routes'}">Routes</p>
+      <img [src]="Selected == Pages.Routes?'../../../../../assets/images/routes_selected.svg':'../../../../../assets/images/routes.svg'" alt="">
+      <p [ngClass]="{'selected': Selected == Pages.Routes}">Routes</p>
       </a>
     </li>
 

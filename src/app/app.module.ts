@@ -8,6 +8,7 @@ import { HomeComponent } from './modules/home/home.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -22,6 +23,7 @@ import { CreateRouteGeneralComponent } from './modules/home/create-route/create-
 import { CreateRouteSummaryComponent } from './modules/home/create-route/create-route-summary/create-route-summary.component';
 import { PlacesIndexComponent } from './modules/home/places/places-index/places-index.component';
 import { RoutesComponent } from './modules/home/routes/routes.component';
+import { PlacesCreateComponent } from './modules/home/places/places-create/places-create.component';
 
 
 @NgModule({
@@ -44,12 +46,14 @@ import { RoutesComponent } from './modules/home/routes/routes.component';
     PlacesComponent,
     PlacesIndexComponent,
     RoutesComponent,
-    RoutesIndexComponent
+    RoutesIndexComponent,
+    PlacesCreateComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

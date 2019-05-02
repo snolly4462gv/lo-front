@@ -15,9 +15,10 @@ import { DashboardIndexComponent } from './modules/home/dashboard/dashboard-inde
 import { LoginComponent } from './modules/auth/login/login.component';
 import { RoutesComponent } from './modules/home/routes/routes.component';
 import { PlacesComponent } from './modules/home/places/places.component';
+import { PlacesCreateComponent } from './modules/home/places/places-create/places-create.component';
 
 const routes: Routes = [
-{ path: '',  pathMatch: 'full', redirectTo: 'home'},
+{ path: '',  pathMatch: 'full', redirectTo: 'auth'},
   {
     path: 'home',
     component: HomeComponent,
@@ -48,7 +49,9 @@ const routes: Routes = [
       { path: 'places', component: PlacesComponent,
         children: [
           {path: '', pathMatch: 'full', redirectTo: 'index'},
-          {path: 'index', component: PlacesIndexComponent}
+          {path: 'index', component: PlacesIndexComponent},
+          {path: 'create', component: PlacesCreateComponent},
+          {path: 'edit', component: PlacesCreateComponent}
         ]
       }
     ]

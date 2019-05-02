@@ -1,2 +1,23 @@
-<p>auth</p>
-<router-outlet></router-outlet>
+<div class="auth-page" [ngClass]="{'login': CurrentPage == 'login', 'sign-up': CurrentPage == 'sign-up'}" >
+  <div class="header">
+    <img src="../../../assets/images/logo-auth.svg" alt="">
+  </div>
+  <div class="middle">
+    <div class="form">
+      <div class="navigate">
+        <div class="items">
+          <a routerLinkActive="active" [routerLink]="['/auth','login']" (click)="CurrentPage = 'login'" class="item login">Login</a>
+          <a routerLinkActive="active" [routerLink]="['/auth','sign-up']" (click)="CurrentPage = 'sign-up'" class="item sign-up">Sign-up</a>
+        </div>
+      </div>
+      <router-outlet></router-outlet>
+      <ul class="socials-block">
+        <li><img src="../../../../assets/images/socials/google.svg" alt=""></li>
+        <li><img src="../../../../assets/images/socials/fb.svg" alt=""></li>
+        <li><img src="../../../../assets/images/socials/twitter.svg" alt=""></li>
+        <li><img src="../../../../assets/images/socials/instagram.svg" alt=""></li>
+        <li><img src="../../../../assets/images/socials/vk.svg" alt=""></li>
+      </ul>
+    </div>
+  </div>
+</div>
