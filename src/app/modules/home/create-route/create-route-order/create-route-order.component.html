@@ -9,21 +9,23 @@
     <app-map></app-map>
   </div>
   <div class="block">
-    <div class="detail preview-route">
-      <div class="route">
+    <div class="detail preview-route" dnd-sortable-container [sortableData]="listOne">
+
+      <div *ngFor="let item of listOne; let i = index" dnd-sortable (onDragEnd)="dropEnd()" [sortableIndex]="i" class="route">
         <div class="header">
-        <img class="logo" src="../../../../../assets/images/Mask Group.png" alt="">
-        <div class="info">
-          <div class="title-edit">
-             <div class="title"><div class="number">1</div> <p>Washington Square Park</p></div>
-          </div>
-          <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim</div>
-          <div class="detail-move">
-            <p class="details-show">More Details</p>
-            <img class="move-img" src="../../../../../assets/images/array-move.svg" alt="">
+          <img class="logo" src="../../../../../assets/images/Mask Group.png" alt="">
+          <div class="info">
+            <div class="title-edit">
+              <div class="title"><div class="number">{{i+1}}</div> <p>Washington Square Park</p></div>
+            </div>
+            <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim</div>
+            <div class="detail-move">
+              <p class="details-show">More Details</p>
+              <!-- dnd-sortable-handle -->
+              <img class="move-img" src="../../../../../assets/images/array-move.svg" alt="">
+            </div>
           </div>
         </div>
-      </div>
       </div>
 
       <div class="line"></div>

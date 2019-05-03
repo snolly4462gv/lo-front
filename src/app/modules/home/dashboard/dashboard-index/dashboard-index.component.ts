@@ -11,5 +11,5 @@ export class DashboardIndexComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  listOne: Array<string> = ['Coffee', 'Orange Juice', 'Red Wine', 'Unhealty drink!', 'Water'];
 }

@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AgmCoreModule } from '@agm/core';
 import { CommonModule } from '@angular/common';
+import { DndModule } from 'ng2-dnd';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -65,7 +66,8 @@ import { MapComponent } from './modules/home/ui/map/map.component';
 
             // apiKey: 'AIzaSyBaq3qTokKJ_b2VP0h5h_eeYliQ80ME74M',
       // libraries: ["places"]
-    })
+    }),
+    DndModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

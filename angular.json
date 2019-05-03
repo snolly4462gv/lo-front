@@ -28,9 +28,11 @@
             ],
             "styles": [
               "src/styles.scss",
-              "src/assets/css/empty.scss"
+              "src/assets/css/empty.scss",
+              "node_modules/ng2-dnd/bundles/style.css"
             ],
-            "scripts": []
+            "scripts": [
+            ]
           },
           "configurations": {
             "production": {

@@ -12,4 +12,10 @@ export class CreateRouteOrderComponent implements OnInit {
   ngOnInit() {
   }
 
+  dropEnd() {
+    console.log(`drop end`);
+  }
+
+listOne: Array<string> = ['Coffee', 'Orange Juice', 'Red Wine', 'Unhealty drink!', 'Water'];
+
 }
