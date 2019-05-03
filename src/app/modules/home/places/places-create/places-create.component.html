@@ -10,7 +10,7 @@
 
 <div class="places">
   <div class="map">
-    <app-map [Mode]="1"></app-map>
+    <app-map [Mode]="1" (OnSelectAddress)="onSelectAddress($event)"></app-map>
   </div>
   <div class="block">
     <div class="detail edit-place">
@@ -18,26 +18,31 @@
 
         <div class="image-upload">
           <label for="file-input">
-             <img class="logo" src="../../../../../assets/images/image-empty.svg" alt="">
 
-             <!-- <img class="logo" src="../../../../../assets/images/Mask Group.png" alt="">
-             <div class="gradient"></div>
-             <img class="pen" src="../../../../../assets/images/pen-edit-photo.svg" alt=""> -->
+             <ng-container *ngIf="!NewPlace.image">
+              <img class="logo" src="../../../../../assets/images/image-empty.svg" alt="">
+             </ng-container>
+
+             <ng-container *ngIf="NewPlace.image&&NewPlace.image.base64">
+              <img class="logo" [src]="NewPlace.image.base64" alt="">
+              <div class="gradient"></div>
+              <img class="pen" src="../../../../../assets/images/pen-edit-photo.svg" alt="">
+             </ng-container>
 
           </label>
 
-          <input id="file-input" type="file" />
+          <input id="file-input" type="file" accept=".jpg, .jpeg, .png" (change)="uploadImage($event)" />
         </div>
 
         <div class="info">
             <div class="input-block">
               <div><label class="label" for="name">Place name*</label></div>
-              <div><input class="input" type="text" name="name" placeholder="Washington Square Park"></div>
+              <div><input [(ngModel)]="NewPlace.name" class="input" type="text" name="name" placeholder="Washington Square Park"></div>
             </div>
 
           <div class="location">
             <img src="../../../../../assets/images/location-img.svg" alt="" class="location-img">
-            <p class="location-title">Washington Square Park</p>
+            <p class="location-title">{{NewPlace.address?NewPlace.address:'*Please, select place at the map!'}}</p>
           </div>
 
         </div>
@@ -45,17 +50,17 @@
       <div class="main">
          <div class="input-block">
               <div><label class="label" for="description">Short description* </label></div>
-              <div><textarea class="input" name="description"></textarea></div>
+              <div><textarea [(ngModel)]="NewPlace.description" class="input" name="description"></textarea></div>
           </div>
 
           <div class="input-block">
               <div><label class="label" for="interesting">Interesting facts </label></div>
-              <div><textarea class="input" name="interesting"></textarea></div>
+              <div><textarea [(ngModel)]="NewPlace.facts" class="input" name="interesting"></textarea></div>
           </div>
 
           <div class="input-block">
               <div><label class="label" for="what">What to do</label></div>
-              <div><textarea class="input" name="what"></textarea></div>
+              <div><textarea [(ngModel)]="NewPlace.whatToDo" class="input" name="what"></textarea></div>
           </div>
 
           <div class="input-block">
@@ -120,12 +125,12 @@
 
 <div class="footer fixed">
   <div class="center">
-    <!-- <div class="content">
+    <div *ngIf="NewPlace.lat && NewPlace.lng && NewPlace.name && NewPlace.description" class="content">
       <img src="../../../../assets/images/array-footer.svg" alt="">
       <div class="button"><p class="text">Add place</p></div>
       <img src="../../../../assets/images/array-footer-reverse.svg" alt="">
-    </div> -->
-    <div class="content">
+    </div>
+    <div *ngIf="!NewPlace.lat || !NewPlace.lng || !NewPlace.name || !NewPlace.description" class="content">
       <div class="button disabled"><p class="text">Add place</p></div>
     </div>
   </div>

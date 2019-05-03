@@ -10,8 +10,8 @@ declare var Buffer: any;
 
 @Injectable()
 export class HttpService {
-    serverUrl = 'https://mouse-back.herokuapp.com';
-
+    serverUrl = 'http://35.204.142.44:3000';
+    // serverUrl = 'https://betrip.io:3000';
     public headers: HttpHeaders = new HttpHeaders();
     public token: TokenModel = new TokenModel('');
 

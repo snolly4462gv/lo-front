@@ -1,12 +1,12 @@
 <div class="sign-up-form">
-  <input class="input" type="text" name="email" placeholder="Email">
-  <input class="input" type="text" name="firstName" placeholder="First name">
-  <input class="input" type="text" name="secondName" placeholder="Second name">
-  <input class="input" type="text" name="city" placeholder="City">
-  <input class="input" type="password" name="password" placeholder="Password">
+  <input [(ngModel)]="User.email" class="input" type="text" name="email" placeholder="Email">
+  <input [(ngModel)]="User.first_name" class="input" type="text" name="firstName" placeholder="First name">
+  <input [(ngModel)]="User.last_name" class="input" type="text" name="secondName" placeholder="Second name">
+  <input [(ngModel)]="User.city" class="input" type="text" name="city" placeholder="City">
+  <input [(ngModel)]="User.password" class="input" type="password" name="password" placeholder="Password">
   <input class="input" type="password" name="passwordConfirm" placeholder="Confirm password">
 
-  <div class="button"><p class="text">Sing UP</p></div>
+  <div (click)="Signup()" class="button"><p class="text">Sing UP</p></div>
   <p class="socials-text">
      You still can sign up via socials
   </p>

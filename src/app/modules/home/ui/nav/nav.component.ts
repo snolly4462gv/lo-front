@@ -1,3 +1,4 @@
+import { MainService } from 'src/app/common/services/main.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: MainService) { }
 
   ngOnInit() {
+  }
+
+  Logout () {
+    this.service.LogoutUser();
   }
 
 }

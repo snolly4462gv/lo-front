@@ -1,8 +1,10 @@
 <div class="login-form">
-  <input class="input" type="text" name="login" placeholder="Login">
-  <input class="input" type="password" name="password" placeholder="Password">
-  <div [routerLink]="['/home', 'create-route']" class="button"><p class="text">Log In</p></div>
+  <input [(ngModel)]="Login.email" class="input" type="text" name="login" placeholder="Login">
+  <input [(ngModel)]="Login.password" class="input" type="password" name="password" placeholder="Password">
+  <div (click)="LoginUser()" class="button"><p class="text">Log In</p></div>
   <p class="socials-text">
      Login via socials
   </p>
 </div>
+
+<!-- [routerLink]="['/home', 'create-route']" -->

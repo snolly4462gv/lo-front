@@ -1,3 +1,6 @@
+import { AppGuard } from './app.guard';
+import { HttpService } from './common/services/http.service';
+import { MainService } from 'src/app/common/services/main.service';
 import { RoutesIndexComponent } from './modules/home/routes/routes-index/routes-index.component';
 import { PlacesComponent } from './modules/home/places/places.component';
 import { SignUpComponent } from './modules/auth/sign-up/sign-up.component';
@@ -29,6 +32,8 @@ import { PlacesIndexComponent } from './modules/home/places/places-index/places-
 import { RoutesComponent } from './modules/home/routes/routes.component';
 import { PlacesCreateComponent } from './modules/home/places/places-create/places-create.component';
 import { MapComponent } from './modules/home/ui/map/map.component';
+import { FormsModule } from '@angular/forms';
+import { TypeService } from './common/services/type.service';
 
 
 @NgModule({
@@ -56,6 +61,7 @@ import { MapComponent } from './modules/home/ui/map/map.component';
     MapComponent
   ],
   imports: [
+    FormsModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -72,7 +78,7 @@ import { MapComponent } from './modules/home/ui/map/map.component';
     AgmSnazzyInfoWindowModule,
     DndModule.forRoot()
   ],
-  providers: [],
+  providers: [HttpService, MainService, TypeService, AppGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

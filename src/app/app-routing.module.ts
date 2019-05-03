@@ -1,3 +1,4 @@
+import { AppGuard } from './app.guard';
 import { PlacesIndexComponent } from './modules/home/places/places-index/places-index.component';
 import { RoutesIndexComponent } from './modules/home/routes/routes-index/routes-index.component';
 import { CreateRouteSummaryComponent } from './modules/home/create-route/create-route-summary/create-route-summary.component';
@@ -22,6 +23,7 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+    canActivate: [AppGuard],
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'dashboard'},
       { path: 'dashboard', component: DashboardIndexComponent,
@@ -59,6 +61,7 @@ const routes: Routes = [
   {
     path: 'auth',
     component: AuthComponent,
+    canActivate: [AppGuard],
     children: [
       { path: '', pathMatch: 'full', redirectTo: 'login'},
       { path: 'login', component: LoginComponent},

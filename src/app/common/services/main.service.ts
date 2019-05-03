@@ -1,3 +1,6 @@
+import { UserModel } from './../models/user.model';
+import { LoginModel } from './../models/login.model';
+import { TypeService } from './type.service';
 import { Injectable } from '@angular/core';
 import { HttpService } from './http.service';
 import { Router, NavigationStart, NavigationEnd, NavigationError, ActivatedRoute } from '@angular/router';
@@ -5,50 +8,59 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { Subject, Observable, Subscribable } from 'rxjs';
 
 import { GUID } from './../models/guide.model';
+import { PlaceModel } from '../models/place.model';
+import { UserGetModel } from '../models/user-get.model';
 
-
-declare var $: any;
 
 @Injectable()
 export class MainService {
 
-    public MyLogoChange: Subject<string>;
-    public MyUserLogoChange: Subject<string>;
-
     public ActiveProcesses: string[] = [];
     public ActiveProcessesChanges: Subject<string[]>;
+
+    public User: UserGetModel = new UserGetModel();
+    public onLoginChange$: Subject<boolean>;
 
     constructor
     (
         private http: HttpService,
         private router: Router,
+        private typeService: TypeService
         // public typeService: TypeService
     ) {
 
-        // this.CurrentAccountChange = new Subject();
-        // this.CurrentAccountChange.next(new AccountGetModel());
+        this.onLoginChange$ = new Subject();
+        this.onLoginChange$.next(false);
 
-        // this.authService.onAuthChange$
-        //     .subscribe(
-        //         (res: boolean) => {
-        //             if (res) {
-        //                 this.GetMyUser();
-        //                 this.GetMyAccounts();
-        //                 if (this.MyAccounts.length > 0) {
-        //                     this.settings.GetBackSettings();
-        //                 } else {
-        //                     this.settings.SaveSettings(this.settings.GetSettings());
-        //                 }
-        //             } else {
-        //                 this.UserChange.next(new UserGetModel());
-        //                 this.CurrentAccountChange.next(new AccountGetModel());
-        //                 this.MyAccountsChange.next([]);
-        //                 this.router.navigate(['/system', 'tickets']);
-        //             }
-        //         }
-        //     );
+        this.onLoginChange$
+            .subscribe(
+                (res: boolean) => {
+                    if (res) {
+                        localStorage.setItem('token', this.User.token);
+                        this.http.BaseInitByToken(this.User.token);
+                        this.router.navigate(['/home']);
+                    } else {
+                        this.User = null;
+                        localStorage.removeItem('token');
+                        this.router.navigate(['/auth']);
+                    }
+                }
+            );
     }
 
+
+    public LoginUser(user: UserGetModel){
+      this.User = user;
+      if (this.User.token) {
+          this.onLoginChange$.next(true);
+      } else {
+        this.User = null;
+      }
+    }
+
+    public LogoutUser(){
+      this.onLoginChange$.next(false);
+    }
 
 
     public WaitBeforeLoading = (fun: () => Observable<any>, success: (result?: any) => void, err?: (obj?: any) => void) => {
@@ -83,5 +95,25 @@ export class MainService {
         }
         this.ActiveProcessesChanges.next(this.ActiveProcesses);
     }
+
+
+    /////////////////////
+    /////////////////////
+    //                 //
+    //     Back-end    //
+    //                 //
+    /////////////////////
+    /////////////////////
+
+    public Login(login: LoginModel) {
+      return this.http.PostData('/auth/login', login);
+    }
+    public CreateUser(user: UserModel) {
+      return this.http.PostData('/users', user);
+    }
+    public CreatePlace(place: PlaceModel) {
+      return this.http.PostData('/places', place);
+    }
+    // this.typeService.ParamsToUrlSearchParams(place)
 
 }

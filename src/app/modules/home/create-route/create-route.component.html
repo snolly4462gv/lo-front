@@ -13,7 +13,7 @@
           <p class="text">Total distance: ~ 8 km</p>
         </div>
       </div>
-      <p *ngIf="CurrentPage == Pages['Places']" class="step">Step 1. On the beginning you have to choose places. You can create places <a class="link" href="#">here</a> :)</p>
+      <p *ngIf="CurrentPage == Pages['Places']" class="step">Step 1. On the beginning you have to choose places. You can create places <a class="link" [routerLink]="['/home','places','create']">here</a> :)</p>
       <p *ngIf="CurrentPage == Pages['Order']" class="step">Step 2. Keep it on! Here you have to make correct order of the places. Just click on place in correct order on map or drag and drop cards under it.</p>
       <p *ngIf="CurrentPage == Pages['General'] || CurrentPage == Pages['Summary']" class="step">Step 3. We almost done. Just input general information about your route. Good luck!</p>
 
