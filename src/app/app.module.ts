@@ -10,6 +10,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AgmCoreModule } from '@agm/core';
+import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { CommonModule } from '@angular/common';
 import { DndModule } from 'ng2-dnd';
 
@@ -62,11 +63,13 @@ import { MapComponent } from './modules/home/ui/map/map.component';
     CommonModule,
     AgmCoreModule.forRoot({
       // apiKey: 'AIzaSyDY0-Eh_aXzIaR7q-wYWOLaSZcr6VRUMkM'
-      apiKey: 'AIzaSyDNxl1cQw-cqFs5sv0vGJYmW_Ew5qWKNCc'
+      apiKey: 'AIzaSyDNxl1cQw-cqFs5sv0vGJYmW_Ew5qWKNCc',
 
             // apiKey: 'AIzaSyBaq3qTokKJ_b2VP0h5h_eeYliQ80ME74M',
-      // libraries: ["places"]
+      libraries: ['places'],
+            language: 'en'
     }),
+    AgmSnazzyInfoWindowModule,
     DndModule.forRoot()
   ],
   providers: [],

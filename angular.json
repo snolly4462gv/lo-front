@@ -29,7 +29,8 @@
             "styles": [
               "src/styles.scss",
               "src/assets/css/empty.scss",
-              "node_modules/ng2-dnd/bundles/style.css"
+              "node_modules/ng2-dnd/bundles/style.css",
+              "node_modules/snazzy-info-window/dist/snazzy-info-window.css"
             ],
             "scripts": [
             ]

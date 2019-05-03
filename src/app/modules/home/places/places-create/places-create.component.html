@@ -2,7 +2,7 @@
   <div class="left">
     <div class="header">
       <a [routerLink]="['/home','places','index']"><img class="array-back" src="../../../../../assets/images/array-back.svg" alt=""></a>
-      <p class="title">Create route</p>
+      <p class="title">Add new place</p>
     </div>
     <p class="step">Just fill up all fields. Good luck!</p>
   </div>
@@ -10,7 +10,7 @@
 
 <div class="places">
   <div class="map">
-
+    <app-map [Mode]="1"></app-map>
   </div>
   <div class="block">
     <div class="detail edit-place">
