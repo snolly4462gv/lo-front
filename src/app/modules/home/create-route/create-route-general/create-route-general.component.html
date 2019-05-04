@@ -28,6 +28,7 @@
             <div class="input-block">
               <div><label class="label" for="name">Tags</label></div>
               <div><input class="input" type="text" name="name"></div>
+              <!-- <material-chips [(ngModel)]="tags" ></material-chips> -->
             </div>
 
 
@@ -35,6 +36,7 @@
   </div>
 
   <div class="map">
+    <app-map [Mode]="4" [Places]="Places"></app-map>
   </div>
 
 </div>

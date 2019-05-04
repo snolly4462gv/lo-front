@@ -1,4 +1,6 @@
+import { MainService } from './../../../../common/services/main.service';
 import { Component, OnInit } from '@angular/core';
+import { PlaceModel } from 'src/app/common/models/place.model';
 
 @Component({
   selector: 'app-create-route-general',
@@ -6,13 +8,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-route-general.component.scss']
 })
 export class CreateRouteGeneralComponent implements OnInit {
-  tags = ['Tag1'];
-  constructor() { }
+  tags = ['Tag1', 'Tag2'];
+
+  Places: PlaceModel[] = [];
+
+  constructor(private service: MainService) { }
 
   ngOnInit() {
-    this.initTags();
+    this.Places = this.service.GetPlaces();
   }
-
-  initTags(){}
 
 }

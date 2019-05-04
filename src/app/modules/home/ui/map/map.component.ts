@@ -18,6 +18,7 @@ export class MapComponent implements OnInit {
     'AddPlace': 1,
     'SelectPlaces': 2,
     'CreateRoute': 3,
+    'General': 4
   };
 
   @Input() Mode = this.Modes.OnlyMap;
@@ -55,15 +56,21 @@ export class MapComponent implements OnInit {
   ngOnInit() {
     this.InitGoogle();
 
-    if (this.Mode === this.Modes.CreateRoute){
+    if (this.Mode === this.Modes.CreateRoute || this.Mode === this.Modes.General){
       for (let item of this.Places) {
         item.selected = false;
+      }
+      if (this.Mode === this.Modes.General) {
+        this.Places[0].selected = true;
       }
       const places = this.service.GetPlaces();
       const countNotOrdered = places.filter(x => x.order == null).length;
       if (countNotOrdered === 0) {
         this.RouteOrder = places;
         this.DrawLines(this.RouteOrder);
+        if (this.Mode === this.Modes.CreateRoute) {
+          this.Places[0].selected = true;
+        }
       }
     }
 

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { PlaceModel } from 'src/app/common/models/place.model';
+import { MainService } from 'src/app/common/services/main.service';
 
 @Component({
   selector: 'app-create-route-summary',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CreateRouteSummaryComponent implements OnInit {
 
-  constructor() { }
+  Places: PlaceModel[] = [];
+
+  constructor(private service: MainService) { }
 
   ngOnInit() {
+    this.Places = this.service.GetPlaces();
   }
 
 }

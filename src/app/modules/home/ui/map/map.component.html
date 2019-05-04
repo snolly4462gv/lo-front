@@ -22,7 +22,7 @@
         </ng-template>
       </agm-snazzy-info-window>
 
-      <ng-container *ngIf="Mode == Modes.AddPlace && NewPlace.lat && NewPlace.lng">
+      <ng-container *ngIf=" (Mode == Modes.AddPlace) && NewPlace.lat && NewPlace.lng">
         <agm-marker
           *ngIf="item.lat && item.lng"
           [latitude]="NewPlace.lat"
@@ -33,7 +33,7 @@
     </ng-container>
 
 
-    <ng-container *ngIf="Mode == Modes.CreateRoute">
+    <ng-container *ngIf="Mode == Modes.CreateRoute || Mode == Modes.General">
       <agm-polyline
         *ngFor="let line of Polylines; let i = index"
         [strokeColor]="'#3A1B5A'"
