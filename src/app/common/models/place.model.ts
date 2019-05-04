@@ -2,6 +2,7 @@ import { ImageModel } from './image.model';
 
 export class PlaceModel {
     constructor(
+        public id?: string,
         public name?: string,
         public address?: string,
         public description?: string,
@@ -14,6 +15,7 @@ export class PlaceModel {
         public lat?: number,
         public lng?: number,
         public image?: ImageModel,
-        public categories?: string[]
+        public categories?: string[],
+        public image_id?: number
     ) {}
 }

@@ -26,7 +26,6 @@ export class MainService {
         private http: HttpService,
         private router: Router,
         private typeService: TypeService
-        // public typeService: TypeService
     ) {
 
         this.onLoginChange$ = new Subject();
@@ -48,13 +47,32 @@ export class MainService {
             );
     }
 
+    public CheckMe() {
+      const token = localStorage.getItem('token');
+      if (token) {
+        this.http.BaseInitByToken(token);
+        this.GetMe()
+          .subscribe(
+            (res) => {
+              this.User = res;
+              this.User.token = token;
+            },
+            (err) => {
+              this.onLoginChange$.next(false);
+            }
+          )
+      } else {
+         this.onLoginChange$.next(false);
+      }
+    }
+
 
     public LoginUser(user: UserGetModel){
       this.User = user;
       if (this.User.token) {
           this.onLoginChange$.next(true);
       } else {
-        this.User = null;
+        this.onLoginChange$.next(false);
       }
     }
 
@@ -111,9 +129,20 @@ export class MainService {
     public CreateUser(user: UserModel) {
       return this.http.PostData('/users', user);
     }
+    public GetMe() {
+      return this.http.GetData('/me', '');
+    }
+
     public CreatePlace(place: PlaceModel) {
       return this.http.PostData('/places', place);
     }
+    public GetMyPlaces() {
+      return this.http.GetData('/me/places', '');
+    }
+    public GetPlaceById(id) {
+      return this.http.GetData('/places/' + id, '');
+    }
+
     // this.typeService.ParamsToUrlSearchParams(place)
 
 }

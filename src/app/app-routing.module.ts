@@ -53,7 +53,7 @@ const routes: Routes = [
           {path: '', pathMatch: 'full', redirectTo: 'index'},
           {path: 'index', component: PlacesIndexComponent},
           {path: 'create', component: PlacesCreateComponent},
-          {path: 'edit', component: PlacesCreateComponent}
+          {path: 'edit/:id', component: PlacesCreateComponent}
         ]
       }
     ]

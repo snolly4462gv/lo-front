@@ -8,106 +8,23 @@
 <p class="text-draft">My Places</p>
 
 <div class="places">
-    <div class="place">
-      <img src="../../.../../../../../assets/images/image 2.png" alt="" class="place__image">
+  <ng-container *ngFor="let place of Places; let i = index">
+    <div *ngIf="place.name" class="place">
+      <img [src]="GetIImageURL(place.image_id)" alt="" class="place__image">
       <div class="place__content">
         <div class="name-price">
-          <p class="name"> Liberty State Park </p>
+          <p class="name">{{place.name}}</p>
         </div>
         <div class="text">
-          <span class="main-text opened"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud Lorem ipsum dolor sit amet<span class="more-btn open-btn">More</span><span class="additional"></span>
-          <span class="more-btn hide-btn">Hide</span></span>
+          <span class="main-text opened">{{place.description.slice(0,80)}}
+          <span *ngIf="place.description.length>80" class="more-btn open-btn">More</span><span class="additional"></span>
+          <span *ngIf="place.description.length>80" class="more-btn hide-btn">Hide</span></span>
 
         </div>
       </div>
      <div class="edit-publish">
-        <img src="../../../../../assets/images/edit.svg" alt="">
+        <img [routerLink]="['/home','places','edit',place.id]" src="../../../../../assets/images/edit.svg" alt="">
       </div>
     </div>
-
-    <div class="place">
-      <img src="../../.../../../../../assets/images/image 2.png" alt="" class="place__image">
-      <div class="place__content">
-        <div class="name-price">
-          <p class="name"> Liberty State Park </p>
-        </div>
-        <div class="text">
-          <span class="main-text opened"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud Lorem ipsum dolor sit amet<span class="more-btn open-btn">More</span><span class="additional"></span>
-          <span class="more-btn hide-btn">Hide</span></span>
-
-        </div>
-      </div>
-     <div class="edit-publish">
-        <img src="../../../../../assets/images/edit.svg" alt="">
-      </div>
-    </div>
-
-    <div class="place">
-      <img src="../../.../../../../../assets/images/image 2.png" alt="" class="place__image">
-      <div class="place__content">
-        <div class="name-price">
-          <p class="name"> Liberty State Park </p>
-        </div>
-        <div class="text">
-          <span class="main-text opened"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud Lorem ipsum dolor sit amet<span class="more-btn open-btn">More</span><span class="additional"></span>
-          <span class="more-btn hide-btn">Hide</span></span>
-
-        </div>
-      </div>
-     <div class="edit-publish">
-        <img src="../../../../../assets/images/edit.svg" alt="">
-      </div>
-    </div>
-
-    <div class="place">
-      <img src="../../.../../../../../assets/images/image 2.png" alt="" class="place__image">
-      <div class="place__content">
-        <div class="name-price">
-          <p class="name"> Liberty State Park </p>
-        </div>
-        <div class="text">
-          <span class="main-text opened"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud Lorem ipsum dolor sit amet<span class="more-btn open-btn">More</span><span class="additional"></span>
-          <span class="more-btn hide-btn">Hide</span></span>
-
-        </div>
-      </div>
-     <div class="edit-publish">
-        <img src="../../../../../assets/images/edit.svg" alt="">
-      </div>
-    </div>
-
-    <div class="place">
-      <img src="../../.../../../../../assets/images/image 2.png" alt="" class="place__image">
-      <div class="place__content">
-        <div class="name-price">
-          <p class="name"> Liberty State Park </p>
-        </div>
-        <div class="text">
-          <span class="main-text opened"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud Lorem ipsum dolor sit amet<span class="more-btn open-btn">More</span><span class="additional"></span>
-          <span class="more-btn hide-btn">Hide</span></span>
-
-        </div>
-      </div>
-     <div class="edit-publish">
-        <img src="../../../../../assets/images/edit.svg" alt="">
-      </div>
-    </div>
-
-    <div class="place">
-      <img src="../../.../../../../../assets/images/image 2.png" alt="" class="place__image">
-      <div class="place__content">
-        <div class="name-price">
-          <p class="name"> Liberty State Park </p>
-        </div>
-        <div class="text">
-          <span class="main-text opened"> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud Lorem ipsum dolor sit amet<span class="more-btn open-btn">More</span><span class="additional"></span>
-          <span class="more-btn hide-btn">Hide</span></span>
-
-        </div>
-      </div>
-     <div class="edit-publish">
-        <img src="../../../../../assets/images/edit.svg" alt="">
-      </div>
-    </div>
-
+  </ng-container>
 </div>

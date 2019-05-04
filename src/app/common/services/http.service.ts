@@ -6,7 +6,6 @@ import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 import { TokenModel } from '../models/token.model';
 
-declare var Buffer: any;
 
 @Injectable()
 export class HttpService {
@@ -24,7 +23,7 @@ export class HttpService {
             if (this.headers.has('Authorization')) {
                 this.headers.delete('Authorization');
             }
-            this.headers.append('Authorization', data);
+            this.headers = new HttpHeaders().set('Authorization', data);
             this.token = new TokenModel(data);
         }
     }
@@ -33,6 +32,7 @@ export class HttpService {
         if (!this.headers.has('Content-Type')) {
             this.headers.append('Content-Type', 'application/json');
         }
+
     }
 
     GetToken(): TokenModel {
@@ -54,6 +54,7 @@ export class HttpService {
     }
 
     PostData(method: string, data: any) {
+      console.log(`headres`, this.headers);
         return this.http.post(this.serverUrl + method, data, {headers: this.headers});
     }
 

@@ -1,6 +1,9 @@
+import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
+import { MainService } from 'src/app/common/services/main.service';
 import { Component, OnInit } from '@angular/core';
 import { PlaceModel } from 'src/app/common/models/place.model';
 import { ImageModel } from 'src/app/common/models/image.model';
+import { PlaceMapModel } from 'src/app/common/models/place-map.model';
 
 @Component({
   selector: 'app-places-create',
@@ -10,10 +13,67 @@ import { ImageModel } from 'src/app/common/models/image.model';
 export class PlacesCreateComponent implements OnInit {
 
   NewPlace: PlaceModel = new PlaceModel();
+  Places: PlaceMapModel[] = [];
+  isImageByModel = false;
+  isEdit = false;
 
-  constructor() { }
+  constructor(private service: MainService, private router: Router, private route: ActivatedRoute) {
+    // this.router.events.subscribe((e: any) => {
+    //     if (e instanceof NavigationEnd) {
+    //         const currentRoute = this.router.url;
+    //         if (currentRoute.startsWith('/home/routes/edit')) {
+    //           this.Selected =  this.Pages.Dashboard;
+    //         }
+    //         if (currentRoute.startsWith('/home/create-route')) {
+    //           this.Selected =  this.Pages.CreateRoute;
+    //         }
+    //         if (currentRoute.startsWith('/home/places')) {
+    //           this.Selected =  this.Pages.Places;
+    //         }
+    //         if (currentRoute.startsWith('/home/routes')) {
+    //           this.Selected =  this.Pages.Routes;
+    //         }
+    //     }
+    // });
+     route.params.subscribe(
+       params => {
+         if (params['id']) {
+           this.service.GetPlaceById(params['id'])
+            .subscribe(
+              (res) => {
+                this.NewPlace = res;
+                this.isEdit = true;
+                this.isImageByModel = true;
+              }
+            );
+         }
+       }
+      );
+  }
 
   ngOnInit() {
+    this.GetPlaces();
+  }
+
+  GetPlaces() {
+    this.service.GetMyPlaces()
+      .subscribe(
+        (res: PlaceMapModel[]) => {
+          this.Places = res;
+        }
+      );
+  }
+
+  CreatePlace() {
+    if (this.NewPlace.image.base64) {
+      this.NewPlace.image.base64 = this.NewPlace.image.base64.split('base64,')[1];
+    }
+    this.service.CreatePlace(this.NewPlace)
+      .subscribe(
+        (res) => {
+          this.router.navigate(['/home', 'places']);
+        }
+      );
   }
 
   onSelectAddress(event) {
@@ -25,30 +85,30 @@ export class PlacesCreateComponent implements OnInit {
   uploadImage($event){
     this.ReadImages(
         $event.target.files,
-        (res:string)=>{
-          console.log(res);
+        (res: string) => {
+            this.isImageByModel = false;
             this.NewPlace.image = new ImageModel();
             this.NewPlace.image.base64 = res;
-            // this.isNewImage = true;
-
         }
     );
   }
 
-    protected ReadImages(files:any,callback?:(params?)=>any)
-    {
-        for(let f of files)
-        {
-            let file:File = f;
-            if(!file)
-               break;
-
-            let myReader:FileReader = new FileReader();
+    protected ReadImages(files: any, callback?: (params?) => any) {
+        for ( const f of files) {
+            const file: File = f;
+            if (!file) {
+              break;
+            }
+            const myReader: FileReader = new FileReader();
             myReader.onloadend = (e) => {
                 callback(myReader.result);
-            }
+            };
             myReader.readAsDataURL(file);
         }
+    }
+
+    GetImageURL(id) {
+      return 'http://35.204.142.44:3000/images/' + id;
     }
 
 }

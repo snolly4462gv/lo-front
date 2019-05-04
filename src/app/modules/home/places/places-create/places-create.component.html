@@ -10,7 +10,7 @@
 
 <div class="places">
   <div class="map">
-    <app-map [Mode]="1" (OnSelectAddress)="onSelectAddress($event)"></app-map>
+    <app-map [Mode]="1" [Places]="Places" (OnSelectAddress)="onSelectAddress($event)"></app-map>
   </div>
   <div class="block">
     <div class="detail edit-place">
@@ -19,12 +19,12 @@
         <div class="image-upload">
           <label for="file-input">
 
-             <ng-container *ngIf="!NewPlace.image">
+             <ng-container *ngIf="!NewPlace.image && !isImageByModel && !NewPlace.image_id">
               <img class="logo" src="../../../../../assets/images/image-empty.svg" alt="">
              </ng-container>
 
-             <ng-container *ngIf="NewPlace.image&&NewPlace.image.base64">
-              <img class="logo" [src]="NewPlace.image.base64" alt="">
+             <ng-container *ngIf="NewPlace.image&&NewPlace.image.base64 || isImageByModel&&NewPlace.image_id">
+              <img class="logo" [src]="isImageByModel&&NewPlace.image_id?'http://35.204.142.44:3000/images/'+NewPlace.image_id:NewPlace.image.base64" alt="">
               <div class="gradient"></div>
               <img class="pen" src="../../../../../assets/images/pen-edit-photo.svg" alt="">
              </ng-container>
@@ -108,11 +108,11 @@
           <div class="input-block">
               <div><label class="label" for="rating">Rating</label></div>
               <div class="stars">
-                <img class="star" src="../../../../../assets/images/star-empty.svg" alt="">
-                <img class="star" src="../../../../../assets/images/star-empty.svg" alt="">
-                <img class="star" src="../../../../../assets/images/star-empty.svg" alt="">
-                <img class="star" src="../../../../../assets/images/star-empty.svg" alt="">
-                <img class="star" src="../../../../../assets/images/star-empty.svg" alt="">
+                <img class="star" (click)="NewPlace.ratings = 1" [src]="NewPlace.ratings>=1 ? '../../../../../assets/images/star-full.svg' : '../../../../../assets/images/star-empty.svg'" alt="">
+                <img class="star" (click)="NewPlace.ratings = 2" [src]="NewPlace.ratings>=2 ? '../../../../../assets/images/star-full.svg' : '../../../../../assets/images/star-empty.svg'" alt="">
+                <img class="star" (click)="NewPlace.ratings = 3" [src]="NewPlace.ratings>=3 ? '../../../../../assets/images/star-full.svg' : '../../../../../assets/images/star-empty.svg'" alt="">
+                <img class="star" (click)="NewPlace.ratings = 4" [src]="NewPlace.ratings>=4 ? '../../../../../assets/images/star-full.svg' : '../../../../../assets/images/star-empty.svg'" alt="">
+                <img class="star" (click)="NewPlace.ratings = 5" [src]="NewPlace.ratings==5 ? '../../../../../assets/images/star-full.svg' : '../../../../../assets/images/star-empty.svg'" alt="">
               </div>
           </div>
 
@@ -127,7 +127,7 @@
   <div class="center">
     <div *ngIf="NewPlace.lat && NewPlace.lng && NewPlace.name && NewPlace.description" class="content">
       <img src="../../../../assets/images/array-footer.svg" alt="">
-      <div class="button"><p class="text">Add place</p></div>
+      <div (click)="CreatePlace()"  class="button"><p class="text">Add place</p></div>
       <img src="../../../../assets/images/array-footer-reverse.svg" alt="">
     </div>
     <div *ngIf="!NewPlace.lat || !NewPlace.lng || !NewPlace.name || !NewPlace.description" class="content">

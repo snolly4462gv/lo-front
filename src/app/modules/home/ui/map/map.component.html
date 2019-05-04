@@ -1,28 +1,33 @@
 <agm-map #agmMap [latitude]="lat" [longitude]="lng" (mapClick)="MapClick($event)">
 
   <ng-container *ngIf="Mode != Modes.OnlyMap">
-    <agm-snazzy-info-window
-      *ngFor="let item of Points; let i = index"
-      [isOpen]="true"
-      [latitude]="item.lat"
-      [longitude]="item.lng"
-      [showCloseButton]="false"
-      [padding]="'3px'"
-      [borderRadius]="'5px'"
-      [closeOnMapClick] = "false"
-      [backgroundColor]="item.selected?'#FFA901':'#ffffff'"
-    >
-      <ng-template>
-        <img class="map-img" (click)="SelectInfoWindow(i)" src="../../../../../assets/images/map-img.png" alt="">
-      </ng-template>
-    </agm-snazzy-info-window>
+    <ng-container *ngFor="let item of Places; let i = index">
+      <agm-snazzy-info-window
+        *ngIf="item.lat && item.lng && item.name"
+        [isOpen]="true"
+        [latitude]="item.lat"
+        [longitude]="item.lng"
+        [showCloseButton]="false"
+        [padding]="'3px'"
+        [borderRadius]="'5px'"
+        [closeOnMapClick] = "false"
+        [backgroundColor]="item.selected?'#FFA901':'#ffffff'"
+      >
+        <ng-template>
+          <!-- src="../../../../../assets/images/map-img.png" -->
+          <p *ngIf="!item.image_id">{{item.name}}</p>
+          <img *ngIf="item.image_id" class="map-img" (click)="SelectInfoWindow(i)" (error)="item.image_id = null" [src]="GetImageURL(item.image_id)" alt="">
+        </ng-template>
+      </agm-snazzy-info-window>
 
-    <ng-container *ngIf="Mode == Modes.AddPlace && NewPlace.lat && NewPlace.lng">
-      <agm-marker
-        [latitude]="NewPlace.lat"
-        [longitude]="NewPlace.lng"
-        [iconUrl]="'../../../../../assets/images/betrip-cursor.svg'"
-      ></agm-marker>
+      <ng-container *ngIf="Mode == Modes.AddPlace && NewPlace.lat && NewPlace.lng">
+        <agm-marker
+          *ngIf="item.lat && item.lng"
+          [latitude]="NewPlace.lat"
+          [longitude]="NewPlace.lng"
+          [iconUrl]="'../../../../../assets/images/betrip-cursor.svg'"
+        ></agm-marker>
+      </ng-container>
     </ng-container>
 
 

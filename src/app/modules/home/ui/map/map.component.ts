@@ -1,3 +1,4 @@
+import { PlaceMapModel } from './../../../../common/models/place-map.model';
 import { DomSanitizer } from '@angular/platform-browser';
 import { PlaceModel } from './../../../../common/models/place.model';
 import { Component, OnInit, NgZone, ViewChild, Input, Output, EventEmitter } from '@angular/core';
@@ -20,51 +21,65 @@ export class MapComponent implements OnInit {
   };
 
   @Input() Mode = this.Modes.OnlyMap;
+  @Input() Places: PlaceMapModel[] = [];
 
   @Output('OnSelectAddress') onSelectAddress = new EventEmitter<{lat: number, lng: number, address:string}>()
 
-  constructor (protected mapsAPILoader  : MapsAPILoader,
-  protected _sanitizer     : DomSanitizer,
-  protected ngZone         : NgZone,) {}
+  constructor (
+                protected mapsAPILoader: MapsAPILoader,
+                protected _sanitizer: DomSanitizer,
+                protected ngZone: NgZone) {}
 
   @ViewChild('agmMap') agmMap: AgmMap;
 
   lat = 51.678418;
   lng = 7.809007;
+  Geocoder: any;
   Point1 = {lat: this.lat, lng: this.lng, selected: false};
   Point2 = {lat: this.lat + 1, lng: this.lng + 5};
 
-  Points = [];
+
 
   Polylines = [];
 
   NewPlace: PlaceModel = new PlaceModel();
 
+
   ngOnInit() {
-      this.Points.push(this.Point1);
-      this.Points.push(this.Point2);
+    this.InitGoogle();
+      this.Places.push(this.Point1);
+      this.Places.push(this.Point2);
       this.GmapsCubicBezier(this.Point1, this.Point2, 0.025);
+  }
+
+  InitGoogle() {
+    this.mapsAPILoader.load().then(
+      () => {
+        this.Geocoder = new google.maps.Geocoder();
+      }
+    );
   }
 
   MapClick(event: any) {
     if (this.Mode === this.Modes.AddPlace) {
       this.NewPlace.lat = event.coords.lat;
       this.NewPlace.lng = event.coords.lng;
-      this.onSelectAddress.emit(
+      this.getAddressByPostion(this.NewPlace.lat, this.NewPlace.lng,
+      (res) => {
+        this.onSelectAddress.emit(
         {
-          address: this.getAddressByPostion(this.NewPlace.lat, this.NewPlace.lng),
+          address: res,
           lat: this.NewPlace.lat,
           lng: this.NewPlace.lng
         });
+      });
     }
   }
 
-  getAddressByPostion(lat:number, lng:number) {
+  getAddressByPostion(lat: number, lng: number, callback: (res) => void) {
     let address = 'Address';
-
-    let geocoder = new google.maps.Geocoder();
     let latlng = new google.maps.LatLng(lat, lng);
-    geocoder.geocode({
+    this.Geocoder.geocode({
         'location': latlng },
         (results, status) => {
             if (status === google.maps.GeocoderStatus.OK) {
@@ -76,25 +91,25 @@ export class MapComponent implements OnInit {
             } else {
                 // alert('Geocoder failed due to: ' + status);
             }
+            callback(address);
         });
-    return address;
   }
 
   SelectInfoWindow(index: number) {
     if (this.Mode === this.Modes.SelectPlaces) {
-      this.Points[index].selected = !this.Points[index].selected;
-      const copyPoints = this.Points;
-      this.Points = [];
+      this.Places[index].selected = !this.Places[index].selected;
+      const copyPoints = this.Places;
+      this.Places = [];
       setTimeout(() => {
-        this.Points = copyPoints;
+        this.Places = copyPoints;
       }, 5);
     }
     else if (this.Mode === this.Modes.CreateRoute) {
-      this.Points[index].selected = !this.Points[index].selected;
-      const copyPoints = this.Points;
-      this.Points = [];
+      this.Places[index].selected = !this.Places[index].selected;
+      const copyPoints = this.Places;
+      this.Places = [];
       setTimeout(() => {
-        this.Points = copyPoints;
+        this.Places = copyPoints;
       }, 5);
     }
   }
@@ -165,5 +180,9 @@ export class MapComponent implements OnInit {
         pos.y = C1.y * this.B1(percent) + C2.y * this.B2(percent) + C3.y * this.B3(percent) + C4.y * this.B4(percent);
         return pos;
     };
+
+    GetImageURL(id) {
+      return 'http://35.204.142.44:3000/images/' + id;
+    }
 
 }
