@@ -1,9 +1,8 @@
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { MainService } from 'src/app/common/services/main.service';
 import { Component, OnInit } from '@angular/core';
-import { PlaceModel } from 'src/app/common/models/place.model';
 import { ImageModel } from 'src/app/common/models/image.model';
-import { PlaceMapModel } from 'src/app/common/models/place-map.model';
+import { PlaceModel } from 'src/app/common/models/place.model';
 
 @Component({
   selector: 'app-places-create',
@@ -13,7 +12,7 @@ import { PlaceMapModel } from 'src/app/common/models/place-map.model';
 export class PlacesCreateComponent implements OnInit {
 
   NewPlace: PlaceModel = new PlaceModel();
-  Places: PlaceMapModel[] = [];
+  Places: PlaceModel[] = [];
   isImageByModel = false;
   isEdit = false;
 
@@ -42,7 +41,7 @@ export class PlacesCreateComponent implements OnInit {
   GetPlaces() {
     this.service.GetMyPlaces()
       .subscribe(
-        (res: PlaceMapModel[]) => {
+        (res: PlaceModel[]) => {
           this.Places = res;
           this.removeEditPlace();
         }

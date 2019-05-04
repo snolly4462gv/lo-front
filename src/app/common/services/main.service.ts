@@ -21,6 +21,9 @@ export class MainService {
     public User: UserGetModel = new UserGetModel();
     public onLoginChange$: Subject<boolean>;
 
+    public Places: PlaceModel[] = [];
+    public onPlacesChange$: Subject<boolean>;
+
     constructor
     (
         private http: HttpService,
@@ -30,6 +33,9 @@ export class MainService {
 
         this.onLoginChange$ = new Subject();
         this.onLoginChange$.next(false);
+
+        this.onPlacesChange$ = new Subject();
+        this.onPlacesChange$.next(false);
 
         this.onLoginChange$
             .subscribe(
@@ -112,6 +118,23 @@ export class MainService {
             this.ActiveProcesses.splice(index, 1);
         }
         this.ActiveProcessesChanges.next(this.ActiveProcesses);
+    }
+
+    /////////////////////
+    /////////////////////
+    //                 //
+    //      ROUTE      //
+    //                 //
+    /////////////////////
+    /////////////////////
+
+    public SetPlaces(places: PlaceModel[]) {
+      this.Places = places;
+      this.onPlacesChange$.next(true);
+    }
+
+    public GetPlaces() {
+      return this.Places;
     }
 
 

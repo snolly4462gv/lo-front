@@ -259,8 +259,9 @@ color: #FFFFFF;
       display: flex;
 
       .logo {
-        border-radius: 5px 5px 0px 0px;
-
+        border-radius: 5px;
+        width: 120px;
+        height: 100px;
       }
       .image-upload {
          position: relative;
@@ -523,7 +524,9 @@ color: #FFFFFF;
       display: flex;
       padding-top: 12px;
       .logo {
-        border-radius: 5px 5px 0px 0px;
+                border-radius: 5px;
+        width: 120px;
+        height: 100px;
       }
       .info {
         padding-left: 25px;

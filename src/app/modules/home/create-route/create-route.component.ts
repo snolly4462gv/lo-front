@@ -1,15 +1,15 @@
 import { MainService } from './../../../common/services/main.service';
-import { Component, ComponentFactory } from '@angular/core';
+import { Component, ComponentFactory, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd, NavigationCancel } from '@angular/router';
 import { filter } from 'rxjs/operators';
-import { PlaceMapModel } from 'src/app/common/models/place-map.model';
+import { PlaceModel } from 'src/app/common/models/place.model';
 
 @Component({
   selector: 'app-create-route',
   templateUrl: './create-route.component.html',
   styleUrls: ['./create-route.component.scss']
 })
-export class CreateRouteComponent {
+export class CreateRouteComponent implements OnInit {
 
   Pages = {
     'Index': 0,
@@ -20,7 +20,9 @@ export class CreateRouteComponent {
   };
   CurrentPage = this.Pages['Index'];
 
-  constructor(private router: Router, private route: ActivatedRoute) {
+  Places: PlaceModel[] = [];
+
+  constructor(private router: Router, private route: ActivatedRoute, private service: MainService) {
     this.router.events.subscribe((e: any) => {
         if (e instanceof NavigationEnd) {
             const currentRoute = this.router.url;
@@ -41,6 +43,22 @@ export class CreateRouteComponent {
             }
         }
     });
+  }
+
+  nextStep() {
+    this.CurrentPage += 1;
+// tslint:disable-next-line: max-line-length
+    this.router.navigate(['/home', 'create-route', Object.keys(this.Pages).find(key => this.Pages[key] === this.CurrentPage).toLowerCase()]);
+  }
+
+  ngOnInit() {
+   this.service.onPlacesChange$.subscribe(
+     (res) => {
+      if (res) {
+        this.Places = this.service.GetPlaces();
+      }
+     }
+   );
   }
 
 

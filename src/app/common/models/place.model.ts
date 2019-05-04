@@ -17,6 +17,9 @@ export class PlaceModel {
         public lng?: number,
         public image?: ImageModel,
         public categories?: string[],
-        public image_id?: number
+        public image_id?: number,
+
+        public order?: number,
+        public selected?: boolean,
     ) {}
 }

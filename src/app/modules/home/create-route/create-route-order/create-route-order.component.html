@@ -1,24 +1,24 @@
 <div class="order">
   <div class="map">
-    <div class="start-over">
+    <div (click)="StartOver()" class="start-over">
       <div class="content">
         <img src="../../../../../assets/images/start-over.svg" alt="">
         <p class="text">Start over</p>
       </div>
     </div>
-    <app-map [Mode]="3"></app-map>
+    <app-map #Map [Mode]="3" [Places]="Places" (OnSelectOrder)="onSelectOrder($event)"></app-map>
   </div>
   <div class="block">
-    <div class="detail preview-route" dnd-sortable-container [sortableData]="listOne">
+    <div class="detail preview-route" dnd-sortable-container [dragEnabled]="isDragEnable" [sortableData]="Places">
 
-      <div *ngFor="let item of listOne; let i = index" dnd-sortable (onDragEnd)="dropEnd()" [sortableIndex]="i" class="route">
+      <div *ngFor="let item of Places; let i = index" [dragEnabled]="isDragEnable" dnd-sortable (onDragEnd)="dropEnd()" [sortableIndex]="i" class="route">
         <div class="header">
           <img class="logo" src="../../../../../assets/images/Mask Group.png" alt="">
           <div class="info">
             <div class="title-edit">
-              <div class="title"><div class="number">{{i+1}}</div> <p>Washington Square Park</p></div>
+              <div class="title"><div class="number">{{item.order?item.order:0}}</div> <p>{{item.name}}</p></div>
             </div>
-            <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim</div>
+            <div class="text">{{item.description}}</div>
             <div class="detail-move">
               <p class="details-show">More Details</p>
               <!-- dnd-sortable-handle -->
@@ -29,7 +29,8 @@
       </div>
 
       <div class="line"></div>
-      <div class="route-full">
+
+      <!-- <div class="route-full">
         <div class="header">
         <img class="logo" src="../../../../../assets/images/Mask Group.png" alt="">
         <div class="info">
@@ -92,7 +93,7 @@
             <img class="move-img" src="../../../../../assets/images/array-move.svg" alt="">
           </div>
       </div>
-      <div class="line"></div>
+      <div class="line"></div> -->
 
 
     </div>

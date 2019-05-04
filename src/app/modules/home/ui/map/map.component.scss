@@ -22,3 +22,22 @@ agm-map {
   width: 100%;
     max-width: 110px;
 }
+
+.window-start {
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+
+  color: #FFFFFF;
+
+  display: flex;
+  justify-content: center;
+  padding-bottom: 6px;
+
+}

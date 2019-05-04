@@ -11,11 +11,13 @@
         [padding]="'3px'"
         [borderRadius]="'5px'"
         [closeOnMapClick] = "false"
+        [panOnOpen]="false"
         [backgroundColor]="item.selected?'#FFA901':'#ffffff'"
       >
         <ng-template>
           <!-- src="../../../../../assets/images/map-img.png" -->
           <p *ngIf="!item.image_id" (click)="SelectInfoWindow(i)">{{item.name}}</p>
+          <p class="window-start" *ngIf="this.RouteOrder[0] && item.id == this.RouteOrder[0].id">Start</p>
           <img *ngIf="item.image_id" class="map-img" (click)="SelectInfoWindow(i)" (error)="item.image_id = null" [src]="GetImageURL(item.image_id)" alt="">
         </ng-template>
       </agm-snazzy-info-window>

@@ -4,13 +4,13 @@
   </div>
   <div class="block">
     <ul class="menu">
-        <li class="item active"><p>Place details</p></li>
-        <li class="item"><p> Places in the rout</p></li>
+        <li class="item" [ngClass]="{'active': CurrentPage == 'SelectPlace'}" (click)="CurrentPage = 'SelectPlace'"><p>Place details</p></li>
+        <li class="item" [ngClass]="{'active': CurrentPage == 'ViewPlaces'}" (click)="CurrentPage = 'ViewPlaces'"><p> Places in the rout</p></li>
       </ul>
       <div class="line"></div>
 
     <!-- Просмотр места -->
-    <div *ngIf="SelectPlace&&SelectPlace.id" class="detail preview-place">
+    <div *ngIf="CurrentPage=='SelectPlace'&&SelectPlace&&SelectPlace.id" class="detail preview-place">
       <div class="header">
         <img class="logo" [src]="'http://35.204.142.44:3000/images/'+SelectPlace.image_id" alt="">
         <div class="info">
@@ -69,7 +69,7 @@
       </div>
        <div class="line"></div>
 
-       <div class="add-button">
+       <div *ngIf="!isSelectedPlaceInTheRoute" (click)="AddRouteToList()"  class="add-button">
          <p class="text">ADD TO ROUTE</p>
        </div>
     </div>
@@ -154,7 +154,7 @@
     </div> -->
 
     <!-- Если не выбраны места -->
-    <div *ngIf="!SelectPlace || !SelectPlace.id" class="detail empty-place">
+    <div *ngIf="CurrentPage=='SelectPlace' && (!SelectPlace || !SelectPlace.id)" class="detail empty-place">
       <div class="content">
         <img src="../../../../../assets/images/array-left-empty.svg" alt="">
         <div class="text">
@@ -167,25 +167,28 @@
 
 
     <!-- Просмотр маршрута -->
-    <!-- <div class="detail preview-route">
+    <div *ngIf="CurrentPage=='ViewPlaces' && PlacesInRoute.length" class="detail preview-route">
+
+      <ng-container *ngFor="let item of PlacesInRoute; let i = index">
       <div class="route">
         <div class="header">
-        <img class="logo" src="../../../../../assets/images/Mask Group.png" alt="">
+        <img class="logo" [src]="'http://35.204.142.44:3000/images/'+item.image_id" alt="">
         <div class="info">
           <div class="title-edit">
-            <p class="title">Washington Square Park</p>
-            <div class="edit">
+            <p class="title">{{item.name}}</p>
+            <div (click)="DeleteFromRoute(item.id)" class="edit">
               <img class="del-img" src="../../../../../assets/images/bin-middle.svg" alt="">
             </div>
           </div>
-          <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim</div>
+          <div class="text">{{item.description}}</div>
           <p class="details-show">More Details</p>
         </div>
       </div>
       </div>
 
       <div class="line"></div>
-      <div class="route-full">
+      </ng-container>
+      <!-- <div class="route-full">
         <div class="header">
         <img class="logo" src="../../../../../assets/images/Mask Group.png" alt="">
         <div class="info">
@@ -249,14 +252,14 @@
       </div>
       <p class="details-show">Less Details</p>
       </div>
-      <div class="line"></div>
+      <div class="line"></div> -->
 
 
-    </div> -->
+    </div>
 
 
   <!-- Если не выбраны места в маршруте -->
-    <!-- <div class="detail empty-place">
+    <div *ngIf="CurrentPage=='ViewPlaces' && !PlacesInRoute.length" class="detail empty-place">
       <div class="content">
         <img src="../../../../../assets/images/array-left-empty.svg" alt="">
         <div class="text">
@@ -265,7 +268,7 @@
           <p class="text2">But don't worry, it's easy to fix :)</p>
         </div>
       </div>
-    </div> -->
+    </div>
 
 
 
