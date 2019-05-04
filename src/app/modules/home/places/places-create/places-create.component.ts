@@ -18,23 +18,6 @@ export class PlacesCreateComponent implements OnInit {
   isEdit = false;
 
   constructor(private service: MainService, private router: Router, private route: ActivatedRoute) {
-    // this.router.events.subscribe((e: any) => {
-    //     if (e instanceof NavigationEnd) {
-    //         const currentRoute = this.router.url;
-    //         if (currentRoute.startsWith('/home/routes/edit')) {
-    //           this.Selected =  this.Pages.Dashboard;
-    //         }
-    //         if (currentRoute.startsWith('/home/create-route')) {
-    //           this.Selected =  this.Pages.CreateRoute;
-    //         }
-    //         if (currentRoute.startsWith('/home/places')) {
-    //           this.Selected =  this.Pages.Places;
-    //         }
-    //         if (currentRoute.startsWith('/home/routes')) {
-    //           this.Selected =  this.Pages.Routes;
-    //         }
-    //     }
-    // });
      route.params.subscribe(
        params => {
          if (params['id']) {
@@ -44,6 +27,7 @@ export class PlacesCreateComponent implements OnInit {
                 this.NewPlace = res;
                 this.isEdit = true;
                 this.isImageByModel = true;
+                this.removeEditPlace();
               }
             );
          }
@@ -60,8 +44,21 @@ export class PlacesCreateComponent implements OnInit {
       .subscribe(
         (res: PlaceMapModel[]) => {
           this.Places = res;
+          this.removeEditPlace();
         }
       );
+  }
+  removeEditPlace() {
+    let index = -1;
+    if (this.isEdit) {
+      for (let i = 0; i < this.Places.length; i++) {
+        if (this.Places[i].id === this.NewPlace.id) {
+          index = i;
+          break;
+        }
+      }
+      this.Places.splice(index, 1);
+    }
   }
 
   CreatePlace() {

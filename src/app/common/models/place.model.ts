@@ -12,6 +12,7 @@ export class PlaceModel {
         public estimatedTime?: string,
         public tags?: string[],
         public ratings?: number,
+        public score?: number,
         public lat?: number,
         public lng?: number,
         public image?: ImageModel,

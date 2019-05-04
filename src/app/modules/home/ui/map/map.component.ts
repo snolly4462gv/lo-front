@@ -24,6 +24,7 @@ export class MapComponent implements OnInit {
   @Input() Places: PlaceMapModel[] = [];
 
   @Output('OnSelectAddress') onSelectAddress = new EventEmitter<{lat: number, lng: number, address:string}>()
+  @Output('OnSelectItem') onSelectItem = new EventEmitter<PlaceMapModel>()
 
   constructor (
                 protected mapsAPILoader: MapsAPILoader,
@@ -42,7 +43,7 @@ export class MapComponent implements OnInit {
 
   Polylines = [];
 
-  NewPlace: PlaceModel = new PlaceModel();
+  @Input() NewPlace: PlaceModel = new PlaceModel();
 
 
   ngOnInit() {
@@ -99,10 +100,12 @@ export class MapComponent implements OnInit {
     if (this.Mode === this.Modes.SelectPlaces) {
       this.Places[index].selected = !this.Places[index].selected;
       const copyPoints = this.Places;
+      this.onSelectItem.emit(this.Places[index]);
       this.Places = [];
       setTimeout(() => {
         this.Places = copyPoints;
-      }, 5);
+      }, 15);
+      console.log(`----`);
     }
     else if (this.Mode === this.Modes.CreateRoute) {
       this.Places[index].selected = !this.Places[index].selected;
@@ -110,7 +113,7 @@ export class MapComponent implements OnInit {
       this.Places = [];
       setTimeout(() => {
         this.Places = copyPoints;
-      }, 5);
+      }, 15);
     }
   }
 

@@ -1,6 +1,8 @@
+import { MainService } from './../../../common/services/main.service';
 import { Component, ComponentFactory } from '@angular/core';
 import { Router, ActivatedRoute, NavigationEnd, NavigationCancel } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { PlaceMapModel } from 'src/app/common/models/place-map.model';
 
 @Component({
   selector: 'app-create-route',
@@ -18,7 +20,7 @@ export class CreateRouteComponent {
   };
   CurrentPage = this.Pages['Index'];
 
-  constructor(private router: Router, private route: ActivatedRoute ) {
+  constructor(private router: Router, private route: ActivatedRoute) {
     this.router.events.subscribe((e: any) => {
         if (e instanceof NavigationEnd) {
             const currentRoute = this.router.url;
@@ -40,4 +42,7 @@ export class CreateRouteComponent {
         }
     });
   }
+
+
+
 }
