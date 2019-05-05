@@ -1,3 +1,4 @@
+import { RouteModel } from './../models/route.model';
 import { UserModel } from './../models/user.model';
 import { LoginModel } from './../models/login.model';
 import { TypeService } from './type.service';
@@ -23,6 +24,8 @@ export class MainService {
 
     public Places: PlaceModel[] = [];
     public onPlacesChange$: Subject<boolean>;
+
+    public Route: RouteModel = new RouteModel();
 
     constructor
     (

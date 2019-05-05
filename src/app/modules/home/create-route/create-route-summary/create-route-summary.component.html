@@ -2,12 +2,12 @@
 
   <div class="block">
     <div class="detail">
-      <img src="../../../../../assets/images/imagezz.png" alt="" class="logo">
+      <img [src]="Route.image.base64" alt="" class="logo">
       <div class="header">
-        <p class="title">Route Name</p>
+        <p class="title">{{Route.name}}</p>
         <p class="price">$35</p>
       </div>
-      <p class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud Lorem ipsum dolor sit ametLorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud Lorem ipsum dolor sit amet </p>
+      <p class="text">{{Route.description}}</p>
       <ul class="tags">
           <li>Tag 1</li>
           <li>Tag 2</li>
@@ -26,49 +26,13 @@
 <div class="places">
 <p class="placeses-title">placeses in the route</p>
 <div class="list">
-  <div class="item">
-    <img src="../../../../../assets/images/image12.png" alt="">
+  <div *ngFor="let item of Places; let i = index" class="item">
+    <img [src]="GetImageURL(item.image_id)" alt="">
     <div class="title-edit">
-      <div class="title"><div class="number">1</div> <p>Prospect park</p></div>
+      <div class="title"><div class="number">{{i+1}}</div> <p>{{item.name}}</p></div>
     </div>
     <p class="text">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad...
-    </p>
-  </div>
-  <div class="item">
-    <img src="../../../../../assets/images/image12.png" alt="">
-    <div class="title-edit">
-      <div class="title"><div class="number">2</div> <p>Prospect park</p></div>
-    </div>
-    <p class="text">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad...
-    </p>
-  </div>
-    <div class="item">
-    <img src="../../../../../assets/images/image12.png" alt="">
-    <div class="title-edit">
-      <div class="title"><div class="number">2</div> <p>Prospect park</p></div>
-    </div>
-    <p class="text">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad...
-    </p>
-  </div>
-    <div class="item">
-    <img src="../../../../../assets/images/image12.png" alt="">
-    <div class="title-edit">
-      <div class="title"><div class="number">2</div> <p>Prospect park</p></div>
-    </div>
-    <p class="text">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad...
-    </p>
-  </div>
-    <div class="item">
-    <img src="../../../../../assets/images/image12.png" alt="">
-    <div class="title-edit">
-      <div class="title"><div class="number">2</div> <p>Prospect park</p></div>
-    </div>
-    <p class="text">
-      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad...
+      {{item.description}}
     </p>
   </div>
 </div>

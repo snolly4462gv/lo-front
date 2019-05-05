@@ -22,16 +22,20 @@
         </ng-template>
       </agm-snazzy-info-window>
 
-      <ng-container *ngIf=" (Mode == Modes.AddPlace) && NewPlace.lat && NewPlace.lng">
+
+    </ng-container>
+
+
+     <ng-container *ngIf="Mode == Modes.AddPlace && NewPlace.lat && NewPlace.lng">
         <agm-marker
-          *ngIf="item.lat && item.lng"
+          *ngIf="NewPlace.lat && NewPlace.lng"
           [latitude]="NewPlace.lat"
           [longitude]="NewPlace.lng"
+          [markerDraggable]="true"
+          (dragEnd)="MapClick($event)"
           [iconUrl]="'../../../../../assets/images/betrip-cursor.svg'"
         ></agm-marker>
       </ng-container>
-    </ng-container>
-
 
     <ng-container *ngIf="Mode == Modes.CreateRoute || Mode == Modes.General">
       <agm-polyline

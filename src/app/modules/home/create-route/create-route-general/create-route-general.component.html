@@ -4,25 +4,29 @@
     <div class="detail">
         <div class="image-upload">
           <label for="file-input">
-             <img class="logo" src="../../../../../assets/images/add-image.svg" alt="">
+             <ng-container *ngIf="!Route.image && !isImageByModel && !Route.image_id">
+              <img class="logo" src="../../../../../assets/images/add-image.svg" alt="">
+             </ng-container>
+             <ng-container *ngIf="Route.image&&Route.image.base64 || isImageByModel&&Route.image_id">
+              <img class="logo" [src]="isImageByModel&&Route.image_id?'http://35.204.142.44:3000/images/'+Route.image_id:Route.image.base64" alt="">
+             </ng-container>
           </label>
-
-          <input id="file-input" type="file" />
+          <input id="file-input" accept=".jpg, .jpeg, .png" (change)="uploadImage($event)" type="file" />
         </div>
-        <!-- <img src="../../../../../assets/images/Group 16.png" alt=""> -->
+
         <p class="picture-text">Try use picture not smaller than 355x280px</p>
 
             <div class="input-block">
               <div><label class="label" for="name">Route name*</label></div>
-              <div><input class="input" type="text" name="name" placeholder="Washington Square Park"></div>
+              <div><input [(ngModel)]="Route.name" class="input" type="text" name="name" placeholder="Washington Square Park"></div>
             </div>
             <div class="input-block">
               <div><label class="label" for="name">Price*</label></div>
-              <div><input class="input" type="text" name="name" placeholder="35$"></div>
+              <div><input [(ngModel)]="Route.price" class="input" type="text" name="name" placeholder="35$"></div>
             </div>
             <div class="input-block">
               <div><label class="label" for="description">Route description</label></div>
-              <div><textarea class="input" name="description"></textarea></div>
+              <div><textarea [(ngModel)]="Route.description" class="input" name="description"></textarea></div>
             </div>
 
             <div class="input-block">

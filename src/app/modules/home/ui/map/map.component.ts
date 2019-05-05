@@ -88,6 +88,7 @@ export class MapComponent implements OnInit {
     if (this.Mode === this.Modes.AddPlace) {
       this.NewPlace.lat = event.coords.lat;
       this.NewPlace.lng = event.coords.lng;
+      console.log(this.NewPlace);
       this.getAddressByPostion(this.NewPlace.lat, this.NewPlace.lng,
       (res) => {
         this.onSelectAddress.emit(
