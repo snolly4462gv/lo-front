@@ -5,9 +5,9 @@
     </div>
     <div class="right-side">
       <div (click)="Logout()" class="user-info">
-        <p class="username">Kate Smith</p>
-        <div class="user-logo">
-          <img src="../../../../../assets/images/image.png" alt="" class="user-logo-image">
+        <p class="username">{{User.first_name}} {{User.last_name}}</p>
+        <div *ngIf="User.image_id" class="user-logo">
+          <img [src]="User.image_id" alt="" class="user-logo-image">
         </div>
         <img class="user-menu" src="../../../../../assets/images/array.svg" alt="">
       </div>

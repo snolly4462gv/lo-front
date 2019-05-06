@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { MapComponent } from './../../ui/map/map.component';
 import { MainService } from './../../../../common/services/main.service';
 import { Component, OnInit, ViewChild } from '@angular/core';
@@ -14,10 +15,14 @@ export class CreateRouteOrderComponent implements OnInit {
   isDragEnable = false;
 
   @ViewChild('Map') Map: MapComponent;
-  constructor(private service: MainService) { }
+  constructor(private service: MainService, private router: Router) { }
 
   ngOnInit() {
     this.Places = this.service.GetPlaces();
+    if (this.Places.length === 0) {
+      this.router.navigate(['/home', 'create-route', 'places']);
+      return;
+    }
     const countNotOrdered = this.Places.filter(x => x.order == null).length;
     if (countNotOrdered === 0 ) {
       this.isDragEnable = true;

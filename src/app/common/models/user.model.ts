@@ -8,6 +8,7 @@ export class UserModel {
         public last_name?: string,
         public image?: ImageModel,
         public city?: {city: string},
-        public categories?: string[]
+        public categories?: string[],
+        // public image_id?: string
     ) {}
 }

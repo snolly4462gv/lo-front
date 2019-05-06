@@ -8,6 +8,10 @@ export class RouteModel {
         public places?: string[],
         public categories?: string[],
         public finished?: boolean,
-        public price?: string
-    ) {}
+        public price?: number,
+        public id?: string,
+        public status?: string
+    ) {
+      this.route_type = 'internal';
+    }
 }

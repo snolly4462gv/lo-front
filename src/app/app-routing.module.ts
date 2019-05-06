@@ -40,6 +40,7 @@ const routes: Routes = [
           {path: 'order', component: CreateRouteOrderComponent},
           {path: 'general', component: CreateRouteGeneralComponent},
           {path: 'summary', component: CreateRouteSummaryComponent},
+          {path: 'edit/:id', component: CreateRoutePlacesComponent}
         ]
       },
       { path: 'routes', component: RoutesComponent,

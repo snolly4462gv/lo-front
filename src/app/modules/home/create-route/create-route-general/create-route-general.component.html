@@ -8,7 +8,8 @@
               <img class="logo" src="../../../../../assets/images/add-image.svg" alt="">
              </ng-container>
              <ng-container *ngIf="Route.image&&Route.image.base64 || isImageByModel&&Route.image_id">
-              <img class="logo" [src]="isImageByModel&&Route.image_id?'http://35.204.142.44:3000/images/'+Route.image_id:Route.image.base64" alt="">
+              <img class="logo"
+              [src]="isImageByModel&&Route.image_id?'http://35.204.142.44:3000/images/'+Route.image_id:Route.image.base64" alt="">
              </ng-container>
           </label>
           <input id="file-input" accept=".jpg, .jpeg, .png" (change)="uploadImage($event)" type="file" />

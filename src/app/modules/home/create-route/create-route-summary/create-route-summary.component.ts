@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { PlaceModel } from 'src/app/common/models/place.model';
 import { MainService } from 'src/app/common/services/main.service';
@@ -15,15 +16,23 @@ export class CreateRouteSummaryComponent implements OnInit {
   Route: RouteModel = new RouteModel();
   isImageByModel = false;
 
-  constructor(private service: MainService) { }
+  constructor(private service: MainService, private router: Router) { }
 
   ngOnInit() {
     this.Places = this.service.GetPlaces();
+    this.Route = this.service.Route;
 
-    console.log(this.Places);
-
-    if (this.service.Route) {
-      this.Route = this.service.Route;
+    if (this.Places.length === 0) {
+      this.router.navigate(['/home', 'create-route', 'places']);
+      return;
+    }
+    if (this.Places.filter(x => x.order == null).length > 0) {
+      this.router.navigate(['/home', 'create-route', 'order']);
+      return;
+    }
+    if (!this.Route.name || this.Route.price < 0 || !this.Route.price  ) {
+      this.router.navigate(['/home', 'create-route', 'general']);
+      return;
     }
   }
 

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { RouteModel } from './../../../../common/models/route.model';
 import { MainService } from './../../../../common/services/main.service';
 import { Component, OnInit } from '@angular/core';
@@ -17,18 +18,32 @@ export class CreateRouteGeneralComponent implements OnInit {
   Route: RouteModel = new RouteModel();
   isImageByModel = false;
 
-  constructor(private service: MainService) { }
+  constructor(private service: MainService, private router: Router) { }
 
   ngOnInit() {
     this.Places = this.service.GetPlaces();
 
+    if (this.Places.length === 0) {
+      this.router.navigate(['/home', 'create-route', 'places']);
+      return;
+    }
+    if (this.Places.filter(x => x.order == null).length > 0) {
+      this.router.navigate(['/home', 'create-route', 'order']);
+      return;
+    }
+
     if (this.service.Route) {
       this.Route = this.service.Route;
+      if (this.Route.image_id) {
+        this.isImageByModel = true;
+      }
     }
+
+    console.log(this.Route);
   }
 
   SaveRouteInfoToService () {
-    this.service.Route = this.Route;
+    this.service.SetRoute(this.Route);
   }
 
   uploadImage($event){

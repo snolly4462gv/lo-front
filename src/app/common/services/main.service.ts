@@ -20,6 +20,7 @@ export class MainService {
     public ActiveProcessesChanges: Subject<string[]>;
 
     public User: UserGetModel = new UserGetModel();
+    public onUserChange$: Subject<boolean>;
     public onLoginChange$: Subject<boolean>;
 
     public Places: PlaceModel[] = [];
@@ -39,6 +40,9 @@ export class MainService {
 
         this.onPlacesChange$ = new Subject();
         this.onPlacesChange$.next(false);
+
+        this.onUserChange$ =  new Subject();
+        this.onUserChange$.next(false);
 
         this.onLoginChange$
             .subscribe(
@@ -65,6 +69,7 @@ export class MainService {
             (res) => {
               this.User = res;
               this.User.token = token;
+              this.onUserChange$.next(true);
             },
             (err) => {
               this.onLoginChange$.next(false);
@@ -140,6 +145,14 @@ export class MainService {
       return this.Places;
     }
 
+    public SetRoute(route: RouteModel) {
+      this.Route = route;
+    }
+
+    public GetRoute() {
+      return this.Route;
+    }
+
 
     /////////////////////
     /////////////////////
@@ -167,6 +180,25 @@ export class MainService {
     }
     public GetPlaceById(id) {
       return this.http.GetData('/places/' + id, '');
+    }
+
+    public GetMyRoutes() {
+      return this.http.GetData('/me/routes', '');
+    }
+    public GetRouteById(id) {
+      return this.http.GetData('/routes/' + id, '');
+    }
+    public CreateRoute(route: RouteModel) {
+      if (route.image && route.image.base64) {
+        route.image.base64 = route.image.base64.split('base64,')[1];
+      }
+      return this.http.PostData('/routes', route);
+    }
+    public UpdateRoute(route: RouteModel) {
+      if (route.image && route.image.base64) {
+        route.image.base64 = route.image.base64.split('base64,')[1];
+      }
+      return this.http.PutData('/routes/' + route.id, route);
     }
 
     // this.typeService.ParamsToUrlSearchParams(place)

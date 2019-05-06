@@ -1,3 +1,4 @@
+import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { MainService } from 'src/app/common/services/main.service';
 import { PlaceModel } from 'src/app/common/models/place.model';
@@ -16,7 +17,27 @@ export class CreateRoutePlacesComponent implements OnInit {
 
   PlacesInRoute: PlaceModel[] = [];
 
-  constructor(private service: MainService) { }
+  constructor(private service: MainService, private router: Router, private route: ActivatedRoute) {
+     route.params.subscribe(
+       params => {
+         if (params['id']) {
+           this.service.GetRouteById(params['id'])
+            .subscribe(
+              (res) => {
+                this.service.SetRoute(res);
+                let places = res['places'];
+                for(let i=0; i<places.length; i++) {
+                  places[i].selected = true;
+                  places[i].order = i+1;
+                }
+                this.service.SetPlaces(places);
+                this.router.navigate(['/home', 'create-route', 'places']);
+              }
+            );
+         }
+       }
+      );
+  }
 
   ngOnInit() {
     this.GetPlaces();

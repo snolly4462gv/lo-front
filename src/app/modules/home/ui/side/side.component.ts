@@ -1,5 +1,7 @@
+import { MainService } from './../../../../common/services/main.service';
 import { Router, NavigationEnd } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
+import { UserGetModel } from 'src/app/common/models/user-get.model';
 
 @Component({
   selector: 'app-side',
@@ -18,7 +20,9 @@ export class SideComponent implements OnInit {
 
   Selected = this.Pages.Dashboard;
 
-  constructor(private router: Router ) {
+  User: UserGetModel = new UserGetModel();
+
+  constructor(private router: Router, private service: MainService ) {
     this.router.events.subscribe((e: any) => {
         if (e instanceof NavigationEnd) {
             const currentRoute = this.router.url;
@@ -39,6 +43,14 @@ export class SideComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.User = this.service.User;
+    this.service.onUserChange$.subscribe(
+      (res) => {
+        if (res) {
+          this.User = this.service.User;
+        }
+      }
+    );
   }
 
   HideMenu() {

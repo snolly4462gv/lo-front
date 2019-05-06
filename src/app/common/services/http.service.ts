@@ -62,7 +62,7 @@ export class HttpService {
         return this.http.patch(this.serverUrl + method, data, {headers: this.headers});
     }
 
-    PutData(method: string, data: string) {
+    PutData(method: string, data: any) {
         return this.http.put(this.serverUrl + method, data, {headers: this.headers});
     }
 
