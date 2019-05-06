@@ -9,8 +9,8 @@ import { TokenModel } from '../models/token.model';
 
 @Injectable()
 export class HttpService {
-    serverUrl = 'http://35.204.142.44:3000';
-    // serverUrl = 'https://betrip.io:3000';
+    // serverUrl = 'http://35.204.142.44:3000';
+    serverUrl = 'https://35.204.52.207:3000';
     public headers: HttpHeaders = new HttpHeaders();
     public token: TokenModel = new TokenModel('');
 
