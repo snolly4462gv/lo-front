@@ -16,6 +16,7 @@ import { AgmCoreModule } from '@agm/core';
 import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { CommonModule } from '@angular/common';
 import { DndModule } from 'ng2-dnd';
+import {RlTagInputModule} from 'angular2-tag-input';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -34,6 +35,7 @@ import { PlacesCreateComponent } from './modules/home/places/places-create/place
 import { MapComponent } from './modules/home/ui/map/map.component';
 import { FormsModule } from '@angular/forms';
 import { TypeService } from './common/services/type.service';
+import { TagsDirective } from './common/directives/tags.directive';
 
 
 @NgModule({
@@ -58,7 +60,8 @@ import { TypeService } from './common/services/type.service';
     RoutesComponent,
     RoutesIndexComponent,
     PlacesCreateComponent,
-    MapComponent
+    MapComponent,
+    TagsDirective
   ],
   imports: [
     FormsModule,
@@ -76,7 +79,8 @@ import { TypeService } from './common/services/type.service';
             language: 'en'
     }),
     AgmSnazzyInfoWindowModule,
-    DndModule.forRoot()
+    DndModule.forRoot(),
+    RlTagInputModule
   ],
   providers: [HttpService, MainService, TypeService, AppGuard],
   bootstrap: [AppComponent]

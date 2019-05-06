@@ -32,7 +32,10 @@
 
             <div class="input-block">
               <div><label class="label" for="name">Tags</label></div>
-              <div><input class="input" type="text" name="name"></div>
+              <div>
+                <!-- <input class="input" type="text" name="name"> -->
+                <rl-tag-input [(ngModel)]="Route.categories"></rl-tag-input>
+                </div>
               <!-- <material-chips [(ngModel)]="tags" ></material-chips> -->
             </div>
 

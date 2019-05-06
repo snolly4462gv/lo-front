@@ -13,5 +13,6 @@ export class RouteModel {
         public status?: string
     ) {
       this.route_type = 'internal';
+      this.categories = [];
     }
 }

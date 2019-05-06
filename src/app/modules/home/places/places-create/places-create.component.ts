@@ -16,6 +16,8 @@ export class PlacesCreateComponent implements OnInit {
   isImageByModel = false;
   isEdit = false;
 
+  tags = ['tag1', 'tag2'];
+
   constructor(private service: MainService, private router: Router, private route: ActivatedRoute) {
      route.params.subscribe(
        params => {

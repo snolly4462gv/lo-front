@@ -21,5 +21,7 @@ export class PlaceModel {
 
         public order?: number,
         public selected?: boolean,
-    ) {}
+    ) {
+      this.categories = [];
+    }
 }

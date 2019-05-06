@@ -101,18 +101,21 @@
           </div>
 
           <div class="input-block">
-              <div><label class="label" for="tags">Tags</label></div>
-              <div><input type="text" class="input" name="tags"></div>
+              <div><label  class="label" for="tags">Tags</label></div>
+              <div>
+                <!-- <input tags type="text" class="input" name="tags"> -->
+                <rl-tag-input  [(ngModel)]="NewPlace.categories"></rl-tag-input>
+                </div>
           </div>
 
           <div class="input-block">
               <div><label class="label" for="rating">Rating</label></div>
               <div class="stars">
-                <img class="star" (click)="NewPlace.ratings = 1" [src]="NewPlace.ratings>=1 ? '../../../../../assets/images/star-full.svg' : '../../../../../assets/images/star-empty.svg'" alt="">
-                <img class="star" (click)="NewPlace.ratings = 2" [src]="NewPlace.ratings>=2 ? '../../../../../assets/images/star-full.svg' : '../../../../../assets/images/star-empty.svg'" alt="">
-                <img class="star" (click)="NewPlace.ratings = 3" [src]="NewPlace.ratings>=3 ? '../../../../../assets/images/star-full.svg' : '../../../../../assets/images/star-empty.svg'" alt="">
-                <img class="star" (click)="NewPlace.ratings = 4" [src]="NewPlace.ratings>=4 ? '../../../../../assets/images/star-full.svg' : '../../../../../assets/images/star-empty.svg'" alt="">
-                <img class="star" (click)="NewPlace.ratings = 5" [src]="NewPlace.ratings==5 ? '../../../../../assets/images/star-full.svg' : '../../../../../assets/images/star-empty.svg'" alt="">
+                <img class="star" (click)="NewPlace.score = 1" [src]="NewPlace.score>=1 ? '../../../../../assets/images/star-full.svg' : '../../../../../assets/images/star-empty.svg'" alt="">
+                <img class="star" (click)="NewPlace.score = 2" [src]="NewPlace.score>=2 ? '../../../../../assets/images/star-full.svg' : '../../../../../assets/images/star-empty.svg'" alt="">
+                <img class="star" (click)="NewPlace.score = 3" [src]="NewPlace.score>=3 ? '../../../../../assets/images/star-full.svg' : '../../../../../assets/images/star-empty.svg'" alt="">
+                <img class="star" (click)="NewPlace.score = 4" [src]="NewPlace.score>=4 ? '../../../../../assets/images/star-full.svg' : '../../../../../assets/images/star-empty.svg'" alt="">
+                <img class="star" (click)="NewPlace.score = 5" [src]="NewPlace.score==5 ? '../../../../../assets/images/star-full.svg' : '../../../../../assets/images/star-empty.svg'" alt="">
               </div>
           </div>
 
