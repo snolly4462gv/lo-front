@@ -45,7 +45,7 @@ export class CreateRouteOrderComponent implements OnInit {
     }
   }
 
-  onSelectOrder () {
+  onSelectOrder (event) {
     this.Places = this.SortPlaces(this.Places);
     this.service.SetPlaces(this.Places);
 
