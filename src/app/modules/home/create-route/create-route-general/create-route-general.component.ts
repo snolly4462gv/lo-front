@@ -75,4 +75,6 @@ export class CreateRouteGeneralComponent implements OnInit {
       return 'http://35.204.142.44:3000/images/' + id;
     }
 
+    typeOfPlace = [ 'natural', 'cultural', 'historic', 'religion', 'architecture', 'monuments_and_memorials', 'gardens_and_parks' ];
+
 }

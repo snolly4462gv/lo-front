@@ -34,7 +34,7 @@
               <div><label class="label" for="name">Tags</label></div>
               <div>
                 <!-- <input class="input" type="text" name="name"> -->
-                <rl-tag-input [(ngModel)]="Route.categories"></rl-tag-input>
+                <rl-tag-input [autocomplete]="true" [autocompleteItems]="typeOfPlace" [(ngModel)]="Route.categories"></rl-tag-input>
                 </div>
               <!-- <material-chips [(ngModel)]="tags" ></material-chips> -->
             </div>

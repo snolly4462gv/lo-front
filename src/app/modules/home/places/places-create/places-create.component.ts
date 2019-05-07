@@ -248,5 +248,9 @@ export class PlacesCreateComponent implements OnInit {
   }
 
 
+  typeOfPlace = [ 'natural', 'cultural', 'historic', 'religion', 'architecture', 'monuments_and_memorials', 'gardens_and_parks' ];
+
+
+
 
 }
