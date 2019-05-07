@@ -6,8 +6,8 @@
   <div class="button"><a [routerLink]="['/home','places','create']" class="text">Add new place</a></div>
 </div>
 <p class="text-draft">My Places</p>
-
-<div class="places">
+<app-loading *ngIf="isLoadingPlaces"></app-loading>
+<div [ngStyle]="{'display': isLoadingPlaces? 'none': 'flex'}" class="places">
   <ng-container *ngFor="let place of Places; let i = index">
     <div *ngIf="place.name" class="place">
       <img [src]="GetIImageURL(place.image_id)" alt="" class="place__image">

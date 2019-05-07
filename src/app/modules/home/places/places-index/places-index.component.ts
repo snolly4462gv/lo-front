@@ -12,16 +12,25 @@ export class PlacesIndexComponent implements OnInit {
   constructor(private service: MainService) { }
 
   Places: PlaceModel[] = [];
+  isLoadingPlaces = false;
   ngOnInit() {
     this.GetPlaces();
   }
 
   GetPlaces() {
+    this.isLoadingPlaces = true;
     this.service.GetMyPlaces()
       .subscribe(
         (res: PlaceModel[]) => {
           this.Places = res;
           console.log(this.Places);
+        },
+        () => {},
+        () => {
+          setTimeout(() => {
+            this.isLoadingPlaces = false;
+          }, 500);
+
         }
       );
   }

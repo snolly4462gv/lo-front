@@ -37,6 +37,7 @@ import { MapComponent } from './modules/home/ui/map/map.component';
 import { FormsModule } from '@angular/forms';
 import { TypeService } from './common/services/type.service';
 import { TagsDirective } from './common/directives/tags.directive';
+import { LoadingComponent } from './modules/home/ui/loading/loading.component';
 
 
 @NgModule({
@@ -62,7 +63,8 @@ import { TagsDirective } from './common/directives/tags.directive';
     RoutesIndexComponent,
     PlacesCreateComponent,
     MapComponent,
-    TagsDirective
+    TagsDirective,
+    LoadingComponent
   ],
   imports: [
     FormsModule,

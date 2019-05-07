@@ -14,8 +14,8 @@
   </div>
 </div>
 <p class="text-draft">{{isShowPublished?"PUBLISH ROUTES":"Draft routes"}}</p>
-
-<div class="routes">
+<app-loading *ngIf="isLoadingRoutes"></app-loading>
+<div [ngStyle]="{'display': isLoadingRoutes? 'none': 'flex'}" class="routes">
   <ng-container *ngFor="let item of Routes; let i = index">
     <div class="route">
       <img *ngIf="item.image_id" (error)="item.image_id = null" [src]="'http://35.204.142.44:3000/images/'+item.image_id" alt="" class="route__image">

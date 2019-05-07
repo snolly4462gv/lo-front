@@ -15,6 +15,8 @@ export class CreateRouteIndexComponent implements OnInit {
 
   isSaving = false;
 
+  isLoadingRoutes = false;
+
   constructor(private service: MainService, private router: Router) { }
 
   ngOnInit() {
@@ -22,11 +24,18 @@ export class CreateRouteIndexComponent implements OnInit {
   }
 
   GetRoutes() {
+    this.isLoadingRoutes = true;
     this.service.GetMyRoutes()
       .subscribe(
         (res: RouteModel[]) => {
           this.Routes = res;
           console.log(this.Routes);
+        },
+        () => {},
+        () => {
+          setTimeout(() => {
+            this.isLoadingRoutes = false;
+          }, 500);
         }
       );
   }

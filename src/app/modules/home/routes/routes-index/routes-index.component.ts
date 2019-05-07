@@ -17,6 +17,8 @@ export class RoutesIndexComponent implements OnInit {
 
   isShowPublished = false;
 
+  isLoadingRoutes = false;
+
   constructor(private service: MainService, private router: Router) { }
 
   ngOnInit() {
@@ -24,12 +26,19 @@ export class RoutesIndexComponent implements OnInit {
   }
 
   GetRoutes() {
+    this.isLoadingRoutes = true;
     this.service.GetMyRoutes()
       .subscribe(
         (res: RouteModel[]) => {
           this.Routes = res;
           this.Routes  = this.Routes.filter(x => this.isShowPublished ? x.status !== 'draft' : x.status === 'draft');
           console.log(this.Routes);
+        },
+        () => {},
+        () => {
+          setTimeout(() => {
+            this.isLoadingRoutes = false;
+          }, 500);
         }
       );
   }
