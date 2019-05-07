@@ -86,6 +86,7 @@ export class PlacesCreateComponent implements OnInit {
       this.NewPlace.image.base64 = this.NewPlace.image.base64.split('base64,')[1];
     }
     this.convertTimes();
+
     if (this.isEdit) {
       this.service.UpdatePlace(this.NewPlace)
       .subscribe(
@@ -93,6 +94,7 @@ export class PlacesCreateComponent implements OnInit {
           this.router.navigate(['/home', 'places']);
         }
       );
+      console.log(`Update`);
     } else {
     this.service.CreatePlace(this.NewPlace)
       .subscribe(
@@ -101,6 +103,7 @@ export class PlacesCreateComponent implements OnInit {
         }
       );
     }
+
   }
 
   onSelectAddress(event) {

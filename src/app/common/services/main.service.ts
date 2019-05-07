@@ -176,9 +176,6 @@ export class MainService {
       return this.http.PostData('/places', place);
     }
     public UpdatePlace(place: PlaceModel) {
-      if (place.image && place.image.base64) {
-        place.image.base64 = place.image.base64.split('base64,')[1];
-      }
       return this.http.PutData('/places/' + place.id, place);
     }
     public GetMyPlaces() {

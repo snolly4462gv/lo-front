@@ -136,11 +136,11 @@
   <div class="center">
     <div *ngIf="NewPlace.lat && NewPlace.lng && NewPlace.name && NewPlace.description" class="content">
       <img src="../../../../assets/images/array-footer.svg" alt="">
-      <div (click)="CreatePlace()"  class="button"><p class="text">Add place</p></div>
+      <div (click)="CreatePlace()"  class="button"><p class="text">{{isEdit?'Update':'Add'}} place</p></div>
       <img src="../../../../assets/images/array-footer-reverse.svg" alt="">
     </div>
     <div *ngIf="!NewPlace.lat || !NewPlace.lng || !NewPlace.name || !NewPlace.description" class="content">
-      <div class="button disabled"><p class="text">Add place</p></div>
+      <div class="button disabled"><p class="text">{{isEdit?'Update':'Add'}} place</p></div>
     </div>
   </div>
 </div>

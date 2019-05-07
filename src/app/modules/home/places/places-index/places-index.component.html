@@ -10,7 +10,7 @@
 <div [ngStyle]="{'display': isLoadingPlaces? 'none': 'flex'}" class="places">
   <ng-container *ngFor="let place of Places; let i = index">
     <div *ngIf="place.name" class="place">
-      <img [src]="GetIImageURL(place.image_id)" alt="" class="place__image">
+      <img *ngIf="place.image_id" (error)="place.image_id = null" [src]="GetIImageURL(place.image_id)" alt="" class="place__image">
       <div class="place__content">
         <div class="name-price">
           <p class="name">{{place.name}}</p>
