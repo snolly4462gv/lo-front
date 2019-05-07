@@ -19,7 +19,7 @@
         <div class="image-upload">
           <label for="file-input">
 
-             <ng-container *ngIf="!NewPlace.image && !isImageByModel && !NewPlace.image_id">
+             <ng-container *ngIf="!NewPlace.image && !NewPlace.image_id">
               <img class="logo" src="../../../../../assets/images/image-empty.svg" alt="">
              </ng-container>
 
@@ -55,29 +55,34 @@
 
           <div class="input-block">
               <div><label class="label" for="interesting">Interesting facts </label></div>
-              <div><textarea [(ngModel)]="NewPlace.facts" class="input" name="interesting"></textarea></div>
+              <div><textarea [(ngModel)]="NewPlace.interesting_facts" class="input" name="interesting"></textarea></div>
           </div>
 
           <div class="input-block">
               <div><label class="label" for="what">What to do</label></div>
-              <div><textarea [(ngModel)]="NewPlace.whatToDo" class="input" name="what"></textarea></div>
+              <div><textarea [(ngModel)]="NewPlace.what_to_do" class="input" name="what"></textarea></div>
           </div>
 
           <div class="input-block">
               <div><label class="label" for="what">Best time to visit</label></div>
-              <div class="time">
-                <select class="input">
+              <div *ngFor="let time of WorkTimes; let i = index" class="time">
+                <select [(ngModel)]="time.day" class="input">
                   <option value="monday">Monday</option>
                   <option value="tuesday">Tuesday</option>
+                  <option value="wednesday">Wednesday</option>
+                  <option value="thursday">Thursday</option>
+                  <option value="friday">Friday</option>
+                  <option value="saturday">Saturday</option>
+                  <option value="sunday">Sunday</option>
                 </select>
-                <input class="input w70" type="text" name="name" placeholder="12:00">
-                <select class="input">
+                <input [textMask]="getMask(time.open_time)"  [(ngModel)]="time.open_time" class="input w70" type="text" name="name" placeholder="12:00">
+                <select [(ngModel)]="time.open_time_dn" class="input">
                   <option value="am">AM</option>
                   <option value="pm">PM</option>
                 </select>
                 <img src="../../../../../assets/images/mini-line.svg" alt="">
-                <input class="input w70" type="text" name="name" placeholder="12:00">
-                <select class="input">
+                <input [textMask]="getMask(time.close_time)" [(ngModel)]="time.close_time" class="input w70" type="text" name="name" placeholder="12:00">
+                <select [(ngModel)]="time.close_time_dn" class="input">
                   <option value="am">AM</option>
                   <option value="pm">PM</option>
                 </select>
@@ -85,17 +90,18 @@
           </div>
 
           <div class="add">
-            <img src="../../../../../assets/images/add-plus.svg" alt="">
+            <img (click)="AddWorkTime()" src="../../../../../assets/images/add-plus.svg" alt="">
             <p class="text">Add another time</p>
           </div>
 
           <div class="input-block">
               <div><label class="label" for="what">Estimated time</label></div>
               <div class="time">
-                <input class="input w70" type="text" name="name" >
-                <select class="input">
+                <input [(ngModel)]="EstimatedTime.time" class="input w70" type="text" name="name" >
+                <select [(ngModel)]="EstimatedTime.period" class="input">
+                  <option value="min">Minute</option>
                   <option value="hour">Hour</option>
-                  <option value="tuesday">Day</option>
+                  <option value="day">Day</option>
                 </select>
               </div>
           </div>

@@ -25,16 +25,17 @@
     "@google/maps": "^0.5.5",
     "@types/google-maps": "^3.2.0",
     "angular2-tag-input": "^1.2.3",
+    "angular2-text-mask": "^9.0.0",
     "core-js": "^2.5.4",
+    "express": "^4.16.3",
+    "express-history-api-fallback": "^2.2.0",
     "ng2-dnd": "^5.0.2",
     "rxjs": "~6.3.3",
     "rxjs-compat": "^6.5.1",
     "snazzy-info-window": "^1.1.0",
     "sortablejs": "^1.9.0",
     "tslib": "^1.9.0",
-    "zone.js": "~0.8.26",
-    "express": "^4.16.3",
-    "express-history-api-fallback": "^2.2.0"
+    "zone.js": "~0.8.26"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.12.0",

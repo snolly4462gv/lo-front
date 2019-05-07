@@ -17,6 +17,7 @@ import { AgmSnazzyInfoWindowModule } from '@agm/snazzy-info-window';
 import { CommonModule } from '@angular/common';
 import { DndModule } from 'ng2-dnd';
 import {RlTagInputModule} from 'angular2-tag-input';
+import { TextMaskModule } from 'angular2-text-mask';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -80,7 +81,8 @@ import { TagsDirective } from './common/directives/tags.directive';
     }),
     AgmSnazzyInfoWindowModule,
     DndModule.forRoot(),
-    RlTagInputModule
+    RlTagInputModule,
+    TextMaskModule
   ],
   providers: [HttpService, MainService, TypeService, AppGuard],
   bootstrap: [AppComponent]

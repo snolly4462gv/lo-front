@@ -13,6 +13,7 @@ declare var google: any;
 })
 export class MapComponent implements OnInit {
 
+  MyPostition = {lat: 0, lng: 0};
   Modes = {
     'OnlyMap': 0,
     'AddPlace': 1,
@@ -36,8 +37,6 @@ export class MapComponent implements OnInit {
 
   @ViewChild('agmMap') agmMap: AgmMap;
 
-  lat = 49.678418;
-  lng = 37.809007;
 
   Geocoder: any;
   // Point1 = {lat: this.lat, lng: this.lng, selected: false};
@@ -56,11 +55,20 @@ export class MapComponent implements OnInit {
   ngOnInit() {
     this.InitGoogle();
 
+    this.service.GetIPLocation().
+      subscribe(
+        (res) => {
+          const loc = res['location'];
+          this.MyPostition.lat = loc[0];
+          this.MyPostition.lng = loc[1];
+        }
+      )
+
     if (this.Mode === this.Modes.CreateRoute || this.Mode === this.Modes.General){
       for (let item of this.Places) {
         item.selected = false;
       }
-      if (this.Mode === this.Modes.General) {
+      if (this.Mode === this.Modes.General && this.Places[0]) {
         this.Places[0].selected = true;
       }
       const places = this.service.GetPlaces();
@@ -68,7 +76,7 @@ export class MapComponent implements OnInit {
       if (countNotOrdered === 0) {
         this.RouteOrder = places;
         this.DrawLines(this.RouteOrder);
-        if (this.Mode === this.Modes.CreateRoute) {
+        if (this.Mode === this.Modes.CreateRoute && this.Places[0]) {
           this.Places[0].selected = true;
         }
       }

@@ -203,4 +203,8 @@ export class MainService {
 
     // this.typeService.ParamsToUrlSearchParams(place)
 
+    GetIPLocation () {
+      return this.http.GetDataFromUrl('https://mouse-back.herokuapp.com:443/users/ip_location.json');
+    }
+
 }
