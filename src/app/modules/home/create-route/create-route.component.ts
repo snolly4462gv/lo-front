@@ -144,6 +144,12 @@ export class CreateRouteComponent implements OnInit {
     }
   }
 
+  CreateRouteNav() {
+    this.service.Route = new RouteModel();
+    this.service.Places = [];
+    this.router.navigate(['/home', 'create-route', 'index']);
+  }
+
 
 
 

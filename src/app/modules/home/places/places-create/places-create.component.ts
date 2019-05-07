@@ -34,7 +34,6 @@ export class PlacesCreateComponent implements OnInit {
             .subscribe(
               (res) => {
                 this.NewPlace = res;
-                console.log(`res`, this.NewPlace);
                 this.isEdit = true;
                 this.isImageByModel = true;
                 this.removeEditPlace();
@@ -87,12 +86,21 @@ export class PlacesCreateComponent implements OnInit {
       this.NewPlace.image.base64 = this.NewPlace.image.base64.split('base64,')[1];
     }
     this.convertTimes();
+    if (this.isEdit) {
+      this.service.UpdatePlace(this.NewPlace)
+      .subscribe(
+        (res) => {
+          this.router.navigate(['/home', 'places']);
+        }
+      );
+    } else {
     this.service.CreatePlace(this.NewPlace)
       .subscribe(
         (res) => {
           this.router.navigate(['/home', 'places']);
         }
       );
+    }
   }
 
   onSelectAddress(event) {

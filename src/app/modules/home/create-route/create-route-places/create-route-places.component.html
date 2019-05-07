@@ -43,27 +43,29 @@
 
         <div class="info">
           <div class="title">Interesting facts</div>
-          <div class="text">{{SelectPlace.facts}}</div>
+          <div class="text">{{SelectPlace.interesting_facts}}</div>
         </div>
 
         <div class="info">
           <div class="title">What to do</div>
-          <div class="text">{{SelectPlace.whatToDo}}</div>
+          <div class="text">{{SelectPlace.what_to_do}}</div>
         </div>
 
         <div class="info">
           <div class="title">Best time to visit</div>
-          <div class="text">Monday - Friday: 12 PM - 15 PM</div>
+          <div class="text">
+          <p *ngFor="let time of WorkTimes">
+            {{time.day|titlecase}}: {{time.open_time}} {{time.open_time_dn|uppercase}} - {{time.close_time}} {{time.close_time_dn|uppercase}}
+          </p></div>
         </div>
 
         <div class="info">
           <div class="title">Estimated time</div>
-          <div class="text">1 Hour</div>
+          <div class="text">{{EstimatedTime.time}} {{EstimatedTime.period|titlecase}}</div>
         </div>
 
         <ul class="tags">
-          <li>Tag 1</li>
-          <li>Tag 2</li>
+          <li *ngFor="let item of SelectPlace.categories">{{item}}</li>
         </ul>
 
       </div>

@@ -16,10 +16,10 @@
           <p class="name">{{place.name}}</p>
         </div>
         <div class="text">
-          <span class="main-text opened">{{place.description.slice(0,80)}}
-          <span *ngIf="place.description.length>80" class="more-btn open-btn">More</span><span class="additional"></span>
-          <span *ngIf="place.description.length>80" class="more-btn hide-btn">Hide</span></span>
-
+          <span class="main-text opened">{{place.description?place.description.slice(0,50):''}}{{place.description&&place.isShowFullDesc?place.description.slice(50):''}}
+            <span *ngIf="place.description && place.description.length>50 && !place.isShowFullDesc" (click)="place.isShowFullDesc = true" class="more-btn open-btn">More</span><span class="additional"></span>
+            <span *ngIf="place.isShowFullDesc" (click)="place.isShowFullDesc = false" class="more-btn open-btn">Hide</span>
+          </span>
         </div>
       </div>
      <div class="edit-publish">

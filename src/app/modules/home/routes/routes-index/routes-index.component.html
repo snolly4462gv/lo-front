@@ -29,7 +29,7 @@
           <span class="more-btn hide-btn">Hide</span></span>
 
         </div>
-        <ul class="keywords"><li>KEYWORD</li><li>KEYWORD</li></ul>
+        <ul class="keywords"><li *ngFor="let cat of item.categories">{{cat}}</li></ul>
       </ul>
      <div *ngIf="item.status=='draft'" class="edit-publish">
         <img [routerLink]="['/home','create-route','edit', item.id]" src="../../../../../assets/images/edit.svg" alt="">

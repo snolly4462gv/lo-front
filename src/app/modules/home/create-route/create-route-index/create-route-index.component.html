@@ -14,14 +14,18 @@
       <ul class="route__content">
         <div class="name-price">
           <p class="name">{{item.name}} </p>
-          <p class="price">$30</p>
+          <p class="price"> ${{item.price}}</p>
         </div>
         <div class="text">
-          <span class="main-text opened">{{item.description}}<span class="more-btn open-btn">More</span><span class="additional"></span>
-          <span class="more-btn hide-btn">Hide</span></span>
+
+
+          <span class="main-text opened">{{item.description?item.description.slice(0,50):''}}{{item.description&&item.isShowFullDesc?item.description.slice(50):''}}
+            <span *ngIf="item.description && item.description.length>50 && !item.isShowFullDesc" (click)="item.isShowFullDesc = true" class="more-btn open-btn">More</span><span class="additional"></span>
+            <span *ngIf="item.isShowFullDesc" (click)="item.isShowFullDesc = false" class="more-btn open-btn">Hide</span>
+          </span>
 
         </div>
-        <ul class="keywords"><li>KEYWORD</li><li>KEYWORD</li></ul>
+        <ul class="keywords"><li *ngFor="let cat of item.categories">{{cat}}</li></ul>
       </ul>
      <div class="edit-publish">
         <img [routerLink]="['/home','create-route','edit', item.id]" src="../../../../../assets/images/edit.svg" alt="">

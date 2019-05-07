@@ -10,7 +10,9 @@ export class RouteModel {
         public finished?: boolean,
         public price?: number,
         public id?: string,
-        public status?: string
+        public status?: string,
+
+        public isShowFullDesc?: boolean
     ) {
       this.route_type = 'internal';
       this.categories = [];

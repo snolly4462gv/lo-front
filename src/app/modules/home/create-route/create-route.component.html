@@ -2,7 +2,7 @@
   <div *ngIf="CurrentPage != Pages['Index']" class="create-route">
     <div class="left">
       <div class="header">
-        <a [routerLink]="['/home','create-route','index']"><img class="array-back" src="../../../../../assets/images/array-back.svg" alt=""></a>
+        <a (click)="CreateRouteNav()"><img class="array-back" src="../../../../../assets/images/array-back.svg" alt=""></a>
         <p class="title">Create route</p>
         <div *ngIf="TotalTime" class="total total-time">
           <img src="../../../../../assets/images/clock.svg" alt="">
