@@ -10,6 +10,7 @@ import { UserGetModel } from 'src/app/common/models/user-get.model';
 export class NavComponent implements OnInit {
 
   User: UserGetModel = new UserGetModel();
+  IsOpenedMenu = false;
   constructor(private service: MainService) { }
 
   ngOnInit() {
@@ -26,6 +27,10 @@ export class NavComponent implements OnInit {
 
   Logout () {
     this.service.LogoutUser();
+  }
+
+  openMenu() {
+    this.IsOpenedMenu = !this.IsOpenedMenu;
   }
 
 }

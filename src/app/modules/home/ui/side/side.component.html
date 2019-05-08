@@ -9,7 +9,7 @@
 
  <div class="center">
   <div class="user">
-    <img src="../../../../../assets/images/image.png" alt="" class="logo">
+    <img *ngIf="User.image_id" (error)="User.image_id = null" [src]="'http://35.204.142.44:3000/images/'+User.image_id" alt="" class="logo">
     <div class="info">
       <p class="name">{{User.first_name}} {{User.last_name}}</p>
       <a href="#" class="landing">My landing page</a>
