@@ -12,11 +12,11 @@
       </div>
       <router-outlet></router-outlet>
       <ul class="socials-block">
-        <li><img src="../../../../assets/images/socials/google.svg" alt=""></li>
-        <li><img src="../../../../assets/images/socials/fb.svg" alt=""></li>
-        <li><img src="../../../../assets/images/socials/twitter.svg" alt=""></li>
-        <li><img src="../../../../assets/images/socials/instagram.svg" alt=""></li>
-        <li><img src="../../../../assets/images/socials/vk.svg" alt=""></li>
+        <li (click)="authGoogle()"><img src="../../../../assets/images/socials/google.svg" alt=""></li>
+        <li (click)="authFB()"><img src="../../../../assets/images/socials/fb.svg" alt=""></li>
+        <!-- <li><img src="../../../../assets/images/socials/twitter.svg" alt=""></li>
+        <li><img src="../../../../assets/images/socials/instagram.svg" alt=""></li> -->
+        <li (click)="authVk()"><img src="../../../../assets/images/socials/vk.svg" alt=""></li>
       </ul>
     </div>
   </div>

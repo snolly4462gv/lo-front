@@ -17,6 +17,7 @@
 .user-info {
   display: flex;
   align-items: center;
+  position: relative;
 }
 
 .username {
@@ -58,8 +59,8 @@
   background: red;
   z-index: 999;
   position: absolute;
-  top: 43px;
-  right: 40px;
+  top: 26px;
+  right: -36px;
 
   background: #FFFFFF;
   border: 1px solid #E8E2ED;
