@@ -11,6 +11,7 @@ import { UserGetModel } from 'src/app/common/models/user-get.model';
 export class SignUpComponent implements OnInit {
 
   User: UserModel = new UserModel();
+  Error = '';
   constructor(private service: MainService) { }
 
   ngOnInit() {
@@ -20,11 +21,23 @@ export class SignUpComponent implements OnInit {
     this.service.CreateUser(this.User)
       .subscribe(
         (res: UserGetModel) => {
-          console.log(`OK user create`, res);
           this.service.LoginUser(res);
         },
         (err) => {
           console.log(err);
+          this.Error = '';
+          for (var key in err.error)
+            {
+              this.Error += key.slice(0,1).toUpperCase() + key.slice(1);
+
+            for(let e of err.error[key]) {
+              this.Error += " " + e;
+            }
+
+              this.Error += '. '
+
+            }
+          console.log(this.Error);
         }
       );
   }
