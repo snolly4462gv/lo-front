@@ -26,7 +26,7 @@ export class AuthComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getFBLoginStatus();
+    // this.getFBLoginStatus();
   }
 
   authGoogle () {
