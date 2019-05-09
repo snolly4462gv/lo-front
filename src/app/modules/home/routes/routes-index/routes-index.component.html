@@ -22,7 +22,7 @@
       <ul class="route__content">
         <div class="name-price">
           <p class="name">{{item.name}} </p>
-          <p class="price">$30</p>
+          <p class="price">${{item.price}}</p>
         </div>
         <div class="text">
           <span class="main-text opened">{{item.description?item.description.slice(0,50):''}}{{item.description&&item.isShowFullDesc?item.description.slice(50):''}}
