@@ -10,17 +10,18 @@
   </div>
   <div class="block">
     <div class="detail preview-route" dnd-sortable-container [dragEnabled]="isDragEnable" [sortableData]="Places">
+      <ng-container *ngFor="let item of Places; let i = index">
 
-      <div *ngFor="let item of Places; let i = index" [dragEnabled]="isDragEnable" dnd-sortable (onDragEnd)="dropEnd()" [sortableIndex]="i" class="route">
+      <div *ngIf="!item.isShowFullDesc" [dragEnabled]="isDragEnable" dnd-sortable (onDragEnd)="dropEnd()" [sortableIndex]="i" class="route">
         <div class="header">
-          <img class="logo" src="../../../../../assets/images/Mask Group.png" alt="">
+          <img style="max-width: 120px; max-height: 90px" *ngIf="item.image_id" (error)="item.image_id = null" class="logo" [src]="'http://35.204.142.44:3000/images/'+item.image_id" alt="">
           <div class="info">
             <div class="title-edit">
               <div class="title"><div class="number">{{item.order?item.order:0}}</div> <p>{{item.name}}</p></div>
             </div>
             <div class="text">{{item.description}}</div>
             <div class="detail-move">
-              <p class="details-show">More Details</p>
+              <p (click)="item.isShowFullDesc = true" class="details-show">More Details</p>
               <!-- dnd-sortable-handle -->
               <img class="move-img" src="../../../../../assets/images/array-move.svg" alt="">
             </div>
@@ -28,73 +29,68 @@
         </div>
       </div>
 
-      <div class="line"></div>
 
-      <!-- <div class="route-full">
+
+      <div *ngIf="item.isShowFullDesc" class="route-full">
         <div class="header">
-        <img class="logo" src="../../../../../assets/images/Mask Group.png" alt="">
+        <img style="max-width: 120px; max-height: 90px" class="logo" [src]="'http://35.204.142.44:3000/images/'+item.image_id" alt="">
         <div class="info">
           <div class="title-edit">
-            <div class="title"><div class="number">2</div> <p>Washington Square Park</p></div>
+            <p class="title">{{item.name}}</p>
           </div>
           <div class="stars">
-            <img class="star" src="../../../../../assets/images/star-full.svg" alt="">
-            <img class="star" src="../../../../../assets/images/star-full.svg" alt="">
-            <img class="star" src="../../../../../assets/images/star-full.svg" alt="">
-            <img class="star" src="../../../../../assets/images/star-full.svg" alt="">
-            <img class="star" src="../../../../../assets/images/star-empty.svg" alt="">
+            <img class="star" [src]="item.score>=1 ? '../../../../../assets/images/star-full.svg' : '../../../../../assets/images/star-empty.svg'" alt="">
+            <img class="star" [src]="item.score>=1 ? '../../../../../assets/images/star-full.svg' : '../../../../../assets/images/star-empty.svg'" alt="">
+            <img class="star" [src]="item.score>=1 ? '../../../../../assets/images/star-full.svg' : '../../../../../assets/images/star-empty.svg'" alt="">
+            <img class="star" [src]="item.score>=1 ? '../../../../../assets/images/star-full.svg' : '../../../../../assets/images/star-empty.svg'" alt="">
+            <img class="star" [src]="item.score>=1 ? '../../../../../assets/images/star-full.svg' : '../../../../../assets/images/star-empty.svg'" alt="">
           </div>
           <div class="location">
             <img src="../../../../../assets/images/location-img.svg" alt="" class="location-img">
-            <p class="location-title">Washington Square Park</p>
+            <p class="location-title">{{item.address}}</p>
           </div>
-          <p class="price">$0</p>
+          <!-- <p class="price">${{item.price}}</p> -->
         </div>
       </div>
       <div class="main">
         <div class="info">
           <div class="title">Short description</div>
-          <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim</div>
+          <div class="text">{{item.description}}</div>
         </div>
 
         <div class="info">
           <div class="title">Interesting facts</div>
-          <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim</div>
-        </div>
-
-        <div class="info">
-          <div class="title">Short description</div>
-          <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim</div>
+          <div class="text">{{item.interesting_facts}}</div>
         </div>
 
         <div class="info">
           <div class="title">What to do</div>
-          <div class="text">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim</div>
+          <div class="text">{{item.what_to_do}}</div>
         </div>
 
-        <div class="info">
-          <div class="title">Short description</div>
-          <div class="text">Monday - Friday: 12 PM - 15 PM</div>
+        <!-- <div class="info">
+          <div class="title">Best time to visit</div>
+          <div class="text">
+          <p *ngFor="let time of WorkTimes">
+            {{time.day|titlecase}}: {{time.open_time}} {{time.open_time_dn|uppercase}} - {{time.close_time}} {{time.close_time_dn|uppercase}}
+          </p></div>
         </div>
 
         <div class="info">
           <div class="title">Estimated time</div>
-          <div class="text">1 Hour</div>
-        </div>
+          <div class="text">{{EstimatedTime.time}} {{EstimatedTime.period|titlecase}}</div>
+        </div> -->
 
         <ul class="tags">
-          <li>Tag 1</li>
-          <li>Tag 2</li>
+          <li *ngFor="let item of item.categories">{{item}}</li>
         </ul>
 
       </div>
-      <div class="detail-move">
-            <p class="details-show">Less Details</p>
-            <img class="move-img" src="../../../../../assets/images/array-move.svg" alt="">
-          </div>
+      <p (click)="item.isShowFullDesc = false" class="details-show">Less Details</p>
       </div>
-      <div class="line"></div> -->
 
+     <div class="line"></div>
+     </ng-container>
 
     </div>
 

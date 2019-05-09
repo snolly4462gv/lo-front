@@ -5,12 +5,11 @@
       <img *ngIf="Route.image||Route.image_id" [src]="Route.image_id?'http://35.204.142.44:3000/images/'+Route.image_id:Route.image.base64" alt="" class="logo">
       <div class="header">
         <p class="title">{{Route.name}}</p>
-        <p class="price">$35</p>
+        <p class="price">${{Route.price}}</p>
       </div>
       <p class="text">{{Route.description}}</p>
       <ul class="tags">
-          <li>Tag 1</li>
-          <li>Tag 2</li>
+          <li *ngFor="let tag of Route.categories">{{tag}}</li>
       </ul>
 
 
