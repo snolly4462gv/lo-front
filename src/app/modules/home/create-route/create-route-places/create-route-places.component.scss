@@ -474,6 +474,12 @@ color: #FFFFFF;
         text-align: center;
         margin: 0 107px;
 
+        @media (max-width: 1300px) {
+          widows: auto;
+          margin: 0;
+          margin-left: 50px;
+        }
+
         .text1{
           font-family: 'Open Sans', sans-serif;
             font-style: normal;
