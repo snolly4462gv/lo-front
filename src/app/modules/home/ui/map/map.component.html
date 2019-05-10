@@ -1,4 +1,4 @@
-<agm-map #agmMap [latitude]="MyPostition.lat" [longitude]="MyPostition.lng" (mapClick)="MapClick($event)">
+<agm-map #agmMap [zoom]="13" [latitude]="MyPostition.lat" [longitude]="MyPostition.lng" (mapClick)="MapClick($event)">
 
   <ng-container *ngIf="Mode != Modes.OnlyMap">
     <ng-container *ngFor="let item of Places; let i = index">
