@@ -113,6 +113,10 @@ export class CreateRouteComponent implements OnInit {
         this.Route.places.push(item.id);
       }
 
+      if (this.Route.price) {
+        this.Route.price *= 100;
+      }
+
       this.Route.finished = isPublish;
         console.log(`this.Route`, this.Route);
       if (this.Route.id) {
