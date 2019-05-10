@@ -11,6 +11,7 @@ import { UserGetModel } from 'src/app/common/models/user-get.model';
 export class LoginComponent implements OnInit {
 
   Login: LoginModel = new LoginModel();
+  Error = '';
 
   constructor(private service: MainService) { }
 
@@ -18,14 +19,14 @@ export class LoginComponent implements OnInit {
   }
 
   LoginUser() {
+    this.Error = '';
     this.service.Login(this.Login)
       .subscribe(
         (res: UserGetModel) => {
-          console.log(`OK login`, res);
           this.service.LoginUser(res);
         },
         (err) => {
-          console.log(err);
+          this.Error = 'Incorrect login or password.';
         }
       );
   }

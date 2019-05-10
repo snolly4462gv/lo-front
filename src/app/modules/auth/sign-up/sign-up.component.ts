@@ -24,20 +24,15 @@ export class SignUpComponent implements OnInit {
           this.service.LoginUser(res);
         },
         (err) => {
-          console.log(err);
           this.Error = '';
           for (var key in err.error)
             {
               this.Error += key.slice(0,1).toUpperCase() + key.slice(1);
-
             for(let e of err.error[key]) {
               this.Error += " " + e;
             }
-
               this.Error += '. '
-
             }
-          console.log(this.Error);
         }
       );
   }

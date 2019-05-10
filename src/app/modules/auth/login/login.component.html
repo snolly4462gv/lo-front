@@ -1,6 +1,7 @@
 <div class="login-form">
   <input [(ngModel)]="Login.email" class="input" type="text" name="login" placeholder="Login">
   <input [(ngModel)]="Login.password" class="input" type="password" name="password" placeholder="Password">
+  <p *ngIf="Error" class="error">{{Error}}</p>
   <div (click)="LoginUser()" class="button"><p class="text">Log In</p></div>
   <p class="socials-text">
      Login via socials
