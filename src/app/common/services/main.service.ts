@@ -181,6 +181,9 @@ export class MainService {
     public GetMyPlaces() {
       return this.http.GetData('/me/places', '');
     }
+    public GetAllPlacesByLatLng(lat: number, lng: number) {
+      return this.http.GetData('/places', this.typeService.ParamsToUrlSearchParams({lat, lng}));
+    }
     public GetPlaceById(id) {
       return this.http.GetData('/places/' + id, '');
     }

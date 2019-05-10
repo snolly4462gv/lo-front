@@ -43,6 +43,7 @@ export class MapComponent implements OnInit {
   // Point2 = {lat: this.lat + 1, lng: this.lng + 5};
 
 
+  AllPlaces: PlaceModel[] = [];
 
   Polylines = [];
 
@@ -62,7 +63,7 @@ export class MapComponent implements OnInit {
           this.MyPostition.lat = loc[0];
           this.MyPostition.lng = loc[1];
         }
-      )
+      );
 
     if (this.Mode === this.Modes.CreateRoute || this.Mode === this.Modes.General){
       for (let item of this.Places) {
@@ -90,6 +91,24 @@ export class MapComponent implements OnInit {
         this.Geocoder = new google.maps.Geocoder();
       }
     );
+  }
+
+  isCenterChanged = false;
+  onCenterChange (event) {
+    if (!this.isCenterChanged) {
+      this.isCenterChanged = true;
+      this.service.GetAllPlacesByLatLng(event.lat, event.lng)
+        .subscribe(
+          (res: PlaceModel[]) => {
+            this.AllPlaces = res;
+
+            console.log(this.AllPlaces);
+            setTimeout(() => {
+              this.isCenterChanged = false;
+            }, 100);
+          }
+        );
+    }
   }
 
   MapClick(event: any) {
