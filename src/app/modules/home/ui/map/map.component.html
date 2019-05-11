@@ -43,11 +43,6 @@
         ></agm-marker>
       </ng-container>
 
-      <!-- <ng-container *ngIf="Mode == Modes.CreateRoute"> -->
-
-      <!-- </ng-container> -->
-
-
 
     <ng-container *ngIf="Mode == Modes.CreateRoute || Mode == Modes.General">
       <agm-polyline
@@ -64,15 +59,43 @@
         </agm-polyline-point>
       </agm-polyline>
     </ng-container>
-  </ng-container>
 
-  <ng-container *ngIf="!isCenterChanged" >
-          <agm-marker *ngFor="let allPlace of AllPlaces"
-            [latitude]="allPlace.lat"
-            [longitude]="allPlace.lng"
-            (mouseOver)="mouseOver(allPlace)"
-            iconUrl="../../../../../assets/images/Circle-orange-26.png"
-          ></agm-marker>
-  </ng-container>
+    <ng-container *ngIf="Mode == Modes.SelectPlaces && !isCenterChanged" >
+      <ng-container *ngFor="let allPlace of AllPlaces; let i = index">
 
+        <agm-marker
+          *ngIf="!allPlace.isShow"
+          [latitude]="allPlace.lat"
+          [longitude]="allPlace.lng"
+          (mouseOver)="allPlace.isShow = true; mouseOver(allPlace)"
+          [iconUrl]="allPlace.selected?'../../../../../assets/images/betrip-cursor.svg':'../../../../../assets/images/Circle-grey-26.png'"
+        ></agm-marker>
+
+      <agm-snazzy-info-window
+        *ngIf="allPlace.isShow"
+        [isOpen]="allPlace.isShow"
+        [latitude]="allPlace.lat"
+        [longitude]="allPlace.lng"
+        [showCloseButton]="false"
+        [padding]="'3px'"
+        [borderRadius]="'5px'"
+        [closeOnMapClick] = "false"
+        [panOnOpen]="false"
+        [backgroundColor]="allPlace.selected?'#FFA901':'#ffffff'"
+      >
+        <ng-template>
+          <div (mouseout)="allPlace.isShow = false">
+          <!-- src="../../../../../assets/images/map-img.png" -->
+          <p *ngIf="!allPlace.image_id" (click)="SelectAllInfoWindow(allPlace.id)">{{allPlace.name}}</p>
+          <!-- <p class="window-start" *ngIf="this.RouteOrder[0] && allPlace.id == this.RouteOrder[0].id">Start</p> -->
+          <img *ngIf="allPlace.image_id" class="map-img" (click)="SelectAllInfoWindow(allPlace.id)" (error)="allPlace.image_id = null" [src]="GetImageURL(allPlace.image_id)" alt="">
+          </div>
+        </ng-template>
+      </agm-snazzy-info-window>
+      </ng-container>
+
+
+    </ng-container>
+
+  </ng-container>
 </agm-map>

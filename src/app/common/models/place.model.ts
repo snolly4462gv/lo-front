@@ -22,7 +22,8 @@ export class PlaceModel {
         public order?: number,
         public selected?: boolean,
 
-        public isShowFullDesc?: boolean
+        public isShowFullDesc?: boolean,
+        public isShow?: boolean
     ) {
       this.categories = [];
       this.work_times = [];

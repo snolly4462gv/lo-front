@@ -50,6 +50,9 @@ export class MapComponent implements OnInit {
   RouteOrder: PlaceModel[] = [];
   StartId = '';
 
+
+  SelectedPlacesId: string[] = [];
+
   @Input() NewPlace: PlaceModel = new PlaceModel();
 
 
@@ -94,18 +97,22 @@ export class MapComponent implements OnInit {
   }
 
   isCenterChanged = false;
+
   onCenterChange (event) {
     if (!this.isCenterChanged) {
       this.isCenterChanged = true;
       this.service.GetAllPlacesByLatLng(event.lat, event.lng)
         .subscribe(
           (res: PlaceModel[]) => {
-            this.AllPlaces = res;
-
+            for (const place of res) {
+              if (this.AllPlaces.findIndex(x => x.id === place.id) < 0) {
+                 this.AllPlaces.push(place);
+              }
+            }
             console.log(this.AllPlaces);
             setTimeout(() => {
               this.isCenterChanged = false;
-            }, 100);
+            }, 50);
           }
         );
     }
@@ -149,9 +156,11 @@ export class MapComponent implements OnInit {
 
   SelectInfoWindow(index: number) {
     if (this.Mode === this.Modes.SelectPlaces) {
+
       for (let item of this.Places) {
         item.selected = false;
       }
+
       this.Places[index].selected = !this.Places[index].selected;
       const copyPoints = this.Places;
       this.onSelectItem.emit(this.Places[index]);
@@ -159,6 +168,8 @@ export class MapComponent implements OnInit {
       setTimeout(() => {
         this.Places = copyPoints;
       }, 15);
+
+
     } else if (this.Mode === this.Modes.CreateRoute) {
       this.Places[index].selected = true;
 
@@ -193,6 +204,23 @@ export class MapComponent implements OnInit {
       this.DrawLines(this.RouteOrder);
       }, 15);
     }
+  }
+
+  SelectAllInfoWindow(id: string) {
+
+    if ( this.SelectedPlacesId.indexOf(id) < 0) {
+      this.SelectedPlacesId.push(id);
+    }
+    const index = this.AllPlaces.findIndex(x => x.id === id);
+    this.AllPlaces[index].selected = !this.AllPlaces[index].selected;
+
+    const copyPlaces = this.AllPlaces;
+    this.AllPlaces = [];
+
+    setTimeout(() => {
+      this.AllPlaces = copyPlaces;
+    }, 100);
+    console.log(this.SelectedPlacesId);
   }
 
   DrawLines(places: PlaceModel[]) {
@@ -298,6 +326,8 @@ export class MapComponent implements OnInit {
 
     mouseOver(place: PlaceModel) {
       console.log(place);
+      const index = this.AllPlaces.findIndex(x => x.id === place.id);
+      this.onSelectItem.emit(this.AllPlaces[index]);
     }
 
 }
