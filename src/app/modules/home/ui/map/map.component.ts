@@ -295,4 +295,9 @@ export class MapComponent implements OnInit {
       }, 15);
     }
 
+
+    mouseOver(place: PlaceModel) {
+      console.log(place);
+    }
+
 }

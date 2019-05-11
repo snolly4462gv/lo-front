@@ -70,7 +70,9 @@
           <agm-marker *ngFor="let allPlace of AllPlaces"
             [latitude]="allPlace.lat"
             [longitude]="allPlace.lng"
+            (mouseOver)="mouseOver(allPlace)"
+            iconUrl="../../../../../assets/images/Circle-orange-26.png"
           ></agm-marker>
-        </ng-container>
+  </ng-container>
 
 </agm-map>
