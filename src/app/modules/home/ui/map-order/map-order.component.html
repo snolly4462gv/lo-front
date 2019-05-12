@@ -1,0 +1,46 @@
+<agm-map #agmMap
+  [zoom]="13"
+  [latitude]="MyPostition.lat"
+  [longitude]="MyPostition.lng"
+>
+
+    <ng-container *ngFor="let item of MyPlaces; let i = index">
+
+      <agm-snazzy-info-window
+        [isOpen]="true"
+        [latitude]="item.lat"
+        [longitude]="item.lng"
+        [showCloseButton]="false"
+        [padding]="'3px'"
+        [borderRadius]="'5px'"
+        [closeOnMapClick] = "false"
+        [panOnOpen]="false"
+        [backgroundColor]="item.order?'#FFA901':'#ffffff'"
+      >
+        <ng-template>
+          <p *ngIf="!item.image_id" (click)="SelectInfoWindow(i)">{{item.name}}</p>
+          <p class="window-start" *ngIf="this.RouteOrder[0] && item.id == this.RouteOrder[0].id">Start</p>
+          <img *ngIf="item.image_id" class="map-img" (click)="SelectInfoWindow(i)" (error)="item.image_id = null" [src]="GetImageURL(item.image_id)" alt="">
+        </ng-template>
+      </agm-snazzy-info-window>
+    </ng-container>
+
+
+    <ng-container>
+      <agm-polyline
+        *ngFor="let line of Polylines; let i = index"
+        [strokeColor]="'#3A1B5A'"
+      >
+        <agm-polyline-point
+          [latitude]="line.start.x"
+          [longitude]="line.start.y">
+        </agm-polyline-point>
+        <agm-polyline-point
+          [latitude]="line.end.x"
+          [longitude]="line.end.y">
+        </agm-polyline-point>
+      </agm-polyline>
+    </ng-container>
+
+
+</agm-map>

@@ -1,0 +1,43 @@
+agm-map {
+  height: 100%;
+  min-height: 300px;
+}
+.agm-map-container-inner {
+  border-top-left-radius: 20px ;
+  border-bottom-left-radius: 20px ;
+}
+.agm-map-container-inner[_ngcontent-c7]{
+  border-top-left-radius: 20px ;
+  border-bottom-left-radius: 20px ;
+}
+
+.gm-style-iw {
+  background: red !important;
+}
+.gm-style-iw .gm-ui-hover-effect{
+  display: none !important;
+}
+
+.map-img {
+  width: 100%;
+    max-width: 110px;
+}
+
+.window-start {
+  font-family: 'Open Sans', sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 19px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  text-transform: uppercase;
+
+  color: #FFFFFF;
+
+  display: flex;
+  justify-content: center;
+  padding-bottom: 6px;
+
+}

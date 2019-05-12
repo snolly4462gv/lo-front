@@ -26,7 +26,7 @@ export class CreateRouteComponent implements OnInit {
 
   TotalDistance = 0;
   TotalTime = 0;
-  isSaving = false;
+  isLoading = false;
 
   constructor(private router: Router, private route: ActivatedRoute, private service: MainService) {
     this.router.events.subscribe((e: any) => {
@@ -105,8 +105,7 @@ export class CreateRouteComponent implements OnInit {
   }
 
   SaveRoute (isPublish = false) {
-    if (!this.isSaving) {
-      this.isSaving = true;
+      this.isLoading = true;
       this.Route = this.service.GetRoute();
       this.Route.places = [];
       for (const item of this.Places) {
@@ -117,6 +116,8 @@ export class CreateRouteComponent implements OnInit {
         this.Route.price *= 100;
       }
 
+      this.Route.categories = [];
+
       this.Route.finished = isPublish;
         console.log(`this.Route`, this.Route);
       if (this.Route.id) {
@@ -125,10 +126,10 @@ export class CreateRouteComponent implements OnInit {
         .subscribe(
           (res) => {
             this.router.navigate(['/home', 'create-route']);
+            this.isLoading = false;
           },
-          () => {},
-          () => {
-            this.isSaving = false;
+          (err) => {
+            this.isLoading = false;
           }
         );
 
@@ -138,14 +139,13 @@ export class CreateRouteComponent implements OnInit {
         .subscribe(
           (res) => {
             this.router.navigate(['/home', 'create-route']);
+            this.isLoading = false;
           },
-          () => {},
-          () => {
-            this.isSaving = false;
+          (err) => {
+            this.isLoading = false;
           }
         );
       }
-    }
   }
 
   CreateRouteNav() {

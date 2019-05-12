@@ -37,7 +37,10 @@
         </div>
     </div>
   </div>
-  <router-outlet></router-outlet>
+  <app-loading [ngStyle]="{'display':isLoading?'block':'none'}"></app-loading>
+  <div [ngStyle]="{'display':!isLoading?'block':'none'}" class="content">
+    <router-outlet></router-outlet>
+  </div>
 </div>
 
 <div *ngIf="CurrentPage != Pages['Index'] && CurrentPage != Pages['Summary']" class="footer fixed">

@@ -2,19 +2,18 @@
   [zoom]="13"
   [latitude]="MyPostition.lat"
   [longitude]="MyPostition.lng"
-  (mapClick)="MapClick($event)"
   (centerChange)="onCenterChange($event)"
 >
-  <ng-container *ngIf="Mode != Modes.OnlyMap">
 
-    <ng-container *ngIf="Mode == Modes.SelectPlaces && !isCenterChanged" >
+
+    <ng-container *ngIf="!isCenterChanged" >
       <ng-container *ngFor="let allPlace of AllPlaces; let i = index">
 
         <agm-marker
           *ngIf="!allPlace.isShow"
           [latitude]="allPlace.lat"
           [longitude]="allPlace.lng"
-          (mouseOver)="allPlace.isShow = true; mouseOver(allPlace)"
+          (mouseOver)="allPlace.isShow = true"
           [iconUrl]="allPlace.selected?'../../../../../assets/images/betrip-cursor.svg':'../../../../../assets/images/Circle-grey-26.png'"
         ></agm-marker>
 
@@ -68,42 +67,11 @@
         <ng-template>
           <div (mouseout)="item.isShow = false">
           <p *ngIf="!item.image_id" (click)="SelectInfoWindow(i)">{{item.name}}</p>
-          <p class="window-start" *ngIf="this.RouteOrder[0] && item.id == this.RouteOrder[0].id">Start</p>
           <img *ngIf="item.image_id" class="map-img" (click)="SelectInfoWindow(i)" (error)="item.image_id = null" [src]="GetImageURL(item.image_id)" alt="">
           </div>
         </ng-template>
       </agm-snazzy-info-window>
     </ng-container>
 
-    <ng-container *ngIf="Mode == Modes.AddPlace && NewPlace.lat && NewPlace.lng">
-        <agm-marker
-          *ngIf="NewPlace.lat && NewPlace.lng"
-          [latitude]="NewPlace.lat"
-          [longitude]="NewPlace.lng"
-          [markerDraggable]="true"
-          (dragEnd)="MapClick($event)"
-          iconUrl="../../../../../assets/images/betrip-cursor.svg"
-        ></agm-marker>
-    </ng-container>
 
-
-    <ng-container *ngIf="Mode == Modes.CreateRoute || Mode == Modes.General">
-      <agm-polyline
-        *ngFor="let line of Polylines; let i = index"
-        [strokeColor]="'#3A1B5A'"
-      >
-        <agm-polyline-point
-          [latitude]="line.start.x"
-          [longitude]="line.start.y">
-        </agm-polyline-point>
-        <agm-polyline-point
-          [latitude]="line.end.x"
-          [longitude]="line.end.y">
-        </agm-polyline-point>
-      </agm-polyline>
-    </ng-container>
-
-
-
-  </ng-container>
 </agm-map>

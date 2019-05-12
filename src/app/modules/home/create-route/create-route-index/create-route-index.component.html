@@ -14,7 +14,7 @@
       <ul class="route__content">
         <div class="name-price">
           <p class="name">{{item.name}} </p>
-          <p class="price"> ${{item.price}}</p>
+          <p class="price"> ${{item.price/100}}</p>
         </div>
         <div class="text">
 
@@ -25,7 +25,7 @@
           </span>
 
         </div>
-        <ul class="keywords"><li *ngFor="let cat of item.categories">{{cat}}</li></ul>
+        <ul class="keywords"><li *ngFor="let cat of item.categories">{{cat.category}}</li></ul>
       </ul>
      <div class="edit-publish">
         <img [routerLink]="['/home','create-route','edit', item.id]" src="../../../../../assets/images/edit.svg" alt="">

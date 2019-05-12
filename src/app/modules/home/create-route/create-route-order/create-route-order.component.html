@@ -6,7 +6,7 @@
         <p class="text">Start over</p>
       </div>
     </div>
-    <app-map #Map [Mode]="3" [Places]="Places" (OnSelectOrder)="onSelectOrder($event)"></app-map>
+    <app-map-order #Map [Places]="Places" (OnSelectOrder)="onSelectOrder($event)"></app-map-order>
   </div>
   <div class="block">
     <div class="detail preview-route" dnd-sortable-container [dragEnabled]="isDragEnable" [sortableData]="Places">

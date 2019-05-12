@@ -1,36 +1,23 @@
 import { MainService } from 'src/app/common/services/main.service';
 import { DomSanitizer } from '@angular/platform-browser';
-import { PlaceModel } from './../../../../common/models/place.model';
+import { PlaceModel } from '../../../../common/models/place.model';
 import { Component, OnInit, NgZone, ViewChild, Input, Output, EventEmitter} from '@angular/core';
 import { MapsAPILoader, AgmMap } from '@agm/core';
 
 declare var google: any;
 
 @Component({
-  selector: 'app-map',
-  templateUrl: './map.component.html',
-  styleUrls: ['./map.component.scss']
+  selector: 'app-map-order',
+  templateUrl: './map-order.component.html',
+  styleUrls: ['./map-order.component.scss']
 })
-export class MapComponent implements OnInit {
+export class MapOrderComponent implements OnInit {
 
   @ViewChild('agmMap') agmMap: AgmMap;
   Geocoder: any;
 
-  Modes = {
-    'OnlyMap': 0,
-    'AddPlace': 1,
-    'SelectPlaces': 2,
-    'CreateRoute': 3,
-    'General': 4
-  };
-
-  @Input() Mode = this.Modes.OnlyMap;
   @Input('Places') MyPlaces: PlaceModel[] = [];
-  @Input() SelectedPlacesIds: string[] = [];
-  @Input() NewPlace: PlaceModel = new PlaceModel();
 
-  @Output('OnSelectAddress') onSelectAddress = new EventEmitter<{lat: number, lng: number, address:string}>();
-  @Output('OnSelectItem') onSelectItem = new EventEmitter<PlaceModel>();
   @Output('OnSelectOrder') onSelectOrder = new EventEmitter<PlaceModel[]>();
 
   MyPostition = {lat: 0, lng: 0};
@@ -39,8 +26,6 @@ export class MapComponent implements OnInit {
   Polylines = [];
   RouteOrder: PlaceModel[] = [];
   StartId = '';
-  SelectedPlacesId: string[] = [];
-  isCenterChanged = false;
 
   constructor (
                 protected mapsAPILoader: MapsAPILoader,
@@ -53,61 +38,20 @@ export class MapComponent implements OnInit {
     this.InitGoogle();
     this.GetMyPosition();
 
-    if (this.Mode === this.Modes.CreateRoute || this.Mode === this.Modes.General){
       for (let item of this.MyPlaces) {
         item.selected = false;
-      }
-      if (this.Mode === this.Modes.General && this.MyPlaces[0]) {
-        this.MyPlaces[0].selected = true;
       }
       const places = this.service.GetPlaces();
       const countNotOrdered = places.filter(x => x.order == null).length;
       if (countNotOrdered === 0) {
         this.RouteOrder = places;
         this.DrawLines(this.RouteOrder);
-        if (this.Mode === this.Modes.CreateRoute && this.MyPlaces[0]) {
+        if (this.MyPlaces[0]) {
           this.MyPlaces[0].selected = true;
         }
       }
-    }
-
-    this.GetSelectedPlaces();
-    this.service.onPlacesChange$.subscribe(
-      (res) => {
-        this.GetSelectedPlaces();
-      }
-    );
-
   }
 
-  GetSelectedPlaces () {
-    const places = this.service.GetPlaces();
-    for (let item of places) {
-      const indexAll = this.AllPlaces.findIndex(x => x.id === item.id);
-      const indexMy = this.MyPlaces.findIndex(x => x.id === item.id);
-      if (indexMy >= 0) {
-        this.MyPlaces[indexMy].selected = true;
-      }
-      if (indexAll >= 0) {
-        this.AllPlaces[indexAll].selected = true;
-      }
-    }
-
-    const copyAll = this.AllPlaces;
-    const copyMy = this.MyPlaces;
-
-    this.AllPlaces = [];
-    this.MyPlaces = [];
-
-    setTimeout(() => {
-      this.AllPlaces = copyAll;
-      this.MyPlaces = copyMy;
-    }, 100);
-
-
-
-
-  }
 
   InitGoogle() {
     this.mapsAPILoader.load().then(
@@ -117,62 +61,9 @@ export class MapComponent implements OnInit {
     );
   }
 
-  onCenterChange (event) {
-    if (!this.isCenterChanged) {
-      this.isCenterChanged = true;
-      this.service.GetAllPlacesByLatLng(event.lat, event.lng)
-        .subscribe(
-          (res: PlaceModel[]) => {
-            for (const place of res) {
-              if (this.AllPlaces.findIndex(x => x.id === place.id) < 0) {
-                 this.AllPlaces.push(place);
-              }
-            }
-            setTimeout(() => {
-              this.isCenterChanged = false;
-            }, 50);
-          }
-        );
-    }
-  }
-
-  MapClick(event: any) {
-    if (this.Mode === this.Modes.AddPlace) {
-      this.NewPlace.lat = event.coords.lat;
-      this.NewPlace.lng = event.coords.lng;
-      console.log(this.NewPlace);
-      this.getAddressByPostion(this.NewPlace.lat, this.NewPlace.lng,
-      (res) => {
-        this.onSelectAddress.emit(
-          {
-            address: res,
-            lat: this.NewPlace.lat,
-            lng: this.NewPlace.lng
-          }
-        );
-      });
-    }
-  }
-
 
 
   SelectInfoWindow(index: number) {
-    if (this.Mode === this.Modes.SelectPlaces) {
-
-      // for (let item of this.MyPlaces) {
-      //   item.selected = false;
-      // }
-
-      // this.MyPlaces[index].selected = !this.MyPlaces[index].selected;
-      // const copyPoints = this.MyPlaces;
-      this.onSelectItem.emit(this.MyPlaces[index]);
-      // this.MyPlaces = [];
-      // setTimeout(() => {
-      //   this.MyPlaces = copyPoints;
-      // }, 15);
-
-
-    } else if (this.Mode === this.Modes.CreateRoute) {
       this.MyPlaces[index].selected = true;
 
       const copyPoints = this.MyPlaces;
@@ -202,27 +93,8 @@ export class MapComponent implements OnInit {
 
       this.DrawLines(this.RouteOrder);
       }, 15);
-    }
   }
 
-  SelectAllInfoWindow(id: string) {
-
-    // if ( this.SelectedPlacesId.indexOf(id) < 0) {
-    //   this.SelectedPlacesId.push(id);
-    // }
-    const index = this.AllPlaces.findIndex(x => x.id === id);
-    // this.AllPlaces[index].selected = !this.AllPlaces[index].selected;
-
-    this.onSelectItem.emit(this.AllPlaces[index]);
-
-    // const copyPlaces = this.AllPlaces;
-    // this.AllPlaces = [];
-
-    // setTimeout(() => {
-    //   this.AllPlaces = copyPlaces;
-    // }, 100);
-    // console.log(this.SelectedPlacesId);
-  }
 
   DrawLines(places: PlaceModel[]) {
     this.RouteOrder = places;
@@ -257,13 +129,6 @@ export class MapComponent implements OnInit {
   }
 
 
-  mouseOver(place: PlaceModel) {
-    console.log(place);
-    const index = this.AllPlaces.findIndex(x => x.id === place.id);
-    // this.onSelectItem.emit(this.AllPlaces[index]);
-  }
-
-
 
   // SERVICE
 
@@ -278,25 +143,6 @@ export class MapComponent implements OnInit {
       );
   }
 
-  getAddressByPostion(lat: number, lng: number, callback: (res) => void) {
-    let address = 'Address';
-    let latlng = new google.maps.LatLng(lat, lng);
-    this.Geocoder.geocode({
-        'location': latlng },
-        (results, status) => {
-            if (status === google.maps.GeocoderStatus.OK) {
-                if (results[1]) {
-                address = results[1].formatted_address;
-                } else {
-                // alert('No results found');
-                }
-            } else {
-                // alert('Geocoder failed due to: ' + status);
-            }
-            callback(address);
-        }
-    );
-  }
 
   GetImageURL(id) {
     return 'http://35.204.142.44:3000/images/' + id;

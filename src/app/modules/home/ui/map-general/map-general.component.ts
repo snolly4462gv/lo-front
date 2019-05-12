@@ -1,17 +1,17 @@
 import { MainService } from 'src/app/common/services/main.service';
 import { DomSanitizer } from '@angular/platform-browser';
-import { PlaceModel } from './../../../../common/models/place.model';
+import { PlaceModel } from '../../../../common/models/place.model';
 import { Component, OnInit, NgZone, ViewChild, Input, Output, EventEmitter} from '@angular/core';
 import { MapsAPILoader, AgmMap } from '@agm/core';
 
 declare var google: any;
 
 @Component({
-  selector: 'app-map',
-  templateUrl: './map.component.html',
-  styleUrls: ['./map.component.scss']
+  selector: 'app-map-general',
+  templateUrl: './map-general.component.html',
+  styleUrls: ['./map-general.component.scss']
 })
-export class MapComponent implements OnInit {
+export class MapGeneralComponent implements OnInit {
 
   @ViewChild('agmMap') agmMap: AgmMap;
   Geocoder: any;

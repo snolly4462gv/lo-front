@@ -1,3 +1,7 @@
+import { MapGeneralComponent } from './modules/home/ui/map-general/map-general.component';
+import { MapOrderComponent } from './modules/home/ui/map-order/map-order.component';
+import { MapPlacesComponent } from './modules/home/ui/map-places/map-places.component';
+import { MapAddPlaceComponent } from './modules/home/ui/map-add-place/map-add-place.component';
 import { AppGuard } from './app.guard';
 import { HttpService } from './common/services/http.service';
 import { MainService } from 'src/app/common/services/main.service';
@@ -63,6 +67,10 @@ import { LoadingComponent } from './modules/home/ui/loading/loading.component';
     RoutesIndexComponent,
     PlacesCreateComponent,
     MapComponent,
+    MapAddPlaceComponent,
+    MapPlacesComponent,
+    MapOrderComponent,
+    MapGeneralComponent,
     TagsDirective,
     LoadingComponent
   ],
