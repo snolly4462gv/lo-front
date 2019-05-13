@@ -5,7 +5,7 @@ export class RouteModel {
         public route_type?: string,
         public image?: any,
         public image_id?: string,
-        public places?: string[],
+        public places?: any[],
         public categories?: string[],
         public finished?: boolean,
         public price?: number,

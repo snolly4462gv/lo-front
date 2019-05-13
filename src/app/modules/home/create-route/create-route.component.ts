@@ -119,9 +119,7 @@ export class CreateRouteComponent implements OnInit {
       this.Route.categories = [];
 
       this.Route.finished = isPublish;
-        console.log(`this.Route`, this.Route);
       if (this.Route.id) {
-        console.log(`update`);
         this.service.UpdateRoute(this.Route)
         .subscribe(
           (res) => {
@@ -132,9 +130,7 @@ export class CreateRouteComponent implements OnInit {
             this.isLoading = false;
           }
         );
-
       } else {
-       console.log(`create`);
         this.service.CreateRoute(this.Route)
         .subscribe(
           (res) => {

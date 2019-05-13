@@ -1,3 +1,4 @@
+import { RouteModel } from './../../../../common/models/route.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { MainService } from 'src/app/common/services/main.service';
@@ -29,9 +30,12 @@ export class CreateRoutePlacesComponent implements OnInit {
          if (params['id']) {
            this.service.GetRouteById(params['id'])
             .subscribe(
-              (res) => {
+              (res: RouteModel) => {
+                if (res.price) {
+                  res.price /= 100;
+                }
                 this.service.SetRoute(res);
-                let places = res['places'];
+                let places = res.places;
                 for(let i=0; i<places.length; i++) {
                   places[i].selected = true;
                   places[i].order = i+1;
