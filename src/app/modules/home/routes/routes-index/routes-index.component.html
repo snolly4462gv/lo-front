@@ -9,7 +9,7 @@
   <div class="tumbler-block">
     <!-- <div class="button"><a [routerLink]="['/home','create-route','places']" class="text">create route</a></div> -->
     <p>Draft Routes</p>
-    <div (click)="chengeRouteType()" [ngClass]="{'right':isShowPublished}" class="tumbler"></div>
+    <div (click)="changeRouteType()" [ngClass]="{'right':isShowPublished}" class="tumbler"></div>
     <p>Published Routes</p>
   </div>
 </div>
@@ -35,11 +35,11 @@
       </ul>
      <div *ngIf="item.status=='draft'" class="edit-publish">
         <img [routerLink]="['/home','create-route','edit', item.id]" src="../../../../../assets/images/edit.svg" alt="">
-        <div (click)="PublishRoute(item)" class="publish"><p>PUBLISH</p></div>
+        <div (click)="PublishRoute(item, true)" class="publish"><p>PUBLISH</p></div>
       </div>
       <div  *ngIf="item.status!='draft'" class="edit-publish">
         <p> </p>
-        <div  class="publish"><p>UNPUBLISH</p></div>
+        <div (click)="PublishRoute(item, false)" class="publish"><p>UNPUBLISH</p></div>
       </div>
     </div>
   </ng-container>

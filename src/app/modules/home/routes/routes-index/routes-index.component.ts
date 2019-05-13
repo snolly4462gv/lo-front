@@ -43,15 +43,12 @@ export class RoutesIndexComponent implements OnInit {
       );
   }
 
-  chengeRouteType() {
+  changeRouteType() {
     this.isShowPublished = !this.isShowPublished;
     this.GetRoutes();
   }
 
-  PublishRoute (route) {
-     console.log(route);
-    if (!this.isSaving) {
-      this.isSaving = true;
+  PublishRoute (route, isPublish = true) {
       this.RouteForSave = route;
       let Places = route['places'];
       this.RouteForSave.places = [];
@@ -59,7 +56,8 @@ export class RoutesIndexComponent implements OnInit {
       for (const item of Places) {
         this.RouteForSave.places.push(item.id);
       }
-      this.RouteForSave.finished = true;
+      this.RouteForSave.finished = isPublish;
+      this.RouteForSave.categories = [];
       console.log(`route`, route);
       this.service.UpdateRoute(this.RouteForSave)
         .subscribe(
@@ -71,7 +69,6 @@ export class RoutesIndexComponent implements OnInit {
             this.isSaving = false;
           }
         );
+  }
 
-      }
-    }
 }

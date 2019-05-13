@@ -1,7 +1,17 @@
 <div class="places">
+
   <div class="map">
+    <div class="start-over">
+      <div class="content">
+        <img src="../../../../../assets/images/Ellipse-orange.png" alt="">
+        <p class="text"> - Your place</p>
+        <img src="../../../../../assets/images/Ellipse-grey.png" alt="">
+        <p class="text"> - BeTrip place</p>
+      </div>
+    </div>
     <app-map-places [Places]="Places" (OnSelectItem)="onSelectItemInMap($event)"></app-map-places>
   </div>
+
   <div class="block">
     <ul class="menu">
         <li class="item" [ngClass]="{'active': CurrentPage == 'SelectPlace'}" (click)="CurrentPage = 'SelectPlace'"><p>Place details</p></li>
