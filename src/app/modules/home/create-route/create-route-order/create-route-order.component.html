@@ -82,7 +82,7 @@
         </div> -->
 
         <ul class="tags">
-          <li *ngFor="let item of item.categories">{{item}}</li>
+          <li *ngFor="let cat of item.categories">{{cat.category?cat.category:cat}}</li>
         </ul>
 
       </div>

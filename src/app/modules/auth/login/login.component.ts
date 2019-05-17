@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginModel } from 'src/app/common/models/login.model';
 import { MainService } from 'src/app/common/services/main.service';
 import { UserGetModel } from 'src/app/common/models/user-get.model';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,8 +16,7 @@ export class LoginComponent implements OnInit {
 
   constructor(private service: MainService) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   LoginUser() {
     this.Error = '';
