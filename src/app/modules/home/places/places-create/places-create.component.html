@@ -42,7 +42,10 @@
 
           <div class="location">
             <img src="../../../../../assets/images/location-img.svg" alt="" class="location-img">
-            <p class="location-title">{{NewPlace.address?NewPlace.address:'*Please, select place at the map!'}}</p>
+            <p *ngIf="!isEditAdress" (click)="NewPlace.lat?isEditAdress = true:null" class="location-title">{{NewPlace.address?NewPlace.address:'*Please, select place at the map!'}}</p>
+            <div *ngIf="isEditAdress && NewPlace.lat" class="input-block">
+              <input (blur)="changeAddressText()" [(ngModel)]="NewPlace.address" class="input" style="margin-left: 12px;" type="text" name="address" placeholder="Washington Square Park">
+            </div>
           </div>
 
         </div>

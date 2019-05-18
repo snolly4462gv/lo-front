@@ -1,3 +1,4 @@
+import { TypeService } from './../../../common/services/type.service';
 import { RouteModel } from 'src/app/common/models/route.model';
 import { MainService } from './../../../common/services/main.service';
 import { Component, ComponentFactory, OnInit } from '@angular/core';
@@ -28,7 +29,7 @@ export class CreateRouteComponent implements OnInit {
   TotalTime = 0;
   isLoading = false;
 
-  constructor(private router: Router, private route: ActivatedRoute, private service: MainService) {
+  constructor(private router: Router, private route: ActivatedRoute, private service: MainService, private typeService: TypeService) {
     this.router.events.subscribe((e: any) => {
         if (e instanceof NavigationEnd) {
             const currentRoute = this.router.url;
@@ -116,7 +117,8 @@ export class CreateRouteComponent implements OnInit {
         this.Route.price *= 100;
       }
 
-      this.Route.categories = [];
+      // this.Route.categories = [];
+      this.Route.categories = this.typeService.ConvertRouteCategoriesFromFrontToBack(this.Route.categories);
 
       this.Route.finished = isPublish;
       if (this.Route.id) {

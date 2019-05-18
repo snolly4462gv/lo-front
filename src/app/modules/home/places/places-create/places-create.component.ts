@@ -1,3 +1,4 @@
+import { TypeService } from './../../../../common/services/type.service';
 import { WorkTimeModel, WorkTimeDNModel } from './../../../../common/models/place.model';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { MainService } from 'src/app/common/services/main.service';
@@ -16,6 +17,7 @@ export class PlacesCreateComponent implements OnInit {
   Places: PlaceModel[] = [];
   isImageByModel = false;
   isEdit = false;
+  isEditAdress = false;
 
   tags = ['tag1', 'tag2'];
 
@@ -26,7 +28,9 @@ export class PlacesCreateComponent implements OnInit {
     period: 'hour'
   };
 
-  constructor(private service: MainService, private router: Router, private route: ActivatedRoute) {
+  typeOfPlace = [];
+
+  constructor(private service: MainService, private typeService: TypeService, private router: Router, private route: ActivatedRoute) {
      route.params.subscribe(
        params => {
          if (params['id']) {
@@ -38,6 +42,7 @@ export class PlacesCreateComponent implements OnInit {
                 this.isImageByModel = true;
                 this.removeEditPlace();
                 this.converTimeByModel();
+                this.NewPlace.categories = this.typeService.ConvertPlaceCategoriesFromBackToFront(this.NewPlace.categories);
               }
             );
          }
@@ -48,6 +53,8 @@ export class PlacesCreateComponent implements OnInit {
   ngOnInit() {
     this.GetPlaces();
     this.AddWorkTime();
+
+    this.typeOfPlace = this.typeService.GetPlaceCategoriesValues();
   }
 
   AddWorkTime() {
@@ -86,6 +93,8 @@ export class PlacesCreateComponent implements OnInit {
       this.NewPlace.image.base64 = this.NewPlace.image.base64.split('base64,')[1];
     }
     this.convertTimes();
+
+    this.NewPlace.categories = this.typeService.ConvertPlaceCategoriesFromFrontToBack(this.NewPlace.categories);
 
     if (this.isEdit) {
       this.service.UpdatePlace(this.NewPlace)
@@ -190,6 +199,10 @@ export class PlacesCreateComponent implements OnInit {
     return time_elements.join(':');
   }
 
+  changeAddressText() {
+    this.isEditAdress = false;
+  }
+
   converTimeByModel () {
     this.EstimatedTime.time = this.NewPlace.estimated_time;
     let data = this.EstimatedTime.time / 60;
@@ -246,10 +259,6 @@ export class PlacesCreateComponent implements OnInit {
 
 
   }
-
-
-  typeOfPlace = [ 'natural', 'cultural', 'historic', 'religion', 'architecture', 'monuments_and_memorials', 'gardens_and_parks' ];
-
 
 
 

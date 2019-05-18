@@ -4,6 +4,7 @@ import { MainService } from './../../../../common/services/main.service';
 import { Component, OnInit } from '@angular/core';
 import { PlaceModel } from 'src/app/common/models/place.model';
 import { ImageModel } from 'src/app/common/models/image.model';
+import { TypeService } from 'src/app/common/services/type.service';
 
 @Component({
   selector: 'app-create-route-general',
@@ -11,17 +12,19 @@ import { ImageModel } from 'src/app/common/models/image.model';
   styleUrls: ['./create-route-general.component.scss']
 })
 export class CreateRouteGeneralComponent implements OnInit {
-  tags = ['Tag1', 'Tag2'];
+  Categories = [];
 
   Places: PlaceModel[] = [];
 
   Route: RouteModel = new RouteModel();
   isImageByModel = false;
 
-  constructor(private service: MainService, private router: Router) { }
+  constructor(private service: MainService, private typeService: TypeService, private router: Router) { }
 
   ngOnInit() {
     this.Places = this.service.GetPlaces();
+
+    this.Categories = this.typeService.GetRouteCategoriesValues();
 
     if (this.Places.length === 0) {
       this.router.navigate(['/home', 'create-route', 'places']);
@@ -36,6 +39,9 @@ export class CreateRouteGeneralComponent implements OnInit {
       this.Route = this.service.Route;
       if (this.Route.image_id) {
         this.isImageByModel = true;
+      }
+      if (this.Route.categories) {
+        this.Route.categories = this.typeService.ConvertRouteCategoriesFromBackToFront(this.Route.categories);
       }
     }
 
@@ -75,6 +81,6 @@ export class CreateRouteGeneralComponent implements OnInit {
       return 'http://35.204.142.44:3000/images/' + id;
     }
 
-    typeOfPlace = [ 'natural', 'cultural', 'historic', 'religion', 'architecture', 'monuments_and_memorials', 'gardens_and_parks' ];
+    // typeOfPlace = [ 'natural', 'cultural', 'historic', 'religion', 'architecture', 'monuments_and_memorials', 'gardens_and_parks' ];
 
 }
