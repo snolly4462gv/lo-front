@@ -1,3 +1,4 @@
+import { TypeService } from 'src/app/common/services/type.service';
 import { Component, OnInit } from '@angular/core';
 import { RouteModel } from 'src/app/common/models/route.model';
 import { MainService } from 'src/app/common/services/main.service';
@@ -19,7 +20,7 @@ export class RoutesIndexComponent implements OnInit {
 
   isLoadingRoutes = false;
 
-  constructor(private service: MainService, private router: Router) { }
+  constructor(private service: MainService, private typeService: TypeService, private router: Router) { }
 
   ngOnInit() {
     this.GetRoutes();
@@ -33,6 +34,12 @@ export class RoutesIndexComponent implements OnInit {
           this.Routes = res;
           this.Routes  = this.Routes.filter(x => this.isShowPublished ? x.status !== 'draft' : x.status === 'draft');
           console.log(this.Routes);
+
+          for (let item of this.Routes) {
+            if (item.categories) {
+              item.categories = this.typeService.ConvertRouteCategoriesFromBackToFront(item.categories);
+            }
+          }
         },
         () => {},
         () => {

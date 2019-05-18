@@ -1,3 +1,4 @@
+import { TypeService } from './../../../../common/services/type.service';
 import { RouteModel } from 'src/app/common/models/route.model';
 import { MainService } from 'src/app/common/services/main.service';
 import { Component, OnInit } from '@angular/core';
@@ -17,7 +18,7 @@ export class CreateRouteIndexComponent implements OnInit {
 
   isLoadingRoutes = false;
 
-  constructor(private service: MainService, private router: Router) { }
+  constructor(private service: MainService, private typeService: TypeService, private router: Router) { }
 
   ngOnInit() {
     this.GetRoutes();
@@ -30,6 +31,11 @@ export class CreateRouteIndexComponent implements OnInit {
         (res: RouteModel[]) => {
           this.Routes = res;
           console.log(this.Routes);
+          for (let item of this.Routes) {
+            if (item.categories) {
+              item.categories = this.typeService.ConvertRouteCategoriesFromBackToFront(item.categories);
+            }
+          }
         },
         () => {},
         () => {

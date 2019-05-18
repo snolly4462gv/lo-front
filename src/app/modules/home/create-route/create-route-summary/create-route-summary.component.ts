@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { PlaceModel } from 'src/app/common/models/place.model';
 import { MainService } from 'src/app/common/services/main.service';
 import { RouteModel } from 'src/app/common/models/route.model';
+import { TypeService } from 'src/app/common/services/type.service';
 
 @Component({
   selector: 'app-create-route-summary',
@@ -16,7 +17,7 @@ export class CreateRouteSummaryComponent implements OnInit {
   Route: RouteModel = new RouteModel();
   isImageByModel = false;
 
-  constructor(private service: MainService, private router: Router) { }
+  constructor(private service: MainService, private typeService: TypeService, private router: Router) { }
 
   ngOnInit() {
     this.Places = this.service.GetPlaces();

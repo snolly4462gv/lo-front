@@ -42,7 +42,7 @@ export class AuthComponent implements OnInit {
   authVk() {
     console.log(`login by vk`);
     // tslint:disable-next-line: max-line-length
-    $(location).attr('href', 'https://oauth.vk.com/authorize?client_id=6327176&scope=1073737727&redirect_uri=https://tools.betrip.io/index.html&display=page&response_type=token&revoke=1&state=vk');
+    $(location).attr('href', 'https://oauth.vk.com/authorize?client_id=6327176&scope=1073737727&redirect_uri=https://tools.betrip.io/auth/login&display=page&response_type=token&revoke=1&state=vk');
   }
 
   authFB () {
