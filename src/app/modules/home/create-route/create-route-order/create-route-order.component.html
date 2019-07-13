@@ -3,7 +3,7 @@
     <div (click)="StartOver()" class="start-over">
       <div class="content">
         <img src="../../../../../assets/images/start-over.svg" alt="">
-        <p class="text">Start over</p>
+        <p class="text">Обновить</p>
       </div>
     </div>
     <app-map-order #Map [Places]="Places" (OnSelectOrder)="onSelectOrder($event)"></app-map-order>
@@ -21,9 +21,9 @@
             </div>
             <div class="text">{{item.description}}</div>
             <div class="detail-move">
-              <p (click)="item.isShowFullDesc = true" class="details-show">More Details</p>
+              <!-- <p (click)="item.isShowFullDesc = true" class="details-show">More Details</p> -->
               <!-- dnd-sortable-handle -->
-              <img class="move-img" src="../../../../../assets/images/array-move.svg" alt="">
+              <!-- <img class="move-img" src="../../../../../assets/images/array-move.svg" alt=""> -->
             </div>
           </div>
         </div>
@@ -38,17 +38,6 @@
           <div class="title-edit">
             <p class="title">{{item.name}}</p>
           </div>
-          <div class="stars">
-            <img class="star" [src]="item.score>=1 ? '../../../../../assets/images/star-full.svg' : '../../../../../assets/images/star-empty.svg'" alt="">
-            <img class="star" [src]="item.score>=1 ? '../../../../../assets/images/star-full.svg' : '../../../../../assets/images/star-empty.svg'" alt="">
-            <img class="star" [src]="item.score>=1 ? '../../../../../assets/images/star-full.svg' : '../../../../../assets/images/star-empty.svg'" alt="">
-            <img class="star" [src]="item.score>=1 ? '../../../../../assets/images/star-full.svg' : '../../../../../assets/images/star-empty.svg'" alt="">
-            <img class="star" [src]="item.score>=1 ? '../../../../../assets/images/star-full.svg' : '../../../../../assets/images/star-empty.svg'" alt="">
-          </div>
-          <div class="location">
-            <img src="../../../../../assets/images/location-img.svg" alt="" class="location-img">
-            <p class="location-title">{{item.address}}</p>
-          </div>
           <!-- <p class="price">${{item.price}}</p> -->
         </div>
       </div>
@@ -58,15 +47,6 @@
           <div class="text">{{item.description}}</div>
         </div>
 
-        <div class="info">
-          <div class="title">Interesting facts</div>
-          <div class="text">{{item.interesting_facts}}</div>
-        </div>
-
-        <div class="info">
-          <div class="title">What to do</div>
-          <div class="text">{{item.what_to_do}}</div>
-        </div>
 
         <!-- <div class="info">
           <div class="title">Best time to visit</div>
@@ -81,12 +61,9 @@
           <div class="text">{{EstimatedTime.time}} {{EstimatedTime.period|titlecase}}</div>
         </div> -->
 
-        <ul class="tags">
-          <li *ngFor="let cat of item.categories">{{cat.category?cat.category:cat}}</li>
-        </ul>
 
       </div>
-      <p (click)="item.isShowFullDesc = false" class="details-show">Less Details</p>
+      <!-- <p (click)="item.isShowFullDesc = false" class="details-show">Less Details</p> -->
       </div>
 
      <div class="line"></div>

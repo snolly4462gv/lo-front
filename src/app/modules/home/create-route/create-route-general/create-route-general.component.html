@@ -15,35 +15,19 @@
           <input id="file-input" accept=".jpg, .jpeg, .png" (change)="uploadImage($event)" type="file" />
         </div>
 
-        <p class="picture-text">Try use picture not smaller than 355x280px</p>
 
             <div class="input-block">
-              <div><label class="label" for="name">Route name*</label></div>
+              <div><label class="label" for="name">Название</label></div>
               <div><input [(ngModel)]="Route.name" class="input" type="text" name="name" placeholder="Washington Square Park"></div>
             </div>
+            
             <div class="input-block">
-              <div><label class="label" for="name">Price* $</label></div>
-              <div><input [(ngModel)]="Route.price" class="input" type="text" name="name" placeholder="35"></div>
-            </div>
-            <div class="input-block">
-              <div><label class="label" for="description">Route description</label></div>
+              <div><label class="label" for="description">Описание</label></div>
               <div><textarea [(ngModel)]="Route.description" class="input" name="description"></textarea></div>
             </div>
 
-            <div class="input-block">
-              <div><label class="label" for="name">Tags</label></div>
-              <div>
-
-                <rl-tag-input [autocomplete]="true" [autocompleteItems]="Categories" [(ngModel)]="Route.categories"></rl-tag-input>
-                </div>
-            </div>
-
-
+            
     </div>
-  </div>
-
-  <div class="map">
-    <app-map [Mode]="4" [Places]="Places"></app-map>
   </div>
 
 </div>

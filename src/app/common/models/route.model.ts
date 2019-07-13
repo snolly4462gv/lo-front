@@ -2,7 +2,6 @@ export class RouteModel {
     constructor(
         public name?: string,
         public description?: string,
-        public route_type?: string,
         public image?: any,
         public image_id?: string,
         public places?: any[],
@@ -11,10 +10,9 @@ export class RouteModel {
         public price?: number,
         public id?: string,
         public status?: string,
+        public total_places?: number,
 
         public isShowFullDesc?: boolean
     ) {
-      this.route_type = 'internal';
-      this.categories = [];
     }
 }

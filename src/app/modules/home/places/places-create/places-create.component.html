@@ -1,12 +1,3 @@
-<div class="create-route">
-  <div class="left">
-    <div class="header">
-      <a [routerLink]="['/home','places','index']"><img class="array-back" src="../../../../../assets/images/array-back.svg" alt=""></a>
-      <p class="title">Add new place</p>
-    </div>
-    <p class="step">Just fill up all fields. Good luck!</p>
-  </div>
-</div>
 
 <div class="places">
   <div class="map">
@@ -23,8 +14,8 @@
               <img class="logo" src="../../../../../assets/images/image-empty.svg" alt="">
              </ng-container>
 
-             <ng-container *ngIf="NewPlace.image&&NewPlace.image.base64 || isImageByModel&&NewPlace.image_id">
-              <img class="logo" [src]="isImageByModel&&NewPlace.image_id?'http://35.204.142.44:3000/images/'+NewPlace.image_id:NewPlace.image.base64" alt="">
+             <ng-container *ngIf="NewPlace.image">
+              <img class="logo" [src]="NewPlace.image" alt="">
               <div class="gradient"></div>
               <img class="pen" src="../../../../../assets/images/pen-edit-photo.svg" alt="">
              </ng-container>
@@ -36,114 +27,23 @@
 
         <div class="info">
             <div class="input-block">
-              <div><label class="label" for="name">Place name*</label></div>
-              <div><input [(ngModel)]="NewPlace.name" class="input" type="text" name="name" placeholder="Washington Square Park"></div>
+              <div><label class="label" for="name">Название места</label></div>
+              <div><input [(ngModel)]="NewPlace.name" class="input" type="text" name="name" placeholder="Название места"></div>
             </div>
-
-          <div class="location">
-            <img src="../../../../../assets/images/location-img.svg" alt="" class="location-img">
-            <p *ngIf="!isEditAdress" (click)="NewPlace.lat?isEditAdress = true:null" class="location-title">{{NewPlace.address?NewPlace.address:'*Please, select place at the map!'}}</p>
-            <div *ngIf="isEditAdress && NewPlace.lat" class="input-block">
-              <input (blur)="changeAddressText()" [(ngModel)]="NewPlace.address" class="input" style="margin-left: 12px;" type="text" name="address" placeholder="Washington Square Park">
-            </div>
-          </div>
 
         </div>
       </div>
       <div class="main">
          <div class="input-block">
-              <div><label class="label" for="description">Short description* </label></div>
+              <div><label class="label" for="description">Описание</label></div>
               <div><textarea [(ngModel)]="NewPlace.description" class="input" name="description"></textarea></div>
           </div>
 
-          <div class="input-block">
-              <div><label class="label" for="interesting">Interesting facts </label></div>
-              <div><textarea [(ngModel)]="NewPlace.interesting_facts" class="input" name="interesting"></textarea></div>
-          </div>
-
-          <div class="input-block">
-              <div><label class="label" for="what">What to do</label></div>
-              <div><textarea [(ngModel)]="NewPlace.what_to_do" class="input" name="what"></textarea></div>
-          </div>
-
-          <div class="input-block">
-              <div><label class="label" for="what">Best time to visit</label></div>
-              <div *ngFor="let time of WorkTimes; let i = index" class="time">
-                <select [(ngModel)]="time.day" class="input">
-                  <option value="monday">Monday</option>
-                  <option value="tuesday">Tuesday</option>
-                  <option value="wednesday">Wednesday</option>
-                  <option value="thursday">Thursday</option>
-                  <option value="friday">Friday</option>
-                  <option value="saturday">Saturday</option>
-                  <option value="sunday">Sunday</option>
-                </select>
-                <input [textMask]="getMask(time.open_time)"  [(ngModel)]="time.open_time" class="input w70" type="text" name="name" placeholder="12:00">
-                <select [(ngModel)]="time.open_time_dn" class="input">
-                  <option value="am">AM</option>
-                  <option value="pm">PM</option>
-                </select>
-                <img src="../../../../../assets/images/mini-line.svg" alt="">
-                <input [textMask]="getMask(time.close_time)" [(ngModel)]="time.close_time" class="input w70" type="text" name="name" placeholder="12:00">
-                <select [(ngModel)]="time.close_time_dn" class="input">
-                  <option value="am">AM</option>
-                  <option value="pm">PM</option>
-                </select>
-              </div>
-          </div>
-
-          <div class="add">
-            <img (click)="AddWorkTime()" src="../../../../../assets/images/add-plus.svg" alt="">
-            <p class="text">Add another time</p>
-          </div>
-
-          <div class="input-block">
-              <div><label class="label" for="what">Estimated time</label></div>
-              <div class="time">
-                <input [(ngModel)]="EstimatedTime.time" class="input w70" type="text" name="name" >
-                <select [(ngModel)]="EstimatedTime.period" class="input">
-                  <option value="min">Minute</option>
-                  <option value="hour">Hour</option>
-                  <option value="day">Day</option>
-                </select>
-              </div>
-          </div>
-
-          <div class="input-block">
-              <div><label  class="label" for="tags">Tags</label></div>
-              <div>
-                <!-- <input tags type="text" class="input" name="tags"> -->
-                <rl-tag-input [autocomplete]="true" [autocompleteItems]="typeOfPlace" [(ngModel)]="NewPlace.categories"></rl-tag-input>
-                </div>
-          </div>
-
-          <div class="input-block">
-              <div><label class="label" for="rating">Rating</label></div>
-              <div class="stars">
-                <img class="star" (click)="NewPlace.score = 1" [src]="NewPlace.score>=1 ? '../../../../../assets/images/star-full.svg' : '../../../../../assets/images/star-empty.svg'" alt="">
-                <img class="star" (click)="NewPlace.score = 2" [src]="NewPlace.score>=2 ? '../../../../../assets/images/star-full.svg' : '../../../../../assets/images/star-empty.svg'" alt="">
-                <img class="star" (click)="NewPlace.score = 3" [src]="NewPlace.score>=3 ? '../../../../../assets/images/star-full.svg' : '../../../../../assets/images/star-empty.svg'" alt="">
-                <img class="star" (click)="NewPlace.score = 4" [src]="NewPlace.score>=4 ? '../../../../../assets/images/star-full.svg' : '../../../../../assets/images/star-empty.svg'" alt="">
-                <img class="star" (click)="NewPlace.score = 5" [src]="NewPlace.score==5 ? '../../../../../assets/images/star-full.svg' : '../../../../../assets/images/star-empty.svg'" alt="">
-              </div>
-          </div>
-
-
       </div>
+      <div (click)="CreatePlace()" class="add-button">
+         <p class="text">Добавить</p>
+       </div>
     </div>
 
 </div>
-</div>
-
-<div class="footer fixed">
-  <div class="center">
-    <div *ngIf="NewPlace.lat && NewPlace.lng && NewPlace.name && NewPlace.description" class="content">
-      <img src="../../../../assets/images/array-footer.svg" alt="">
-      <div (click)="CreatePlace()"  class="button"><p class="text">{{isEdit?'Update':'Add'}} place</p></div>
-      <img src="../../../../assets/images/array-footer-reverse.svg" alt="">
-    </div>
-    <div *ngIf="!NewPlace.lat || !NewPlace.lng || !NewPlace.name || !NewPlace.description" class="content">
-      <div class="button disabled"><p class="text">{{isEdit?'Update':'Add'}} place</p></div>
-    </div>
-  </div>
 </div>

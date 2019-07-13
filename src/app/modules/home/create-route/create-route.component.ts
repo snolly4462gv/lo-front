@@ -112,38 +112,18 @@ export class CreateRouteComponent implements OnInit {
       for (const item of this.Places) {
         this.Route.places.push(item.id);
       }
-
-      if (this.Route.price) {
-        this.Route.price *= 100;
-      }
-
-      // this.Route.categories = [];
-      this.Route.categories = this.typeService.ConvertRouteCategoriesFromFrontToBack(this.Route.categories);
-
-      this.Route.finished = isPublish;
-      if (this.Route.id) {
-        this.service.UpdateRoute(this.Route)
-        .subscribe(
-          (res) => {
-            this.router.navigate(['/home', 'create-route']);
-            this.isLoading = false;
-          },
-          (err) => {
-            this.isLoading = false;
-          }
-        );
-      } else {
-        this.service.CreateRoute(this.Route)
-        .subscribe(
-          (res) => {
-            this.router.navigate(['/home', 'create-route']);
-            this.isLoading = false;
-          },
-          (err) => {
-            this.isLoading = false;
-          }
-        );
-      }
+      console.log(this.Route);
+      this.Route.total_places = this.Route.places.length;
+      this.service.CreateRoute(this.Route)
+      .subscribe(
+        (res) => {
+          this.router.navigate(['/home', 'create-route']);
+          this.isLoading = false;
+        },
+        (err) => {
+          this.isLoading = false;
+        }
+      );
   }
 
   CreateRouteNav() {

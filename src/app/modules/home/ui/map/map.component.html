@@ -15,9 +15,9 @@
           [latitude]="allPlace.lat"
           [longitude]="allPlace.lng"
           (mouseOver)="allPlace.isShow = true; mouseOver(allPlace)"
-          [iconUrl]="allPlace.selected?'../../../../../assets/images/betrip-cursor.svg':'../../../../../assets/images/Ellipse-grey.png'"
+         
         ></agm-marker>
-
+ <!-- [iconUrl]="allPlace.selected?'../../../../../assets/images/betrip-cursor.svg':'../../../../../assets/images/Ellipse-grey.png'" -->
       <agm-snazzy-info-window
         *ngIf="allPlace.isShow"
         [isOpen]="allPlace.isShow"
@@ -50,9 +50,9 @@
           [latitude]="item.lat"
           [longitude]="item.lng"
           (mouseOver)="item.isShow = true"
-          [iconUrl]="item.selected?'../../../../../assets/images/betrip-cursor.svg':'../../../../../assets/images/Ellipse-orange.png'"
+         
       ></agm-marker>
-
+ <!-- [iconUrl]="item.selected?'../../../../../assets/images/betrip-cursor.svg':'../../../../../assets/images/Ellipse-orange.png'" -->
       <agm-snazzy-info-window
         *ngIf="item.isShow && item.lat && item.lng && item.name"
         [isOpen]="true"
@@ -82,10 +82,10 @@
           [longitude]="NewPlace.lng"
           [markerDraggable]="true"
           (dragEnd)="MapClick($event)"
-          iconUrl="../../../../../assets/images/betrip-cursor.svg"
+
         ></agm-marker>
     </ng-container>
-
+          <!-- iconUrl="../../../../../assets/images/betrip-cursor.svg" -->
 
     <ng-container *ngIf="Mode == Modes.CreateRoute || Mode == Modes.General">
       <agm-polyline

@@ -17,24 +17,24 @@ export class SignUpComponent implements OnInit {
   ngOnInit() {
   }
 
-  Signup () {
-    this.service.CreateUser(this.User)
-      .subscribe(
-        (res: UserGetModel) => {
-          this.service.LoginUser(res);
-        },
-        (err) => {
-          this.Error = '';
-          for (var key in err.error)
-            {
-              this.Error += key.slice(0,1).toUpperCase() + key.slice(1);
-            for(let e of err.error[key]) {
-              this.Error += " " + e;
-            }
-              this.Error += '. '
-            }
-        }
-      );
-  }
+  // Signup () {
+  //   this.service.CreateUser(this.User)
+  //     .subscribe(
+  //       (res: UserGetModel) => {
+  //         this.service.LoginUser(res);
+  //       },
+  //       (err) => {
+  //         this.Error = '';
+  //         for (var key in err.error)
+  //           {
+  //             this.Error += key.slice(0,1).toUpperCase() + key.slice(1);
+  //           for(let e of err.error[key]) {
+  //             this.Error += " " + e;
+  //           }
+  //             this.Error += '. '
+  //           }
+  //       }
+  //     );
+  // }
 
 }

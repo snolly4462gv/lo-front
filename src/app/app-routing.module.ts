@@ -25,7 +25,7 @@ const routes: Routes = [
     component: HomeComponent,
     canActivate: [AppGuard],
     children: [
-      { path: '', pathMatch: 'full', redirectTo: 'dashboard'},
+      { path: '', pathMatch: 'full', redirectTo: 'create-route'},
       { path: 'dashboard', component: DashboardIndexComponent,
         children: [
           {path: '', pathMatch: 'full', redirectTo: 'index'},

@@ -83,7 +83,7 @@ export class MapPlacesComponent implements OnInit {
     }
     if (!this.isCenterChanged) {
       this.isCenterChanged = true;
-      this.service.GetAllPlacesByLatLng(event.lat, event.lng)
+      this.service.GetAllPlaces()
         .subscribe(
           (res: PlaceModel[]) => {
             for (const place of res) {

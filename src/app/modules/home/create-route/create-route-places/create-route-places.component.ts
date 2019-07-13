@@ -2,7 +2,7 @@ import { RouteModel } from './../../../../common/models/route.model';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { MainService } from 'src/app/common/services/main.service';
-import { PlaceModel, WorkTimeDNModel } from 'src/app/common/models/place.model';
+import { PlaceModel } from 'src/app/common/models/place.model';
 
 @Component({
   selector: 'app-create-route-places',
@@ -22,7 +22,6 @@ export class CreateRoutePlacesComponent implements OnInit {
     time: 0,
     period: 'hour'
   };
-  WorkTimes: WorkTimeDNModel[] = [];
 
   constructor(private service: MainService, private router: Router, private route: ActivatedRoute) {
      route.params.subscribe(
@@ -54,7 +53,7 @@ export class CreateRoutePlacesComponent implements OnInit {
   }
 
   GetPlaces() {
-    this.service.GetMyPlaces()
+    this.service.GetAllPlaces()
       .subscribe(
         (res: PlaceModel[]) => {
           this.Places = res;
@@ -67,15 +66,15 @@ export class CreateRoutePlacesComponent implements OnInit {
   onSelectItemInMap(event) {
     this.CurrentPage = 'SelectPlace';
     this.SelectPlace = event;
-    this.converTimeByModel();
     console.log(this.SelectPlace);
-    for (const item of this.PlacesInRoute) {
-      if (item.id === this.SelectPlace.id) {
-        this.isSelectedPlaceInTheRoute = true;
-        break;
-      }
-      this.isSelectedPlaceInTheRoute = false;
-    }
+    // for (const item of this.PlacesInRoute) {
+    //   if (item.id === this.SelectPlace.id) {
+    //     this.isSelectedPlaceInTheRoute = true;
+    //     break;
+    //   }
+    //   this.isSelectedPlaceInTheRoute = false;
+    // }
+    this.isSelectedPlaceInTheRoute = false;
   }
 
   AddRouteToList() {
@@ -103,57 +102,5 @@ export class CreateRoutePlacesComponent implements OnInit {
     this.service.SetPlaces(this.PlacesInRoute);
   }
 
-  converTimeByModel () {
-    this.EstimatedTime.time = this.SelectPlace.estimated_time;
-    let data = this.EstimatedTime.time / 60;
-    if (data === parseInt(data + '', 10)) {
-      this.EstimatedTime.period = 'min';
-      this.EstimatedTime.time = data;
-    }
-    data = this.EstimatedTime.time / 60;
-    if (data === parseInt(data + '', 10)) {
-      this.EstimatedTime.period = 'hour';
-      this.EstimatedTime.time = data;
-    }
-    data = this.EstimatedTime.time / 24;
-    if (data === parseInt(data + '', 10)) {
-      this.EstimatedTime.period = 'day';
-      this.EstimatedTime.time = data;
-    }
 
-    this.WorkTimes = [];
-    for (const time of this.SelectPlace.work_times) {
-
-      let open_time_full = time.open_time.split('T')[1].split(':');
-      let close_time_full = time.close_time.split('T')[1].split(':');
-
-      let open_time_dn = 'am';
-      let close_time_dn = 'am';
-
-
-
-      if (+open_time_full[0] > 12) {
-        open_time_full[0] = (+open_time_full[0] - 12) + '';
-        open_time_dn = 'pm';
-      }
-
-      if (+close_time_full[0] > 12) {
-        close_time_full[0] = (+close_time_full[0] - 12) + '';
-        close_time_dn = 'pm';
-      }
-
-      let open_time = (open_time_full[0].length === 1 ? '0' + open_time_full[0] : open_time_full[0]) + ':' + open_time_full[1];
-      let close_time = (close_time_full[0].length === 1 ? '0' + close_time_full[0] : close_time_full[0]) + ':' + close_time_full[1];
-
-      this.WorkTimes.push(
-        {
-          day: time.day,
-          open_time,
-          open_time_dn,
-          close_time,
-          close_time_dn
-        }
-      );
-    }
-  }
 }

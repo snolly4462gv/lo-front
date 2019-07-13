@@ -1,12 +1,12 @@
 .side{
   margin-left: -13px;
   width: 294px;
-  height: 449px;
+  height: 100vh;
   background: #FFFFFF;
   border: 1px solid #E8E2ED;
   box-sizing: border-box;
   box-shadow: 0px 2px 5px rgba(29, 1, 81, 0.07);
-  border-radius: 20px;
+  border-radius: 0;
   padding-left: 13px;
   transition: 0.25s ease-in-out;
 }
@@ -112,12 +112,12 @@ line-height: 22px;
 color: #200F32;
 }
 .list .item.selected {
-background: rgba(0, 0, 0, 0.05);
+background: #005C9D;
 // opacity: 0.1;
-border-radius: 10px;
+border-radius: 0px;
 padding: 4px 10px;
 }
 .list .item.selected p {
   font-weight: bold;
-  color: #FFA901;
+  color: #fff;
 }

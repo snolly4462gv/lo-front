@@ -1,88 +1,44 @@
 <div class="places">
 
   <div class="map">
-    <div class="start-over">
+    <!-- <div class="start-over">
       <div class="content">
         <img src="../../../../../assets/images/Ellipse-orange.png" alt="">
         <p class="text"> - Your place</p>
         <img src="../../../../../assets/images/Ellipse-grey.png" alt="">
         <p class="text"> - BeTrip place</p>
       </div>
-    </div>
+    </div> -->
     <app-map-places [Places]="Places" (OnSelectItem)="onSelectItemInMap($event)"></app-map-places>
   </div>
 
   <div class="block">
     <ul class="menu">
-        <li class="item" [ngClass]="{'active': CurrentPage == 'SelectPlace'}" (click)="CurrentPage = 'SelectPlace'"><p>Place details</p></li>
-        <li class="item" [ngClass]="{'active': CurrentPage == 'ViewPlaces'}" (click)="CurrentPage = 'ViewPlaces'"><p> Places in the route</p></li>
+        <li class="item" [ngClass]="{'active': CurrentPage == 'SelectPlace'}" (click)="CurrentPage = 'SelectPlace'"><p>Подробности места интереса</p></li>
       </ul>
       <div class="line"></div>
 
     <!-- Просмотр места -->
-    <div *ngIf="CurrentPage=='SelectPlace'&&SelectPlace&&SelectPlace.id" class="detail preview-place">
+    <div *ngIf="CurrentPage=='SelectPlace'&&SelectPlace.name" class="detail preview-place">
       <div class="header">
         <img class="logo" [src]="'http://35.204.142.44:3000/images/'+SelectPlace.image_id" alt="">
         <div class="info">
           <div class="title-edit">
             <p class="title">{{SelectPlace.name}}</p>
-            <div [routerLink]="['/home','places','edit',SelectPlace.id]" class="edit">
-              <img class="edit-img" src="../../../../../assets/images/pen-edit.svg" alt="">
-              <p class="edit-text">Edit</p>
-            </div>
+
           </div>
-          <div class="stars">
-            <img class="star" [src]="SelectPlace.score>=1?'../../../../../assets/images/star-full.svg':'../../../../../assets/images/star-empty.svg'" alt="">
-            <img class="star" [src]="SelectPlace.score>=2?'../../../../../assets/images/star-full.svg':'../../../../../assets/images/star-empty.svg'" alt="">
-            <img class="star" [src]="SelectPlace.score>=3?'../../../../../assets/images/star-full.svg':'../../../../../assets/images/star-empty.svg'" alt="">
-            <img class="star" [src]="SelectPlace.score>=4?'../../../../../assets/images/star-full.svg':'../../../../../assets/images/star-empty.svg'" alt="">
-            <img class="star" [src]="SelectPlace.score>=5?'../../../../../assets/images/star-full.svg':'../../../../../assets/images/star-empty.svg'" alt="">
-          </div>
-          <div class="location">
-            <img src="../../../../../assets/images/location-img.svg" alt="" class="location-img">
-            <p class="location-title">{{SelectPlace.address}}</p>
-          </div>
-          <!-- <p class="price">$0</p> -->
         </div>
       </div>
       <div class="main">
         <div class="info">
-          <div class="title">Short description</div>
+          <div class="title">Описание</div>
           <div class="text">{{SelectPlace.description}}</div>
         </div>
-
-        <div class="info">
-          <div class="title">Interesting facts</div>
-          <div class="text">{{SelectPlace.interesting_facts}}</div>
-        </div>
-
-        <div class="info">
-          <div class="title">What to do</div>
-          <div class="text">{{SelectPlace.what_to_do}}</div>
-        </div>
-
-        <div class="info">
-          <div class="title">Best time to visit</div>
-          <div class="text">
-          <p *ngFor="let time of WorkTimes">
-            {{time.day|titlecase}}: {{time.open_time}} {{time.open_time_dn|uppercase}} - {{time.close_time}} {{time.close_time_dn|uppercase}}
-          </p></div>
-        </div>
-
-        <div class="info">
-          <div class="title">Estimated time</div>
-          <div class="text">{{EstimatedTime.time}} {{EstimatedTime.period|titlecase}}</div>
-        </div>
-
-        <ul class="tags">
-          <li *ngFor="let item of SelectPlace.categories">{{item}}</li>
-        </ul>
-
       </div>
        <div class="line"></div>
 
        <div *ngIf="!isSelectedPlaceInTheRoute" (click)="AddRouteToList()"  class="add-button">
-         <p class="text">ADD TO ROUTE</p>
+         <p class="text">Добавить</p>
        </div>
     </div>
 
@@ -166,13 +122,10 @@
     </div> -->
 
     <!-- Если не выбраны места -->
-    <div *ngIf="CurrentPage=='SelectPlace' && (!SelectPlace || !SelectPlace.id)" class="detail empty-place">
+    <div *ngIf="CurrentPage=='SelectPlace' && (!SelectPlace.name)" class="detail empty-place">
       <div class="content">
-        <img src="../../../../../assets/images/array-left-empty.svg" alt="">
         <div class="text">
-          <img src="../../../../../assets/images/smile-big.svg" alt="">
-          <p class="text1">You can't see place details if you didn't select it</p>
-          <p class="text2">Just click on place in map :)</p>
+          <p>Требуется выбрать место на карте</p>
         </div>
       </div>
     </div>
@@ -193,7 +146,7 @@
             </div>
           </div>
           <div class="text">{{item.description}}</div>
-          <p (click)="item.isShowFullDesc = true" class="details-show">More Details</p>
+          <!-- <p (click)="item.isShowFullDesc = true" class="details-show">More Details</p> -->
         </div>
       </div>
       </div>
@@ -206,39 +159,14 @@
         <div class="info">
           <div class="title-edit">
             <p class="title">{{item.name}}</p>
-            <div (click)="DeleteFromRoute(item.id)" class="edit">
-              <img class="del-img" src="../../../../../assets/images/bin-middle.svg" alt="">
-
-            </div>
-          </div>
-          <div class="stars">
-            <img class="star" [src]="item.score>=1 ? '../../../../../assets/images/star-full.svg' : '../../../../../assets/images/star-empty.svg'" alt="">
-            <img class="star" [src]="item.score>=1 ? '../../../../../assets/images/star-full.svg' : '../../../../../assets/images/star-empty.svg'" alt="">
-            <img class="star" [src]="item.score>=1 ? '../../../../../assets/images/star-full.svg' : '../../../../../assets/images/star-empty.svg'" alt="">
-            <img class="star" [src]="item.score>=1 ? '../../../../../assets/images/star-full.svg' : '../../../../../assets/images/star-empty.svg'" alt="">
-            <img class="star" [src]="item.score>=1 ? '../../../../../assets/images/star-full.svg' : '../../../../../assets/images/star-empty.svg'" alt="">
-          </div>
-          <div class="location">
-            <img src="../../../../../assets/images/location-img.svg" alt="" class="location-img">
-            <p class="location-title">{{item.address}}</p>
           </div>
           <!-- <p class="price">${{item.price}}</p> -->
         </div>
       </div>
       <div class="main">
         <div class="info">
-          <div class="title">Short description</div>
+          <div class="title">Описание</div>
           <div class="text">{{item.description}}</div>
-        </div>
-
-        <div class="info">
-          <div class="title">Interesting facts</div>
-          <div class="text">{{item.interesting_facts}}</div>
-        </div>
-
-        <div class="info">
-          <div class="title">What to do</div>
-          <div class="text">{{item.what_to_do}}</div>
         </div>
 
         <!-- <div class="info">
@@ -254,12 +182,7 @@
           <div class="text">{{EstimatedTime.time}} {{EstimatedTime.period|titlecase}}</div>
         </div> -->
 
-        <ul class="tags">
-          <li *ngFor="let item of item.categories">{{item}}</li>
-        </ul>
-
       </div>
-      <p (click)="item.isShowFullDesc = false" class="details-show">Less Details</p>
       </div>
 
       </ng-container>
@@ -271,11 +194,8 @@
   <!-- Если не выбраны места в маршруте -->
     <div *ngIf="CurrentPage=='ViewPlaces' && !PlacesInRoute.length" class="detail empty-place">
       <div class="content">
-        <img src="../../../../../assets/images/array-left-empty.svg" alt="">
         <div class="text">
-          <img src="../../../../../assets/images/bad-smile.svg" alt="">
-          <p class="text1">Oh, you have no added place</p>
-          <p class="text2">But don't worry, it's easy to fix :)</p>
+          <p class="text1">Требуется выбрать место на карте</p>
         </div>
       </div>
     </div>

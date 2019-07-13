@@ -1,36 +1,27 @@
 
 <div class="block">
 <div class="create-route">
-  <p class="text">Seems you wanna create new route? Let’s do it!</p>
-  <img src="../../../../../assets/images/walk-man.svg" alt="">
-  <div class="button"><a [routerLink]="['/home','create-route','places']" class="text">create route</a></div>
+  <p class="text">Построенные маршруты</p>
+  <div class="button"><a [routerLink]="['/home','create-route','places']" class="text">ДОбавить</a></div>
 </div>
-<p class="text-draft">Draft routes</p>
 <app-loading *ngIf="isLoadingRoutes"></app-loading>
 <div [ngStyle]="{'display': isLoadingRoutes? 'none': 'flex'}" class="routes">
   <ng-container *ngFor="let item of Routes; let i = index">
-    <div *ngIf="item.status === 'draft'" class="route">
+    <div class="route">
       <img *ngIf="item.image_id" (error)="item.image_id = null" [src]="'http://35.204.142.44:3000/images/'+item.image_id" alt="" class="route__image">
       <ul class="route__content">
         <div class="name-price">
           <p class="name">{{item.name}} </p>
-          <p class="price"> ${{item.price/100}}</p>
+
         </div>
         <div class="text">
-
-
+          <p class="price">Мест: {{item.total_places}}</p>
           <span class="main-text opened">{{item.description?item.description.slice(0,50):''}}{{item.description&&item.isShowFullDesc?item.description.slice(50):''}}
             <span *ngIf="item.description && item.description.length>50 && !item.isShowFullDesc" (click)="item.isShowFullDesc = true" class="more-btn open-btn">More</span><span class="additional"></span>
             <span *ngIf="item.isShowFullDesc" (click)="item.isShowFullDesc = false" class="more-btn open-btn">Hide</span>
           </span>
-
         </div>
-        <ul class="keywords"><li *ngFor="let cat of item.categories">{{cat.category?cat.category:cat}}</li></ul>
       </ul>
-     <div class="edit-publish">
-        <img [routerLink]="['/home','create-route','edit', item.id]" src="../../../../../assets/images/edit.svg" alt="">
-        <div (click)="PublishRoute(item)" class="publish"><p>PUBLISH</p></div>
-      </div>
     </div>
   </ng-container>
 </div>

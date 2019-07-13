@@ -26,7 +26,7 @@ export class CreateRouteIndexComponent implements OnInit {
 
   GetRoutes() {
     this.isLoadingRoutes = true;
-    this.service.GetMyRoutes()
+    this.service.GetRoutes()
       .subscribe(
         (res: RouteModel[]) => {
           this.Routes = res;

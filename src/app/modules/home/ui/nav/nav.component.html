@@ -1,19 +1,5 @@
 <div class="nav">
-  <div class="mw1440">
-    <div class="left-side">
-      <img src="./../../../../../assets/images/logo.svg" alt="" class="logo">
-    </div>
-    <div class="right-side">
-      <div class="user-info">
-        <p class="username">{{User.first_name}} {{User.last_name}}</p>
-        <div *ngIf="User.image_id" class="user-logo">
-          <img (error)="User.image_id = null" [src]="'http://35.204.142.44:3000/images/'+User.image_id" alt="" class="user-logo-image">
-        </div>
-        <img (click)="openMenu()" class="user-menu" [ngClass]="{'open':IsOpenedMenu}" src="../../../../../assets/images/array.svg" alt="">
-        <div *ngIf="IsOpenedMenu" class="menu">
-          <p (click)="Logout()">Logout</p>
-        </div>
-      </div>
-    </div>
-  </div>
+  <!-- <div class="mw1440"> -->
+    <a class="link_to_parent" href="http://ooptlo.ru">Вернуться на сайт</a>
+  <!-- </div> -->
 </div>

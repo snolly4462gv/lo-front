@@ -1,50 +1,18 @@
-<div class="side" [ngClass]="{'hided': isHided}" >
-  <div *ngIf="!isHided" (click)="HideMenu()"  class="menu">
-    <img src="../../../../../assets/images/menu-closed.svg" alt="" class="menu-closed">
-  </div>
-
-  <div *ngIf="isHided" (click)="OpenMenu()"  class="menu ">
-    <img src="../../../../../assets/images/array.svg" alt="" class="menu-closed array">
-  </div>
-
+<div class="side" >
  <div class="center">
-  <div class="user">
-    <img *ngIf="User.image_id" (error)="User.image_id = null" [src]="'http://35.204.142.44:3000/images/'+User.image_id" alt="" class="logo">
-    <div class="info">
-      <p class="name">{{User.first_name}} {{User.last_name}}</p>
-      <a href="#" class="landing">My landing page</a>
-    </div>
-  </div>
-  <img src="../../../../../assets/images/line.svg" alt="" class="line">
-
   <ul class="list">
-    <li (click)="Selected = Pages.Dashboard" class="item" [ngClass]="{'selected': Selected == Pages.Dashboard}">
-      <a [routerLink]="['/home','dashboard']">
-      <img [src]="Selected == Pages.Dashboard?'../../../../../assets/images/dashboard_selected.svg':'../../../../../assets/images/dashboard.svg'" alt="">
-      <p [ngClass]="{'selected': Selected == Pages.Dashboard}">Dashboard</p>
-      </a>
-    </li>
     <li (click)="Selected = Pages.CreateRoute" class="item" [ngClass]="{'selected': Selected == Pages.CreateRoute}">
       <a [routerLink]="['/home','create-route']">
       <img [src]="Selected == Pages.CreateRoute?'../../../../../assets/images/create-route_selected.svg':'../../../../../assets/images/create-route.svg'" alt="">
-      <p [ngClass]="{'selected': Selected == Pages.CreateRoute}">Create route</p>
+      <p [ngClass]="{'selected': Selected == Pages.CreateRoute}">Маршруты</p>
       </a>
     </li>
     <li (click)="Selected = Pages.Places" class="item" [ngClass]="{'selected': Selected == Pages.Places}">
       <a [routerLink]="['/home','places']">
       <img [src]="Selected == Pages.Places?'../../../../../assets/images/my-places_selected.svg':'../../../../../assets/images/my-places.svg'" alt="">
-      <p [ngClass]="{'selected': Selected == Pages.Places}">My places</p>
+      <p [ngClass]="{'selected': Selected == Pages.Places}">Места интереса</p>
       </a>
     </li>
-    <li (click)="Selected = Pages.Routes" class="item" [ngClass]="{'selected': Selected == Pages.Routes}">
-      <a [routerLink]="['/home','routes']">
-      <img [src]="Selected == Pages.Routes?'../../../../../assets/images/routes_selected.svg':'../../../../../assets/images/routes.svg'" alt="">
-      <p [ngClass]="{'selected': Selected == Pages.Routes}">Routes</p>
-      </a>
-    </li>
-
-
   </ul>
-</div>
-
+ </div>
 </div>

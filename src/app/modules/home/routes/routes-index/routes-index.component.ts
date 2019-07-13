@@ -23,12 +23,12 @@ export class RoutesIndexComponent implements OnInit {
   constructor(private service: MainService, private typeService: TypeService, private router: Router) { }
 
   ngOnInit() {
-    this.GetRoutes();
+    // this.GetRoutes();
   }
 
   GetRoutes() {
     this.isLoadingRoutes = true;
-    this.service.GetMyRoutes()
+    this.service.GetRoutes()
       .subscribe(
         (res: RouteModel[]) => {
           this.Routes = res;

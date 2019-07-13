@@ -19,7 +19,7 @@ export class PlacesIndexComponent implements OnInit {
 
   GetPlaces() {
     this.isLoadingPlaces = true;
-    this.service.GetMyPlaces()
+    this.service.GetAllPlaces()
       .subscribe(
         (res: PlaceModel[]) => {
           this.Places = res;

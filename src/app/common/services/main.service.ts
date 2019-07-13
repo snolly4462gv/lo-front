@@ -64,22 +64,21 @@ export class MainService {
       const token = localStorage.getItem('token');
       if (token) {
         this.http.BaseInitByToken(token);
-        this.GetMe()
-          .subscribe(
-            (res) => {
-              this.User = res;
-              this.User.token = token;
-              this.onUserChange$.next(true);
-            },
-            (err) => {
-              this.onLoginChange$.next(false);
-            }
-          )
+        // this.GetMe()
+        //   .subscribe(
+        //     (res) => {
+        //       this.User = res;
+        //       this.User.token = token;
+        //       this.onUserChange$.next(true);
+        //     },
+        //     (err) => {
+        //       this.onLoginChange$.next(false);
+        //     }
+        //   )
       } else {
          this.onLoginChange$.next(false);
       }
     }
-
 
     public LoginUser(user: UserGetModel){
       this.User = user;
@@ -163,42 +162,33 @@ export class MainService {
     /////////////////////
 
     public Login(login: LoginModel) {
-      return this.http.PostData('/auth/login', login);
+      return this.http.PostData('/login', login);
     }
-    public CreateUser(user: UserModel) {
-      return this.http.PostData('/users', user);
-    }
-    public GetMe() {
-      return this.http.GetData('/me', '');
+    public Logout(login: LoginModel) {
+      return this.http.PostData('/logout', '');
     }
 
     public CreatePlace(place: PlaceModel) {
-      return this.http.PostData('/places', place);
+      return this.http.PostData('/add_place', place);
     }
-    public UpdatePlace(place: PlaceModel) {
-      return this.http.PutData('/places/' + place.id, place);
-    }
-    public GetMyPlaces() {
-      return this.http.GetData('/me/places', '');
-    }
-    public GetAllPlacesByLatLng(lat: number, lng: number) {
-      return this.http.GetData('/places', this.typeService.ParamsToUrlSearchParams({lat, lng}));
+    public GetAllPlaces() {
+      return this.http.GetData('/get_places', '');
     }
     public GetPlaceById(id) {
-      return this.http.GetData('/places/' + id, '');
+      return this.http.GetData('/get_place/' + id, '');
     }
 
-    public GetMyRoutes() {
-      return this.http.GetData('/me/routes', '');
+    public GetRoutes() {
+      return this.http.GetData('/get_routes', '');
     }
     public GetRouteById(id) {
       return this.http.GetData('/routes/' + id, '');
     }
     public CreateRoute(route: RouteModel) {
-      if (route.image && route.image.base64) {
-        route.image.base64 = route.image.base64.split('base64,')[1];
-      }
-      return this.http.PostData('/routes', route);
+      // if (route.image && route.image.base64) {
+      //   route.image.base64 = route.image.base64.split('base64,')[1];
+      // }
+      return this.http.PostData('/add_route', route);
     }
     public UpdateRoute(route: RouteModel) {
       if (route.image && route.image.base64) {

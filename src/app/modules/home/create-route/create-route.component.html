@@ -1,39 +1,23 @@
 <div  class="block">
   <div *ngIf="CurrentPage != Pages['Index']" class="create-route">
     <div class="left">
-      <div class="header">
-        <a (click)="CreateRouteNav()"><img class="array-back" src="../../../../../assets/images/array-back.svg" alt=""></a>
-        <p class="title">Create route</p>
-        <div *ngIf="TotalTime" class="total total-time">
-          <img src="../../../../../assets/images/clock.svg" alt="">
-          <p class="text">Total route time: ~ {{TotalTime}} h</p>
-        </div>
-        <div *ngIf="TotalDistance" class="total total-distance">
-          <img src="../../../../../assets/images/distance.svg" alt="">
-          <p class="text">Total distance: ~ {{TotalDistance}} km</p>
-        </div>
-      </div>
-      <p *ngIf="CurrentPage == Pages['Places']" class="step">Step 1. On the beginning you have to choose places. You can create places <a class="link" [routerLink]="['/home','places','create']">here</a> :)</p>
-      <p *ngIf="CurrentPage == Pages['Order']" class="step">Step 2. Keep it on! Here you have to make correct order of the places. Just click on place in correct order on map or drag and drop cards under it.</p>
-      <p *ngIf="CurrentPage == Pages['General'] || CurrentPage == Pages['Summary']" class="step">Step 3. We almost done. Just input general information about your route. Good luck!</p>
-
+      
+      <p class="step">Создание маршрута</p>
 
       <ul class="menu">
         <!-- <li routerLinkActive="active" class="item"><a [routerLink]="['/home','create-route','places']">PLACES</a></li>
         <li routerLinkActive="active" class="item"><a [routerLink]="['/home','create-route','order']">ORDER</a></li>
         <li routerLinkActive="active" class="item"><a [routerLink]="['/home','create-route','general']">GENERAL</a></li>
         <li routerLinkActive="active" class="item"><a [routerLink]="['/home','create-route','summary']">SUMMARY</a></li> -->
-        <li routerLinkActive="active" class="item"><a [routerLink]="['/home','create-route','places']">PLACES</a></li>
-        <li routerLinkActive="active" class="item"><a [routerLink]="['/home','create-route','order']">ORDER</a></li>
-        <li routerLinkActive="active" class="item"><a [routerLink]="['/home','create-route','general']">GENERAL</a></li>
-        <li routerLinkActive="active" class="item"><a [routerLink]="['/home','create-route','summary']">SUMMARY</a></li>
+        <li routerLinkActive="active" class="item"><a [routerLink]="['/home','create-route','places']">Места</a></li>
+        <li routerLinkActive="active" class="item"><a [routerLink]="['/home','create-route','order']">Порядок</a></li>
+        <li routerLinkActive="active" class="item"><a [routerLink]="['/home','create-route','general']">Основное</a></li>
       </ul>
     </div>
     <div class="right">
-      <div (click)="SaveRoute()"  class="save-button"><p class="text">SAVE AS drafts</p></div>
+      <div (click)="SaveRoute()"  class="save-button"><p class="text">Создать</p></div>
       <div class="remove">
-        <img src="../../../../../assets/images/bin.svg" alt="">
-        <p class="text"> Remove route</p>
+        <p class="text"> Удалить</p>
         </div>
     </div>
   </div>
@@ -43,22 +27,4 @@
   </div>
 </div>
 
-<div *ngIf="CurrentPage != Pages['Index'] && CurrentPage != Pages['Summary']" class="footer fixed">
-  <div *ngIf=" CurrentPage != Pages['Summary']" class="right">
-    <div class="content">
-      <p class="text">If here everything ok. Let’s proceed</p>
-      <img src="../../../../assets/images/array-footer.svg" alt="">
-      <div (click)="nextStep()" class="button"><p class="text">Next step</p></div>
-    </div>
-  </div>
-</div>
 
-<div *ngIf="CurrentPage == Pages['Summary']" class="footer">
-  <div class="center">
-    <div class="content">
-      <img src="../../../../assets/images/array-footer.svg" alt="">
-      <div  (click)="SaveRoute(true)" class="button"><p class="text">Publish route</p></div>
-      <img src="../../../../assets/images/array-footer-reverse.svg" alt="">
-    </div>
-  </div>
-</div>
