@@ -15,7 +15,7 @@
           [latitude]="allPlace.lat"
           [longitude]="allPlace.lng"
           (mouseOver)="allPlace.isShow = true; mouseOver(allPlace)"
-          [iconUrl]="allPlace.selected?'../../../../../assets/images/betrip-cursor.svg':'../../../../../assets/images/Ellipse-grey.png'"
+          [iconUrl]="allPlace.selected?'../../../../../assets/images/pin.png':'../../../../../assets/images/Ellipse-grey.png'"
         ></agm-marker>
 
       <agm-snazzy-info-window
@@ -50,7 +50,7 @@
           [latitude]="item.lat"
           [longitude]="item.lng"
           (mouseOver)="item.isShow = true"
-          [iconUrl]="item.selected?'../../../../../assets/images/betrip-cursor.svg':'../../../../../assets/images/Ellipse-orange.png.png'"
+          [iconUrl]="item.selected?'../../../../../assets/images/pin.png':'../../../../../assets/images/Ellipse-orange.png.png'"
       ></agm-marker>
 
       <agm-snazzy-info-window
@@ -82,7 +82,7 @@
           [longitude]="NewPlace.lng"
           [markerDraggable]="true"
           (dragEnd)="MapClick($event)"
-          iconUrl="../../../../../assets/images/betrip-cursor.svg"
+          iconUrl="../../../../../assets/images/pin.png"
         ></agm-marker>
     </ng-container>
 

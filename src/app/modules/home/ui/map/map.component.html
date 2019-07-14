@@ -15,9 +15,9 @@
           [latitude]="allPlace.lat"
           [longitude]="allPlace.lng"
           (mouseOver)="allPlace.isShow = true; mouseOver(allPlace)"
-         
+          [iconUrl]="allPlace.selected?'../../../../../assets/images/pin.png':'../../../../../assets/images/Ellipse-grey.png'"
         ></agm-marker>
- <!-- [iconUrl]="allPlace.selected?'../../../../../assets/images/betrip-cursor.svg':'../../../../../assets/images/Ellipse-grey.png'" -->
+ <!--  -->
       <agm-snazzy-info-window
         *ngIf="allPlace.isShow"
         [isOpen]="allPlace.isShow"
@@ -43,37 +43,7 @@
 
     </ng-container>
 
-    <ng-container *ngFor="let item of MyPlaces; let i = index">
 
-      <agm-marker
-          *ngIf="!item.isShow"
-          [latitude]="item.lat"
-          [longitude]="item.lng"
-          (mouseOver)="item.isShow = true"
-         
-      ></agm-marker>
- <!-- [iconUrl]="item.selected?'../../../../../assets/images/betrip-cursor.svg':'../../../../../assets/images/Ellipse-orange.png'" -->
-      <agm-snazzy-info-window
-        *ngIf="item.isShow && item.lat && item.lng && item.name"
-        [isOpen]="true"
-        [latitude]="item.lat"
-        [longitude]="item.lng"
-        [showCloseButton]="false"
-        [padding]="'3px'"
-        [borderRadius]="'5px'"
-        [closeOnMapClick] = "false"
-        [panOnOpen]="false"
-        [backgroundColor]="'#FFA901'"
-      >
-        <ng-template>
-          <div (mouseout)="item.isShow = false">
-          <p *ngIf="!item.image_id" (click)="SelectInfoWindow(i)">{{item.name}}</p>
-          <p class="window-start" *ngIf="this.RouteOrder[0] && item.id == this.RouteOrder[0].id">Start</p>
-          <img *ngIf="item.image_id" class="map-img" (click)="SelectInfoWindow(i)" (error)="item.image_id = null" [src]="GetImageURL(item.image_id)" alt="">
-          </div>
-        </ng-template>
-      </agm-snazzy-info-window>
-    </ng-container>
 
     <ng-container *ngIf="Mode == Modes.AddPlace && NewPlace.lat && NewPlace.lng">
         <agm-marker
@@ -82,10 +52,10 @@
           [longitude]="NewPlace.lng"
           [markerDraggable]="true"
           (dragEnd)="MapClick($event)"
-
+          iconUrl="../../../../../assets/images/pin.png"
         ></agm-marker>
     </ng-container>
-          <!-- iconUrl="../../../../../assets/images/betrip-cursor.svg" -->
+          <!--  -->
 
     <ng-container *ngIf="Mode == Modes.CreateRoute || Mode == Modes.General">
       <agm-polyline

@@ -52,13 +52,11 @@ export class CreateRouteGeneralComponent implements OnInit {
     this.service.SetRoute(this.Route);
   }
 
-  uploadImage($event){
+  uploadImage($event) {
     this.ReadImages(
         $event.target.files,
         (res: string) => {
-            this.isImageByModel = false;
-            this.Route.image = new ImageModel();
-            this.Route.image.base64 = res;
+            this.Route.image = res;
         }
     );
   }

@@ -64,6 +64,8 @@ export class MapPlacesComponent implements OnInit {
         this.AllPlaces[indexAll].selected = true;
       }
     }
+
+    this.onCenterChange();
   }
 
   InitGoogle() {
@@ -74,15 +76,7 @@ export class MapPlacesComponent implements OnInit {
     );
   }
 
-  onCenterChange (event) {
-    for (let my of this.MyPlaces) {
-      my.isShow = false;
-    }
-    for (let all of this.AllPlaces) {
-      all.isShow = false;
-    }
-    if (!this.isCenterChanged) {
-      this.isCenterChanged = true;
+  onCenterChange () {
       this.service.GetAllPlaces()
         .subscribe(
           (res: PlaceModel[]) => {
@@ -92,12 +86,10 @@ export class MapPlacesComponent implements OnInit {
               }
             }
             setTimeout(() => {
-              this.isCenterChanged = false;
               this.GetSelectedPlaces();
             }, 10);
           }
         );
-    }
   }
 
 

@@ -6,10 +6,12 @@
   box-shadow: 0px 2px 10px rgba(29, 1, 81, 0.06);
    display: flex;
   align-items: center;
+  justify-content: space-between;
 }
 .link_to_parent {
   color: white;
   text-decoration: none;
+  cursor: pointer;
 }
 .nav .mw1440 {
   // padding: 0 60px;

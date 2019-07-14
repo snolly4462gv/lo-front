@@ -77,51 +77,28 @@ export class CreateRouteComponent implements OnInit {
      (res) => {
       if (res) {
         this.Places = this.service.GetPlaces();
-        this.getTimeDistance();
       }
      }
    );
   }
 
-  getTimeDistance () {
-    if (this.Places.length >= 2) {
-      this.TotalDistance = 0;
-
-      for (let i=0; i<this.Places.length-1; i++) {
-        let lat = Math.abs(this.Places[i].lat - this.Places[i+1].lat) /  0.009;
-        let lng = Math.abs(this.Places[i].lng - this.Places[i+1].lng) * Math.cos(lat) /  0.008;
-        let distance = Math.sqrt(lat*lat + lng*lng);
-        this.TotalDistance += distance;
-      }
-
-      this.TotalTime = (this.TotalDistance * 1000 / 0.75) + this.Places.length * 300;
-
-      this.TotalDistance = Math.round(this.TotalDistance);
-
-      this.TotalTime = Math.ceil(this.TotalTime / 360);
-    } else {
-      this.TotalDistance = 0;
-      this.TotalTime = 0;
-    }
-  }
-
   SaveRoute (isPublish = false) {
-      this.isLoading = true;
+      // this.isLoading = true;
       this.Route = this.service.GetRoute();
       this.Route.places = [];
       for (const item of this.Places) {
         this.Route.places.push(item.id);
       }
-      console.log(this.Route);
       this.Route.total_places = this.Route.places.length;
       this.service.CreateRoute(this.Route)
       .subscribe(
         (res) => {
-          this.router.navigate(['/home', 'create-route']);
-          this.isLoading = false;
+          // this.isLoading = false;
+          this.router.navigate(['/home', 'create-route', 'index']);
+          // return;
         },
         (err) => {
-          this.isLoading = false;
+          // this.isLoading = false;
         }
       );
   }

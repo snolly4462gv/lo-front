@@ -18,9 +18,9 @@
         [backgroundColor]="item.order?'#005C9D':'#ffffff'"
       >
         <ng-template>
-          <p *ngIf="!item.image_id" (click)="SelectInfoWindow(i)">{{item.name}}</p>
+          <p [style.color]="'orange'" *ngIf="!item.image_id" (click)="SelectInfoWindow(i)">{{item.name}}</p>
           <p class="window-start" *ngIf="this.RouteOrder[0] && item.id == this.RouteOrder[0].id">Начало</p>
-          <img *ngIf="item.image_id" class="map-img" (click)="SelectInfoWindow(i)" (error)="item.image_id = null" [src]="GetImageURL(item.image_id)" alt="">
+          <img *ngIf="item.image" class="map-img" (click)="SelectInfoWindow(i)" (error)="item.image = null" [src]="item.image" alt="">
         </ng-template>
       </agm-snazzy-info-window>
     </ng-container>

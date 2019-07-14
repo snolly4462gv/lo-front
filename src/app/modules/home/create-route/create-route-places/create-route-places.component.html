@@ -21,7 +21,7 @@
     <!-- Просмотр места -->
     <div *ngIf="CurrentPage=='SelectPlace'&&SelectPlace.name" class="detail preview-place">
       <div class="header">
-        <img class="logo" [src]="'http://35.204.142.44:3000/images/'+SelectPlace.image_id" alt="">
+        <img class="logo" [src]="SelectPlace.image?SelectPlace.image:'../../../../../assets/images/empty-img.svg'" alt="">
         <div class="info">
           <div class="title-edit">
             <p class="title">{{SelectPlace.name}}</p>
@@ -137,7 +137,7 @@
       <ng-container *ngFor="let item of PlacesInRoute; let i = index">
       <div *ngIf="!item.isShowFullDesc" class="route">
         <div class="header">
-        <img class="logo" [src]="'http://35.204.142.44:3000/images/'+item.image_id" alt="">
+        <img class="logo" [src]="item.image?item.image:'../../../../../assets/images/empty-img.svg'" alt="">
         <div class="info">
           <div class="title-edit">
             <p class="title">{{item.name}}</p>
@@ -155,7 +155,7 @@
 
       <div *ngIf="item.isShowFullDesc" class="route-full">
         <div class="header">
-        <img class="logo" [src]="'http://35.204.142.44:3000/images/'+item.image_id" alt="">
+        <img class="logo" [src]="item.image?item.image:'../../../../../assets/images/empty-img.svg'" alt="">
         <div class="info">
           <div class="title-edit">
             <p class="title">{{item.name}}</p>

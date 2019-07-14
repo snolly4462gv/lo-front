@@ -8,7 +8,8 @@
 <div [ngStyle]="{'display': isLoadingRoutes? 'none': 'flex'}" class="routes">
   <ng-container *ngFor="let item of Routes; let i = index">
     <div class="route">
-      <img *ngIf="item.image_id" (error)="item.image_id = null" [src]="'http://35.204.142.44:3000/images/'+item.image_id" alt="" class="route__image">
+      <img *ngIf="item.image" (error)="item.image_id = null" [src]="item.image" alt="" class="route__image">
+      <img *ngIf="!item.image" src="../../../../../assets/images/empty-img.svg" alt="" class="route__image">
       <ul class="route__content">
         <div class="name-price">
           <p class="name">{{item.name}} </p>

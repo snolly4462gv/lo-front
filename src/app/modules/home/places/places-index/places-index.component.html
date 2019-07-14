@@ -9,6 +9,8 @@
   <ng-container *ngFor="let place of Places; let i = index">
     <div *ngIf="place.name" class="place">
       <img *ngIf="place.image" (error)="place.image = null" [src]="place.image" alt="" class="place__image">
+      <img *ngIf="!place.image" src="../../../../../assets/images/empty-img.svg" alt="" class="place__image">
+      
       <div class="place__content">
         <div class="name-price">
           <p class="name">{{place.name}}</p>
