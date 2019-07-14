@@ -10,7 +10,8 @@ import { TokenModel } from '../models/token.model';
 @Injectable()
 export class HttpService {
     // serverUrl = 'http://35.204.142.44:3000';
-    serverUrl = 'http://127.0.0.1:8002';
+    // serverUrl = 'http://127.0.0.1:8002';
+    serverUrl = 'https://lenobl.herokuapp.com';
     public headers: HttpHeaders = new HttpHeaders();
     public token: TokenModel = new TokenModel('');
 
