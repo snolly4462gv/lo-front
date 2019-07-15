@@ -16,6 +16,8 @@ export class PlaceModel {
         public order?: number,
         public selected?: boolean,
 
+        public type?: string,
+
         public isShowFullDesc?: boolean,
         public isShow?: boolean
     ) {

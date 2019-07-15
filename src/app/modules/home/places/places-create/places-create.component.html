@@ -39,6 +39,27 @@
               <div><textarea [(ngModel)]="NewPlace.description" class="input" name="description"></textarea></div>
           </div>
 
+          <div class="input-block">
+              <div><label class="label" for="description">Тип места</label></div>
+              <div>
+                <select [(ngModel)]="NewPlace.type" class="input" name="description">
+                  <option value="any">Не задан</option>
+                  <option value="view">Видовая точка</option>
+                  <option value="view_place">Место для фото</option>
+                  <option value="water">Водопад</option>
+                  <option value="bridge">Переправа/мостик</option>
+                  <option value="starway">Лестница</option>
+                  <option value="bin">Места для собра мусора</option>
+                  <option value="sight">Достопримечательность</option>
+                  <option value="fire">Кострище</option>
+                  <option value="eco">Экощит</option>
+                  <option value="talking">Беседка</option>
+                  <option value="birds">Орнитологическая вышка</option>
+                  <option value="camping">Место для палаток</option>
+                </select>
+              </div>
+          </div>
+
       </div>
       <div (click)="CreatePlace()" class="add-button">
          <p class="text">Добавить</p>
