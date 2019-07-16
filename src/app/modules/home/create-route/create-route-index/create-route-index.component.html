@@ -11,6 +11,7 @@
       <img *ngIf="item.image" (error)="item.image_id = null" [src]="item.image" alt="" class="route__image">
       <img *ngIf="!item.image" src="../../../../../assets/images/empty-img.svg" alt="" class="route__image">
       <ul class="route__content">
+        <p class="remove" (click)="RemoveItem(item)">Удалить</p>
         <div class="name-price">
           <p class="name">{{item.name}} </p>
 

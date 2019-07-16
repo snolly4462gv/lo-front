@@ -39,4 +39,23 @@ export class PlacesIndexComponent implements OnInit {
     return 'http://35.204.142.44:3000/images/' + id;
   }
 
+  RemoveItem(place) {
+    console.log(place);
+     this.isLoadingPlaces = true;
+    this.service.DeletePlace(place.id)
+        .subscribe(
+          (res) => {
+            this.isLoadingPlaces = false;
+            this.GetPlaces();
+          },
+          () => {
+            this.GetPlaces();
+            this.isLoadingPlaces = false;
+          },
+          () => {
+            this.isLoadingPlaces = false;
+          }
+        );
+  }
+
 }

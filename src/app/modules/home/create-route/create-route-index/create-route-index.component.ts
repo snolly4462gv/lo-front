@@ -30,12 +30,6 @@ export class CreateRouteIndexComponent implements OnInit {
       .subscribe(
         (res: RouteModel[]) => {
           this.Routes = res;
-          console.log(this.Routes);
-          for (let item of this.Routes) {
-            if (item.categories) {
-              item.categories = this.typeService.ConvertRouteCategoriesFromBackToFront(item.categories);
-            }
-          }
         },
         () => {},
         () => {
@@ -44,6 +38,25 @@ export class CreateRouteIndexComponent implements OnInit {
           }, 500);
         }
       );
+  }
+
+  RemoveItem(route) {
+    console.log(route);
+    this.isLoadingRoutes = true;
+    this.service.DeleteRoute(route.id)
+        .subscribe(
+          (res) => {
+            this.isLoadingRoutes = false;
+            this.GetRoutes();
+          },
+          () => {
+            this.GetRoutes();
+            this.isLoadingRoutes = false;
+          },
+          () => {
+            this.isLoadingRoutes = false;
+          }
+        );
   }
 
   PublishRoute (route) {

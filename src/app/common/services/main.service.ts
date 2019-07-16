@@ -196,6 +196,12 @@ export class MainService {
       }
       return this.http.PutData('/routes/' + route.id, route);
     }
+    public DeleteRoute(id: number) {
+      return this.http.DeleteData('/remove_route/' + id);
+    }
+    public DeletePlace(id: number) {
+      return this.http.DeleteData('/remove_place/' + id);
+    }
 
     // this.typeService.ParamsToUrlSearchParams(place)
 
